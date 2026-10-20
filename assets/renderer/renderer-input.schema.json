@@ -1,0 +1,2888 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:run-turn:v6.1-complete-input:1",
+  "title": "Complete standalone v6.1 rendering input and evidenced execution validation",
+  "type": "object",
+  "properties": {
+    "profile": {
+      "const": "v6.1/1"
+    },
+    "deliveryMode": {
+      "enum": [
+        "test-suite",
+        "real-flow"
+      ]
+    },
+    "dataKind": {
+      "enum": [
+        "synthetic",
+        "source-backed"
+      ]
+    },
+    "semanticRoot": {
+      "type": "object",
+      "properties": {
+        "actorRef": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "symbol": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "actorRef",
+        "symbol"
+      ],
+      "additionalProperties": false
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Actor"
+      }
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Message"
+      }
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Phase"
+      }
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Segment"
+      }
+    },
+    "fixture": {
+      "type": "object",
+      "properties": {
+        "actors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Actor"
+          }
+        },
+        "messages": {
+          "type": "array",
+          "maxItems": 0
+        }
+      },
+      "required": [
+        "actors",
+        "messages"
+      ],
+      "additionalProperties": false
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Control"
+      }
+    },
+    "rootControlRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SafeId"
+      }
+    },
+    "rootAnchors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/RootAnchor"
+      }
+    },
+    "scopeAnnotations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ScopeAnnotation"
+      }
+    },
+    "purposeProjections": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PurposeProjection"
+      }
+    },
+    "initialState": {
+      "$ref": "#/$defs/InitialState"
+    },
+    "display": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "sourceLabel": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "sourceLabel"
+      ],
+      "additionalProperties": false
+    },
+    "caseIndex": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CaseIndexRow"
+      }
+    },
+    "definitionNotes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "readingScopes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ReadingScope"
+      }
+    },
+    "controlOwners": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ControlOwner"
+      }
+    },
+    "messagePlacements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/MessagePlacement"
+      }
+    },
+    "branchRoles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/BranchRole"
+      }
+    },
+    "returnContracts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ReturnContract"
+      }
+    },
+    "testBoundaries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TestBoundary"
+      }
+    },
+    "execution": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Execution"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "functionSource": {
+      "$ref": "#/$defs/FunctionSource"
+    },
+    "sourceGroups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SourceGroup"
+      }
+    },
+    "prelude": {
+      "$ref": "#/$defs/Prelude"
+    }
+  },
+  "required": [
+    "profile",
+    "deliveryMode",
+    "dataKind",
+    "semanticRoot",
+    "actors",
+    "messages",
+    "phases",
+    "segments",
+    "fixture",
+    "controls",
+    "rootControlRefs",
+    "rootAnchors",
+    "scopeAnnotations",
+    "purposeProjections",
+    "initialState",
+    "display",
+    "caseIndex",
+    "definitionNotes",
+    "readingScopes",
+    "controlOwners",
+    "messagePlacements",
+    "branchRoles",
+    "returnContracts",
+    "testBoundaries",
+    "execution"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "SafeId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z_][A-Za-z0-9_.:-]*$",
+      "description": "用于DOM属性和CSS属性选择器的ASCII标识。命名空间唯一性与原型保留名由语义校验负责。"
+    },
+    "HexColor": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$",
+      "description": "当前renderer会拼接08作为alpha，故只接受6位hex颜色。"
+    },
+    "Actor": {
+      "type": "object",
+      "properties": {
+        "actorId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "label": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "crate",
+            "module",
+            "body",
+            "declaration"
+          ]
+        },
+        "color": {
+          "$ref": "#/$defs/HexColor"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Actor"
+          }
+        },
+        "alignment": {
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ]
+        },
+        "defaultExpanded": {
+          "type": "boolean"
+        },
+        "parentActorId": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/SafeId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "className": {
+          "type": "string"
+        },
+        "regionClassName": {
+          "type": "string"
+        },
+        "sourceNodeRef": {
+          "type": "string"
+        },
+        "bodyRef": {
+          "type": "string"
+        },
+        "declarationRef": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{8,}$"
+        },
+        "implementationStatus": {
+          "const": "unresolved"
+        }
+      },
+      "required": [
+        "actorId",
+        "label",
+        "kind",
+        "color"
+      ],
+      "additionalProperties": false,
+      "description": "横向参与者。children 可递归；color 为当前 renderer 使用的 CSS 颜色。后五个可选参数来自上游布局；当前 app 显式传展开集合，defaultExpanded 不决定初始展开。className/regionClassName 未用于当前 DOM 样式。",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "declaration"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "declarationRef",
+              "implementationStatus",
+              "sourceNodeRef"
+            ],
+            "not": {
+              "required": [
+                "bodyRef"
+              ]
+            }
+          },
+          "else": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "declarationRef"
+                  ]
+                },
+                {
+                  "required": [
+                    "implementationStatus"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "Message": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "fromActorId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "toActorId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "label": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "request",
+            "return",
+            "self"
+          ]
+        },
+        "pair": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/SafeId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "taskId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "handleId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wrapperId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pairState": {
+          "enum": [
+            "open"
+          ]
+        },
+        "completion": {
+          "enum": [
+            "unknown"
+          ]
+        },
+        "taskEvent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attemptId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resultId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rowIndex": {
+          "type": "number"
+        },
+        "invocationRef": {
+          "type": "string"
+        },
+        "bindingRef": {
+          "type": "string"
+        },
+        "awaitRef": {
+          "type": "string"
+        },
+        "stage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "messageId",
+        "fromActorId",
+        "toActorId",
+        "label",
+        "kind",
+        "pair"
+      ],
+      "additionalProperties": false,
+      "description": "消息对象。pair=null 表示不参与调用配对。taskId/handleId/wrapperId/pairState 用于点击后的信息。completion/taskEvent/attemptId/resultId 为现有 fixture 保留的数据，当前 renderer 不用它们决定绘图。上游读取 rowIndex，当前 app 的垂直顺序仍取控制节点 messages 顺序。"
+    },
+    "CaseIndexRow": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/SafeId",
+          "description": "案例编号"
+        },
+        {
+          "type": "string",
+          "description": "案例名称"
+        },
+        {
+          "type": "string",
+          "description": "表达方式"
+        },
+        {
+          "type": "string",
+          "description": "位置"
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4,
+      "items": false
+    },
+    "Repeat": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string"
+        },
+        "continue": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "limit": {
+          "type": "string"
+        },
+        "maxRepeats": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "continue",
+        "exit"
+      ],
+      "additionalProperties": false
+    },
+    "ControlBranch": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "condition": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Control"
+          }
+        },
+        "outcome": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "condition",
+        "children"
+      ],
+      "additionalProperties": false
+    },
+    "Control": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/SafeId"
+            },
+            "kind": {
+              "const": "sequence"
+            },
+            "condition": {
+              "type": "string"
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SafeId"
+              }
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Control"
+              }
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "after": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "retainSummary": {
+              "type": "boolean"
+            },
+            "invocationRef": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "id",
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/SafeId"
+            },
+            "kind": {
+              "const": "alt"
+            },
+            "condition": {
+              "type": "string"
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SafeId"
+              }
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Control"
+              }
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "after": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "retainSummary": {
+              "type": "boolean"
+            },
+            "invocationRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "branches": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ControlBranch"
+              },
+              "minItems": 2
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "branches"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/SafeId"
+            },
+            "kind": {
+              "const": "opt"
+            },
+            "condition": {
+              "type": "string"
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SafeId"
+              }
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Control"
+              }
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "after": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "retainSummary": {
+              "type": "boolean"
+            },
+            "invocationRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "skip": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "skip"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/SafeId"
+            },
+            "kind": {
+              "const": "loop"
+            },
+            "condition": {
+              "type": "string"
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SafeId"
+              }
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Control"
+              }
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "after": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "retainSummary": {
+              "type": "boolean"
+            },
+            "invocationRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "repeat": {
+              "$ref": "#/$defs/Repeat"
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "repeat"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Segment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "kind": {
+          "const": "sequence"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SafeId"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "condition": {
+          "type": "string"
+        },
+        "invocationRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "messages"
+      ],
+      "additionalProperties": false
+    },
+    "Action": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "renderId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "label": {
+          "type": "string"
+        },
+        "controlRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SafeId"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lineRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LineRange"
+          }
+        },
+        "basicBlockRefs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^bb[0-9]+$"
+          }
+        },
+        "sourceRangeReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "broadRangeReason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "renderId",
+        "label",
+        "controlRefs"
+      ],
+      "additionalProperties": false
+    },
+    "Goal": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "renderId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "label": {
+          "type": "string"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Action"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lineRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LineRange"
+          }
+        },
+        "basicBlockRefs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^bb[0-9]+$"
+          }
+        },
+        "sourceRangeReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "broadRangeReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mergeReason": {
+          "description": "For a multi-action goal, the stated merge reason may be recorded here or as cohesionReason in the matching stage-2 goal contract.",
+          "type": "string",
+          "minLength": 1
+        },
+        "splitReason": {
+          "description": "Required here for each goal in a split identified by matching adjacent stage-2 completion contracts and entry modes; no other field substitutes for it.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "renderId",
+        "label",
+        "actions"
+      ],
+      "additionalProperties": false
+    },
+    "Phase": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "label": {
+          "type": "string"
+        },
+        "color": {
+          "$ref": "#/$defs/HexColor"
+        },
+        "goals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Goal"
+          }
+        },
+        "boundaryControlRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SafeId"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lineRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LineRange"
+          }
+        },
+        "basicBlockRefs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^bb[0-9]+$"
+          }
+        },
+        "sourceRangeReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "broadRangeReason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "color",
+        "goals",
+        "boundaryControlRefs"
+      ],
+      "additionalProperties": false
+    },
+    "Owner": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "root",
+            "phase",
+            "action"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "ref"
+      ],
+      "additionalProperties": false
+    },
+    "ControlOwner": {
+      "type": "object",
+      "properties": {
+        "controlRef": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "owner": {
+          "$ref": "#/$defs/Owner"
+        }
+      },
+      "required": [
+        "controlRef",
+        "owner"
+      ],
+      "additionalProperties": false
+    },
+    "MessagePlacement": {
+      "type": "object",
+      "properties": {
+        "messageRef": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "controlRef": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "rootControlRef": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "branchPath": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "messageRef",
+        "controlRef",
+        "rootControlRef",
+        "branchPath"
+      ],
+      "additionalProperties": false
+    },
+    "BranchRole": {
+      "type": "object",
+      "properties": {
+        "branchRef": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "controlRef": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "role": {
+          "enum": [
+            "business",
+            "normal",
+            "ready",
+            "pending",
+            "unwind",
+            "terminate-turn",
+            "cancelled"
+          ]
+        }
+      },
+      "required": [
+        "branchRef",
+        "controlRef",
+        "role"
+      ],
+      "additionalProperties": false
+    },
+    "ReturnContract": {
+      "type": "object",
+      "properties": {
+        "messageRef": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "meaning": {
+          "enum": [
+            "normal-return",
+            "future-handle",
+            "poll-pending",
+            "task-ready"
+          ]
+        },
+        "branchRef": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "messageRef",
+        "meaning",
+        "branchRef"
+      ],
+      "additionalProperties": false
+    },
+    "RootAnchor": {
+      "type": "object",
+      "properties": {
+        "controlRef": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "beforePhaseRef": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "actualOwner": {
+          "const": "ROOT"
+        },
+        "bindingRef": {
+          "type": "string"
+        },
+        "basis": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "controlRef",
+        "beforePhaseRef",
+        "actualOwner",
+        "bindingRef",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "ScopeAnnotation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "sequence",
+            "alt",
+            "opt",
+            "loop"
+          ]
+        },
+        "phaseRef": {
+          "type": "string"
+        },
+        "phaseRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "actionRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "condition": {
+          "type": "string"
+        },
+        "outcomes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "commonAfter": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "meaning": {
+                  "type": "string"
+                },
+                "appliesTo": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "line": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "meaning"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "repeat": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Repeat"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "retainSummary": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "phaseRef",
+        "actionRefs",
+        "condition",
+        "outcomes",
+        "commonAfter"
+      ],
+      "additionalProperties": false
+    },
+    "PurposeProjection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "goalRef": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "relatedGoalRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "defaultVisible": {
+          "type": "boolean"
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "note"
+            },
+            "object": {
+              "type": "string"
+            },
+            "purpose": {
+              "type": "string"
+            },
+            "result": {
+              "type": "string"
+            },
+            "drawAsMessage": {
+              "const": false
+            }
+          },
+          "required": [
+            "kind",
+            "object",
+            "purpose",
+            "result",
+            "drawAsMessage"
+          ],
+          "additionalProperties": false
+        },
+        "invocationRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "waitRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "goalRef",
+        "relatedGoalRefs",
+        "defaultVisible",
+        "summary",
+        "invocationRefs",
+        "waitRefs"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingScope": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "kind": {
+              "const": "alt"
+            },
+            "condition": {
+              "type": "string",
+              "minLength": 1
+            },
+            "members": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "phase",
+                      "goal",
+                      "action"
+                    ]
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "kind",
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "parentScopeRef": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "originControlRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision": {
+              "type": "object",
+              "properties": {
+                "variable": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "required": [
+                "variable",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "commonAfter": {
+              "type": "object",
+              "properties": {
+                "actionRef": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "arrivals": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "condition": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "condition"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "actionRef",
+                "label",
+                "arrivals"
+              ],
+              "additionalProperties": false
+            },
+            "branches": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "condition": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "when": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "members": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "phase",
+                            "goal",
+                            "action"
+                          ]
+                        },
+                        "ref": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "ref"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "outcome": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sourceBranchRef": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "effect": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "enum": [
+                          "continue",
+                          "terminate-turn"
+                        ]
+                      },
+                      "scopeRef": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "scopeRef"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "id",
+                  "condition",
+                  "when",
+                  "members"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "condition",
+            "members",
+            "parentScopeRef",
+            "decision",
+            "branches"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "kind": {
+              "const": "opt"
+            },
+            "condition": {
+              "type": "string",
+              "minLength": 1
+            },
+            "members": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "phase",
+                      "goal",
+                      "action"
+                    ]
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "kind",
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "parentScopeRef": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "originControlRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision": {
+              "type": "object",
+              "properties": {
+                "variable": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "required": [
+                "variable",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "commonAfter": {
+              "type": "object",
+              "properties": {
+                "actionRef": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "arrivals": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "condition": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "condition"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "actionRef",
+                "label",
+                "arrivals"
+              ],
+              "additionalProperties": false
+            },
+            "takeValues": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "skipValues": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "skip": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "condition",
+            "members",
+            "parentScopeRef",
+            "decision",
+            "takeValues",
+            "skipValues",
+            "skip"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "kind": {
+              "const": "loop"
+            },
+            "condition": {
+              "type": "string",
+              "minLength": 1
+            },
+            "members": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "phase",
+                      "goal",
+                      "action"
+                    ]
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "kind",
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "parentScopeRef": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "originControlRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision": {
+              "type": "object",
+              "properties": {
+                "variable": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "required": [
+                "variable",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "commonAfter": {
+              "type": "object",
+              "properties": {
+                "actionRef": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "arrivals": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "condition": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "condition"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "actionRef",
+                "label",
+                "arrivals"
+              ],
+              "additionalProperties": false
+            },
+          "terminalOnly": {
+            "type": "object",
+            "properties": {
+              "proofRef": { "type": "string", "minLength": 1 },
+              "terminalNodeRefs": {
+                "type": "array", "minItems": 1, "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "exitEdgeRefs": {
+                "type": "array", "minItems": 1, "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              }
+            },
+            "required": ["proofRef", "terminalNodeRefs", "exitEdgeRefs"],
+            "additionalProperties": false
+          },
+            "repeat": {
+              "type": "object",
+              "properties": {
+                "entryActionRef": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "continueValues": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "exitValues": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "continue": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "exit": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "limit": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "entryActionRef",
+                "continueValues",
+                "exitValues",
+                "continue",
+                "exit",
+                "limit"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "condition",
+            "members",
+            "parentScopeRef",
+            "decision",
+          "repeat"
+          ],
+        "oneOf": [
+          { "required": ["commonAfter"], "not": { "required": ["terminalOnly"] } },
+          { "required": ["terminalOnly"], "not": { "required": ["commonAfter"] } }
+        ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "InitialState": {
+      "type": "object",
+      "properties": {
+        "expandedActorIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expandedPhaseIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expandedGoalIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expandedActionIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "expandedActorIds",
+        "expandedPhaseIds",
+        "expandedGoalIds",
+        "expandedActionIds"
+      ],
+      "additionalProperties": false
+    },
+    "TestBoundary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actionRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "caseRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "actionRefs",
+        "caseRefs",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "Artifact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourcePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "format": {
+          "enum": [
+            "rust",
+            "mir",
+            "icfg",
+            "fixture-source"
+          ]
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "sourcePath",
+        "format",
+        "sha256",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "Claim": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "entry",
+            "action",
+            "relation",
+            "decision",
+            "terminal",
+            "handoff",
+            "inventory",
+            "attachment",
+            "control-binding"
+          ]
+        },
+        "subjectRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "kind",
+        "subjectRef",
+        "targets",
+        "conditions"
+      ],
+      "additionalProperties": false
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifactRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim": {
+          "$ref": "#/$defs/Claim"
+        }
+      },
+      "required": [
+        "id",
+        "artifactRef",
+        "locator",
+        "quote",
+        "claim"
+      ],
+      "additionalProperties": false
+    },
+    "Guard": {
+      "type": "object",
+      "properties": {
+        "decisionRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "decisionRef",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "Decision": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 2,
+          "uniqueItems": true
+        },
+        "stability": {
+          "enum": [
+            "turn",
+            "iteration"
+          ]
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "readingScopeRef": {
+          "type": "string"
+        },
+        "controlRef": {
+          "type": "string"
+        },
+        "branchBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "branchRef": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "branchRef",
+              "values"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "takeValues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "skipValues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "values",
+        "stability",
+        "evidenceRefs"
+      ],
+      "additionalProperties": false
+    },
+    "ExecutionNode": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidenceRefs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "kind": {
+              "const": "entry"
+            },
+            "lineRanges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/LineRange"
+              }
+            },
+            "basicBlockRefs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^bb[0-9]+$"
+              }
+            },
+            "sourceRangeReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "broadRangeReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Source-evidenced display name copied from stage4; avoids exposing internal decision IDs/outcome enums as titles."
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "evidenceRefs"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidenceRefs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "actionRef": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "action"
+            },
+            "lineRanges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/LineRange"
+              }
+            },
+            "basicBlockRefs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^bb[0-9]+$"
+              }
+            },
+            "sourceRangeReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "broadRangeReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Source-evidenced display name copied from stage4; avoids exposing internal decision IDs/outcome enums as titles."
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "evidenceRefs",
+            "actionRef"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidenceRefs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "decisionRef": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "decision"
+            },
+            "lineRanges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/LineRange"
+              }
+            },
+            "basicBlockRefs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^bb[0-9]+$"
+              }
+            },
+            "sourceRangeReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "broadRangeReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Source-evidenced display name copied from stage4; avoids exposing internal decision IDs/outcome enums as titles."
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "evidenceRefs",
+            "decisionRef"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidenceRefs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "outcome": {
+              "enum": [
+                "return",
+                "error",
+                "unwind",
+                "suspend"
+              ]
+            },
+            "taskId": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "terminal"
+            },
+            "lineRanges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/LineRange"
+              }
+            },
+            "basicBlockRefs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^bb[0-9]+$"
+              }
+            },
+            "sourceRangeReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "broadRangeReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Source-evidenced display name copied from stage4; avoids exposing internal decision IDs/outcome enums as titles."
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "evidenceRefs",
+            "outcome"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidenceRefs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "taskId": {
+              "type": "string"
+            },
+            "event": {
+              "enum": [
+                "construct",
+                "await",
+                "resume",
+                "complete"
+              ]
+            },
+            "kind": {
+              "const": "handoff"
+            },
+            "lineRanges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/LineRange"
+              }
+            },
+            "basicBlockRefs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^bb[0-9]+$"
+              }
+            },
+            "sourceRangeReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "broadRangeReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Source-evidenced display name copied from stage4; avoids exposing internal decision IDs/outcome enums as titles."
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "evidenceRefs",
+            "taskId",
+            "event"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ExecutionEdge": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "from": {
+          "type": "string",
+          "minLength": 1
+        },
+        "to": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "flow",
+            "branch",
+            "call",
+            "return",
+            "await",
+            "resume",
+            "loop-continue",
+            "loop-exit"
+          ]
+        },
+        "guards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Guard"
+          }
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "taskId": {
+          "type": "string"
+        },
+        "resetDecisionRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "readingScopeRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "from",
+        "to",
+        "kind",
+        "guards",
+        "evidenceRefs"
+      ],
+      "additionalProperties": false
+    },
+    "Attachment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "condition",
+            "identity",
+            "wait-explanation",
+            "purpose"
+          ]
+        },
+        "ownerActionRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controlRef": {
+          "type": "string"
+        },
+        "scopeAnnotationRef": {
+          "type": "string"
+        },
+        "purposeRef": {
+          "type": "string"
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "ownerActionRef",
+        "evidenceRefs"
+      ],
+      "additionalProperties": false
+    },
+    "Execution": {
+      "type": "object",
+      "properties": {
+        "rootActorRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entryNodeRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inventory": {
+          "type": "object",
+          "properties": {
+            "actionRefs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "controlRefs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "evidenceRefs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "actionRefs",
+            "controlRefs",
+            "evidenceRefs"
+          ],
+          "additionalProperties": false
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Artifact"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Decision"
+          }
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ExecutionNode"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ExecutionEdge"
+          }
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Attachment"
+          }
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "origin": {
+                "enum": [
+                  "input",
+                  "constructed"
+                ]
+              },
+              "constructNodeRef": {
+                "type": "string"
+              },
+              "evidenceRefs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "id",
+              "origin",
+              "evidenceRefs"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "controlBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "controlRef": {
+                "type": "string",
+                "minLength": 1
+              },
+              "nodeRef": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidenceRefs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "controlRef",
+              "nodeRef",
+              "evidenceRefs"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "rootActorRef",
+        "entryNodeRef",
+        "inventory",
+        "artifacts",
+        "evidence",
+        "decisions",
+        "nodes",
+        "edges",
+        "attachments",
+        "tasks",
+        "controlBindings"
+      ],
+      "additionalProperties": false
+    },
+    "LineRange": {
+      "type": "object",
+      "properties": {
+        "startLine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "endLine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "startColumn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "endColumn": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "startLine",
+        "endLine"
+      ],
+      "dependentRequired": {
+        "startColumn": ["endColumn"],
+        "endColumn": ["startColumn"]
+      },
+      "additionalProperties": false
+    },
+    "SourceGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string"
+        },
+        "lineRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LineRange"
+          }
+        },
+        "basicBlockRefs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^bb[0-9]+$"
+          }
+        },
+        "sourceRangeReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "broadRangeReason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "lineRanges",
+        "basicBlockRefs"
+      ],
+      "additionalProperties": false
+    },
+    "Prelude": {
+      "type": "object",
+      "properties": {
+        "shellBodyId": {"type": "string", "minLength": 1},
+        "nodes": {
+          "type": "array", "minItems": 1,
+          "items": {"$ref": "#/$defs/PreludeNode"}
+        },
+        "relation": {
+          "type": "object",
+          "properties": {
+            "shellBodyId": {"type": "string", "minLength": 1},
+            "innerDefPathHash": {"type": "string", "pattern": "^[0-9a-fA-F]{8,}$"},
+            "constructionBbRef": {"type": "string", "pattern": "^shell:bb[0-9]+$"},
+            "innerMirSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "shellMirSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "instrumentBbRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^shell:bb[0-9]+$"}},
+            "intoFutureBbRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^shell:bb[0-9]+$"}},
+            "pollBbRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^shell:bb[0-9]+$"}},
+            "technicalBlocks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "bbRef": {"type": "string", "pattern": "^shell:bb[0-9]+$"},
+                  "category": {"type": "string", "minLength": 1},
+                  "reason": {"type": "string", "minLength": 1},
+                  "evidenceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^shell:bb[0-9]+$"}},
+                  "factSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                  "blockRole": {"type": "string", "minLength": 1},
+                  "eventMacroProof": {}
+                },
+                "required": ["bbRef", "category", "reason", "evidenceRefs", "factSha256"],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": ["shellBodyId", "innerDefPathHash", "constructionBbRef", "innerMirSha256", "shellMirSha256", "instrumentBbRefs", "intoFutureBbRefs", "pollBbRefs", "technicalBlocks"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["shellBodyId", "nodes", "relation"],
+      "additionalProperties": false
+    },
+    "PreludeNode": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "lineRanges": {"type": "array", "items": {"$ref": "#/$defs/LineRange"}},
+        "basicBlockRefs": {"type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^shell:bb[0-9]+$"}},
+        "sourceRangeReason": {"type": "string", "minLength": 1},
+        "broadRangeReason": {"type": "string", "minLength": 1}
+        ,"distinctionReason": {"type": "string", "minLength": 1}
+      },
+      "required": ["id", "label", "lineRanges", "basicBlockRefs"],
+      "additionalProperties": false
+    },
+    "FunctionSource": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "definitionRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourcePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "startLine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "endLine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "lines": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "attributeLines": {
+          "type": "object",
+          "properties": {
+            "startLine": {"type": "integer", "minimum": 1},
+            "endLine": {"type": "integer", "minimum": 1}
+          },
+          "required": ["startLine", "endLine"],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "file",
+        "definitionRef",
+        "sourcePath",
+        "startLine",
+        "endLine",
+        "lines"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "deliveryMode": {
+            "const": "real-flow"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "dataKind": {
+            "const": "source-backed"
+          },
+          "execution": {
+            "$ref": "#/$defs/Execution"
+          },
+          "testBoundaries": {
+            "maxItems": 0
+          },
+          "caseIndex": {
+            "maxItems": 0
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "dataKind": {
+            "const": "synthetic"
+          },
+          "execution": {
+            "type": "null"
+          },
+          "testBoundaries": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

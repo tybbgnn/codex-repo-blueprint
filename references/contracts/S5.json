@@ -1,0 +1,118 @@
+{
+  "version": 21,
+  "stage": 5,
+  "builder": "stage_engine.stage5",
+  "external_inputs": [
+    {
+      "selector": "input-pins.inputs.mir_bodies.path / callee_mir_slices",
+      "access": "read exact offset/size slices; verify SHA, owner and capture stage",
+      "consumer": "returned erased-future identity and caller poll proof"
+    }
+  ],
+  "inputs": {
+    "ledgers/stage5.json": {
+      "required": true
+    },
+    "ledgers/endpoint-ledger.json": {
+      "required": true
+    },
+    "definitions.json": {
+      "required": false
+    },
+    "mir-bodies.json": {
+      "required": false
+    },
+    "ledgers/stage2.json": {
+      "required": true
+    }
+  },
+  "prerequisites": [
+    "facts/call-bindings.json",
+    "facts/definitions-index.json",
+    "input-pins.json",
+    "stage2/granularity.json",
+    "facts/elements.json",
+    "stage2/hierarchy.json",
+    "facts/blocks.json",
+    "facts/edges.json",
+    "facts/instrumentation-candidates.json",
+    "raw-body.json",
+    "stage2/selection.json"
+  ],
+  "outputs": {
+    "stage5/resolved-endpoints.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage5/external.json": {
+      "type": "object",
+      "required": [
+        "actors",
+        "messages",
+        "business_members",
+        "purposeProjections"
+      ],
+      "properties": {
+        "actors": {
+          "type": "array",
+          "items": {}
+        },
+        "messages": {
+          "type": "array",
+          "items": {}
+        },
+        "business_members": {
+          "type": "array",
+          "items": {}
+        },
+        "purposeProjections": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "additionalProperties": true
+    },
+    "stage5/model-check.json": {
+      "type": "object",
+      "required": [
+        "passed",
+        "unaccountedCalls",
+        "ownerContradictions"
+      ],
+      "properties": {
+        "passed": {
+          "const": true
+        },
+        "unaccountedCalls": {
+          "const": 0
+        },
+        "ownerContradictions": {
+          "const": 0
+        }
+      }
+    },
+    "stage5/endpoint-targets.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required_outputs": [
+    "stage5/resolved-endpoints.json",
+    "stage5/external.json",
+    "stage5/model-check.json"
+  ]
+}

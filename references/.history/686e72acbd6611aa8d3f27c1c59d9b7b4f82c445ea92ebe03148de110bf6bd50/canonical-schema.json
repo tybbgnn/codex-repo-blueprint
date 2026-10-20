@@ -1,0 +1,696 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": 18,
+  "authority": "Frozen accepted downstream contract",
+  "encoding": {
+    "ensure_ascii": false,
+    "indent": 2,
+    "sort_keys": true,
+    "final_newline": true
+  },
+  "scope": "Stage output contracts; nested renderer structures are governed by frozen renderer/renderer-input.schema.json",
+  "stages": {
+    "S0": {},
+    "S1": {
+      "facts/blocks.json": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "required": [
+            "basic_block",
+            "is_cleanup",
+            "statements",
+            "terminator"
+          ],
+          "properties": {
+            "basic_block": {
+              "type": "integer"
+            },
+            "is_cleanup": {
+              "type": "boolean"
+            },
+            "statements": {
+              "type": "array",
+              "items": {}
+            },
+            "terminator": {
+              "type": "object",
+              "required": [
+                "kind",
+                "successors"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "successors": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "facts/edges.json": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id",
+            "source",
+            "target",
+            "condition",
+            "terminator_kind",
+            "successor_index",
+            "source_info"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "source": {
+              "type": "string"
+            },
+            "target": {
+              "type": "string"
+            },
+            "condition": {
+              "type": "string"
+            },
+            "terminator_kind": {
+              "type": "string"
+            },
+            "successor_index": {
+              "type": "integer"
+            },
+            "source_info": {},
+            "bindingRef": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "facts/call-bindings.json": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id",
+            "bb",
+            "callee",
+            "func",
+            "destination",
+            "normal_successor",
+            "unwind",
+            "source_info"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "bb": {
+              "type": "string"
+            },
+            "callee": {
+              "type": "object"
+            },
+            "func": {
+              "type": "object"
+            },
+            "destination": {},
+            "normal_successor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "unwind": {},
+            "source_info": {}
+          },
+          "additionalProperties": false
+        }
+      },
+      "facts/async-states.json": {
+        "type": "object",
+        "required": [
+          "is_coroutine",
+          "dispatch",
+          "states"
+        ],
+        "properties": {
+          "is_coroutine": {
+            "type": "boolean"
+          },
+          "dispatch": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "states": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "value",
+                "entry",
+                "role"
+              ],
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "facts/terminal-events.json": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id",
+            "kind",
+            "source",
+            "source_info"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "source": {
+              "type": "string"
+            },
+            "source_info": {}
+          },
+          "additionalProperties": false
+        }
+      },
+      "facts/summary.json": {
+        "type": "object",
+        "required": [
+          "bb_count",
+          "edge_count",
+          "call_count",
+          "terminal_event_count",
+          "locals_count",
+          "terminators"
+        ],
+        "properties": {
+          "bb_count": {
+            "type": "integer"
+          },
+          "edge_count": {
+            "type": "integer"
+          },
+          "call_count": {
+            "type": "integer"
+          },
+          "terminal_event_count": {
+            "type": "integer"
+          },
+          "locals_count": {
+            "type": "integer"
+          },
+          "terminators": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      },
+      "facts/elements.json": {
+        "type": "object",
+        "required": [
+          "schemaVersion",
+          "ownerDefPathHash",
+          "items"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "const": 1
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "kind"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "kind": {
+                  "enum": [
+                    "bb",
+                    "call",
+                    "body",
+                    "switch"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "S2": {
+      "stage2/hierarchy.json": {
+        "type": "object",
+        "required": [
+          "root",
+          "phase_order",
+          "nodes"
+        ],
+        "properties": {
+          "root": {
+            "type": "string"
+          },
+          "phase_order": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "nodes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": [
+                "id",
+                "kind",
+                "depth",
+                "children",
+                "reading_parent",
+                "basic_block_refs"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "kind": {
+                  "enum": [
+                    "root",
+                    "phase",
+                    "goal",
+                    "action",
+                    "bb_group",
+                    "technical_group",
+                    "bb"
+                  ]
+                },
+                "depth": {
+                  "type": "number"
+                },
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "reading_parent": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "basic_block_refs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "semantic_action_ids": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      },
+      "stage2/selection.json": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "disposition"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "disposition": {
+                  "enum": [
+                    "shown",
+                    "technical",
+                    "folded"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "semanticRole": {
+                  "enum": [
+                    "business",
+                    "adapter"
+                  ]
+                },
+                "sourceRefs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "ownerActionRef": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "foldRules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "targetCategory",
+                "reason"
+              ],
+              "properties": {
+                "targetCategory": {
+                  "enum": [
+                    "std",
+                    "third_party"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      },
+      "stage2/granularity.json": {
+        "type": "object",
+        "required": [
+          "technicalBlocks",
+          "technicalIntervals"
+        ],
+        "properties": {
+          "technicalBlocks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "bbRef",
+                "category",
+                "reason",
+                "evidenceRefs",
+                "factSha256"
+              ]
+            }
+          },
+          "technicalIntervals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "bbRef",
+                "statementIndices",
+                "terminator"
+              ],
+              "properties": {
+                "bbRef": {
+                  "type": "string"
+                },
+                "statementIndices": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "terminator": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "stage2/blocks-ledger.tsv": {
+        "format": "tsv",
+        "columns": [
+          "bb",
+          "direct_parent",
+          "full_path",
+          "factual_operations",
+          "real_exits"
+        ]
+      },
+      "stage2/model-check.json": {
+        "type": "object",
+        "required": [
+          "passed",
+          "unaccountedCalls",
+          "ownerContradictions"
+        ],
+        "properties": {
+          "passed": {
+            "const": true
+          },
+          "unaccountedCalls": {
+            "const": 0
+          },
+          "ownerContradictions": {
+            "const": 0
+          }
+        }
+      }
+    },
+    "S3": {
+      "stage3/review.json": {
+        "type": [
+          "object",
+          "array"
+        ]
+      },
+      "stage3/review.md": {
+        "format": "authored-text"
+      },
+      "stage3/lock.json": {
+        "type": "object",
+        "required": [
+          "passed",
+          "sha256"
+        ],
+        "properties": {
+          "passed": {
+            "const": true
+          },
+          "sha256": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "S4": {
+      "stage4/edges.json": {
+        "type": [
+          "array",
+          "object"
+        ],
+        "description": "Authored edge records and optional transitions retained without information loss; renderer projection reads edges only."
+      },
+      "stage4/presentation.json": {
+        "type": "object",
+        "required": [
+          "controls",
+          "executionNodes",
+          "executionEdges",
+          "ownerControls",
+          "controlEvidence",
+          "branchRoles",
+          "returnContracts"
+        ],
+        "properties": {
+          "controls": {
+            "type": "array",
+            "items": {}
+          },
+          "executionNodes": {
+            "type": "array",
+            "items": {}
+          },
+          "executionEdges": {
+            "type": "array",
+            "items": {}
+          },
+          "ownerControls": {
+            "type": "object"
+          },
+          "controlEvidence": {
+            "type": "object"
+          },
+          "branchRoles": {
+            "type": "array"
+          },
+          "returnContracts": {
+            "type": "array"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "S5": {
+      "stage5/external.json": {
+        "type": "object",
+        "required": [
+          "actors",
+          "messages",
+          "business_members",
+          "purposeProjections"
+        ],
+        "properties": {
+          "actors": {
+            "type": "array",
+            "items": {}
+          },
+          "messages": {
+            "type": "array",
+            "items": {}
+          },
+          "business_members": {
+            "type": "array",
+            "items": {}
+          },
+          "purposeProjections": {
+            "type": "array",
+            "items": {}
+          }
+        },
+        "additionalProperties": true
+      },
+      "stage5/model-check.json": {
+        "type": "object",
+        "required": [
+          "passed",
+          "unaccountedCalls",
+          "ownerContradictions"
+        ],
+        "properties": {
+          "passed": {
+            "const": true
+          },
+          "unaccountedCalls": {
+            "const": 0
+          },
+          "ownerContradictions": {
+            "const": 0
+          }
+        }
+      }
+    },
+    "S6": {
+      "renderer-input.json": {
+        "type": "object",
+        "required": [
+          "profile",
+          "semanticRoot",
+          "phases",
+          "messages",
+          "execution",
+          "functionSource"
+        ],
+        "properties": {},
+        "additionalProperties": true
+      },
+      "reading-summaries.json": {
+        "type": "object",
+        "required": [
+          "units"
+        ],
+        "properties": {},
+        "additionalProperties": true
+      },
+      "basic-block-details.json": {
+        "type": "object",
+        "required": [
+          "nodes",
+          "blocks",
+          "node_sources"
+        ],
+        "properties": {},
+        "additionalProperties": true
+      },
+      "stage6/principle-lineage.json": {
+        "type": "object",
+        "required": [
+          "relations"
+        ],
+        "properties": {
+          "relations": {
+            "type": "array",
+            "items": {}
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "S7": {
+      "stage7/acceptance.json": {
+        "type": "object",
+        "required": [
+          "passed",
+          "checks",
+          "counts",
+          "browser_checked",
+          "semantic_review_unresolved"
+        ],
+        "properties": {},
+        "additionalProperties": true
+      },
+      "stage7/model-check.json": {
+        "type": "object",
+        "required": [
+          "passed",
+          "unaccountedCalls",
+          "ownerContradictions"
+        ],
+        "properties": {
+          "passed": {
+            "const": true
+          },
+          "unaccountedCalls": {
+            "const": 0
+          },
+          "ownerContradictions": {
+            "const": 0
+          }
+        }
+      }
+    },
+    "S8": {}
+  }
+}

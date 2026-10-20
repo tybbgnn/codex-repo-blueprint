@@ -1,0 +1,152 @@
+{
+  "version": 21,
+  "stage": 0,
+  "builder": "stage_engine.stage0",
+  "inputs": {
+    "request.json": {
+      "required": false
+    },
+    "raw-body.json": {
+      "required": false
+    },
+    "input-pins.json": {
+      "required": false
+    },
+    "rules.json": {
+      "required": false
+    },
+    "classification.json": {
+      "required": false
+    },
+    "facts/definitions-index.json": {
+      "required": false
+    },
+    "source/*": {
+      "required": false
+    },
+    "<input-pins referenced paths>": {
+      "required": false
+    }
+  },
+  "prerequisites": [],
+  "outputs": {
+    "stage0/resolved-row.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "raw-body.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "input-pins.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "raw-body.slice-sha256.txt": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "rules.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "classification.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "facts/definitions-index.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "source/*": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage0/input-sha256.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "<input-pins referenced paths>": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required_outputs": [
+    "raw-body.json",
+    "input-pins.json",
+    "raw-body.slice-sha256.txt",
+    "rules.json",
+    "facts/definitions-index.json",
+    "stage0/input-sha256.json"
+  ]
+}

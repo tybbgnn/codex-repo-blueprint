@@ -1,0 +1,78 @@
+{
+  "contract_version": 3,
+  "authority": "references/stage-io.json",
+  "layers": [
+    {
+      "depth": 0,
+      "name": "ROOT",
+      "kind": "root",
+      "renderer_path": "hierarchy.root / semanticRoot",
+      "producer": "S2 ownership; S6 semanticRoot",
+      "id_scheme": "ROOT",
+      "consumer": "renderer; tests/quality.py",
+      "authorship": "Agent ledger projected by script"
+    },
+    {
+      "depth": 1,
+      "name": "phase",
+      "kind": "phase",
+      "renderer_path": "phases[]",
+      "producer": "S2 ledger → S6",
+      "id_scheme": "P{two-digit sequence}",
+      "consumer": "renderer; tests/quality.py",
+      "authorship": "Agent ledger projected by script"
+    },
+    {
+      "depth": 1.5,
+      "name": "goal",
+      "kind": "goal",
+      "renderer_path": "phases[].goals[]",
+      "producer": "S2 ledger → S6",
+      "id_scheme": "sem:P{nn}:{short English name}",
+      "consumer": "renderer; tests/quality.py",
+      "authorship": "Agent ledger projected by script"
+    },
+    {
+      "depth": 2,
+      "name": "action",
+      "kind": "action",
+      "renderer_path": "phases[].goals[].actions[]",
+      "producer": "S2 ledger → S6",
+      "id_scheme": "P{nn}/A{two-digit sequence}.{first BB number}",
+      "consumer": "renderer; tests/quality.py",
+      "authorship": "Agent ledger projected by script"
+    },
+    {
+      "depth": 3,
+      "name": "BB组",
+      "kind": "bb_group",
+      "renderer_path": "sourceGroups[]",
+      "producer": "S2 bb_group → S6 attach_source",
+      "id_scheme": "{action id}/C{first BB number}",
+      "consumer": "renderer; tests/quality.py",
+      "authorship": "Agent ledger projected by script",
+      "fields": {
+        "id": "string",
+        "label": "string",
+        "basicBlockRefs": "array<bbN>",
+        "lineRanges": "array<range>",
+        "sourceRangeReason": "optional string"
+      },
+      "projection": "All hierarchy bb_group nodes, including ROOT technical groups; no technical field added to frozen SourceGroup. technical=true and technical_reasons stay on hierarchy nodes. Technical groups never enter phases/goals/actions."
+    },
+    {
+      "depth": 4,
+      "name": "BB",
+      "kind": "bb",
+      "renderer_path": "sourceGroups[].basicBlockRefs / actions[].basicBlockRefs",
+      "producer": "S1 facts → S2 derived leaves → S6",
+      "id_scheme": "bb{N}",
+      "consumer": "renderer; tests/quality.py",
+      "authorship": "script-derived",
+      "coverage": "Count all hierarchy BB separately from group BB; ROOT direct technical BB remain covered in hierarchy, not invented as sourceGroups."
+    }
+  ],
+  "raw_edge_id": "m{source bb}.{successor ordinal}",
+  "render_projection": "controls and messages attach to actions through action.controlRefs; they are renderer projections, not hierarchy layers.",
+  "renderer_schema": "assets/renderer/renderer-input.schema.json"
+}

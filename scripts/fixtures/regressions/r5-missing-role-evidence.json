@@ -1,0 +1,7 @@
+{
+  "base": "positive.json",
+  "operations": [
+    {"path": "/renderer_input/execution/edges/2/evidenceRefs", "value": []}
+  ],
+  "expected": "R5"
+}

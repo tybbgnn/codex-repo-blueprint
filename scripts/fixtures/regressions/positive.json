@@ -1,0 +1,93 @@
+{
+  "renderer_input": {
+    "phases": [
+      {
+        "id": "phase",
+        "goals": [
+          {
+            "id": "goal",
+            "actions": [
+              {"id": "action-a"},
+              {"id": "action-b"},
+              {"id": "action-after"}
+            ]
+          }
+        ]
+      }
+    ],
+    "controls": [],
+    "readingScopes": [
+      {
+        "id": "loop-scope",
+        "kind": "loop",
+        "members": [
+          {"kind": "action", "ref": "action-a"},
+          {"kind": "action", "ref": "action-b"}
+        ],
+        "decision": {"variable": "loop-decision", "values": ["again", "done"]},
+        "repeat": {
+          "entryActionRef": "action-a",
+          "continueValues": ["again"],
+          "exitValues": ["done"]
+        },
+        "commonAfter": {"actionRef": "action-after"},
+        "terminalOnly": {
+          "proofRef": "terminal-proof",
+          "terminalNodeRefs": ["node-after"],
+          "exitEdgeRefs": ["edge-exit"]
+        }
+      },
+      {
+        "id": "alt-scope",
+        "kind": "alt",
+        "members": [],
+        "branches": [
+          {
+            "id": "terminal-branch",
+            "when": ["stop"],
+            "effect": {"kind": "terminate-turn", "scopeRef": "root"}
+          }
+        ]
+      }
+    ],
+    "execution": {
+      "nodes": [
+        {"id": "node-a", "kind": "action", "actionRef": "action-a", "basicBlockRefs": ["bb0"]},
+        {"id": "node-b", "kind": "action", "actionRef": "action-b", "basicBlockRefs": ["bb1"]},
+        {"id": "node-after", "kind": "action", "actionRef": "action-after", "basicBlockRefs": ["bb2"]},
+        {"id": "await-node", "kind": "handoff", "event": "await", "taskId": "task", "basicBlockRefs": ["bb3"]}
+      ],
+      "edges": [
+        {"id": "edge-forward", "from": "node-a", "to": "node-b", "kind": "flow", "guards": [], "evidenceRefs": ["ev-forward"]},
+        {"id": "edge-back", "from": "node-b", "to": "node-a", "kind": "loop-continue", "readingScopeRef": "loop-scope", "guards": [{"decisionRef": "loop-decision", "value": "again"}], "evidenceRefs": ["ev-back"]},
+        {"id": "edge-exit", "from": "node-b", "to": "node-after", "kind": "loop-exit", "readingScopeRef": "loop-scope", "guards": [{"decisionRef": "loop-decision", "value": "done"}], "evidenceRefs": ["ev-exit"]},
+        {"id": "edge-resume", "from": "await-node", "to": "node-a", "kind": "resume", "guards": [], "evidenceRefs": ["ev-resume"]}
+      ],
+      "decisions": [
+        {"id": "alt-decision", "readingScopeRef": "alt-scope", "values": ["stop"], "evidenceRefs": ["ev-alt"]}
+      ],
+      "evidence": [
+        {"id": "ev-forward", "locator": "m0.0;bb0;bb1"},
+        {"id": "ev-back", "locator": "m1.0;bb1;bb0"},
+        {"id": "ev-exit", "locator": "m1.1;bb1;bb2"},
+        {"id": "ev-resume", "locator": "m3.0;bb0"},
+        {"id": "ev-alt", "locator": "m2.0;bb2"}
+      ]
+    }
+  },
+  "stage4_edges": [
+    {"id": "semantic-flow", "kind": "goal_flow", "source": "action-a", "target": "action-b", "members": ["m0.0"]}
+  ],
+  "facts_edges": [
+    {"id": "m0.0", "source": "bb0", "target": "bb1"},
+    {"id": "m1.0", "source": "bb1", "target": "bb0"},
+    {"id": "m1.1", "source": "bb1", "target": "bb2"},
+    {"id": "m2.0", "source": "bb2", "target": "bb2"},
+    {"id": "m3.0", "source": "bb3", "target": "bb0"}
+  ],
+  "async_states": {
+    "is_coroutine": true,
+    "states": [{"entry": "bb0", "role": "resume", "value": "1"}]
+  },
+  "expected": "pass"
+}

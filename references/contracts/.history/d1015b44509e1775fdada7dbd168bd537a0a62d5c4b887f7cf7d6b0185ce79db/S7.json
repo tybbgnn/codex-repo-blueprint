@@ -1,0 +1,223 @@
+{
+  "version": 21,
+  "stage": 7,
+  "builder": "stage_engine.stage7",
+  "external_inputs": [
+    {
+      "access": "read exact offset/size slices; verify SHA, owner and capture stage",
+      "consumer": "returned erased-future identity and caller poll proof",
+      "selector": "input-pins.inputs.mir_bodies.path / callee_mir_slices"
+    }
+  ],
+  "inputs": {
+    "renderer-lock.json": {
+      "required": true
+    },
+    "ledgers/semantic-approvals.json": {
+      "required": false
+    },
+    "source/*": {
+      "required": true
+    },
+    "ledgers/stage2.json": {
+      "required": true
+    },
+    "ledgers/stage5.json": {
+      "required": true
+    },
+    "ledgers/endpoint-ledger.json": {
+      "required": true
+    }
+  },
+  "prerequisites": [
+    "renderer-input.json",
+    "reading-summaries.json",
+    "basic-block-details.json",
+    "stage6/semantic-sidecar.json",
+    "stage4/edges.json",
+    "facts/edges.json",
+    "facts/async-states.json",
+    "stage2/hierarchy.json",
+    "raw-body.json",
+    "input-pins.json",
+    "facts/definitions-index.json",
+    "facts/elements.json",
+    "facts/blocks.json",
+    "stage2/selection.json",
+    "stage2/granularity.json",
+    "facts/call-bindings.json",
+    "stage5/external.json",
+    "stage6/principle-lineage.json",
+    "stage4/presentation.json",
+    "classification.json",
+    "source/*",
+    "pins/*",
+    "facts/instrumentation-candidates.json"
+  ],
+  "outputs": {
+    "stage7/regressions.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/hard-rules.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/principles.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/duplicates.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/contract.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/independent-source.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/acceptance.json": {
+      "additionalProperties": true,
+      "properties": {},
+      "required": [
+        "passed",
+        "checks",
+        "counts",
+        "browser_checked",
+        "semantic_review_unresolved"
+      ],
+      "type": "object"
+    },
+    "stage7/semantic-gate.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/browser.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/*-execution.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/blocked-report.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/blocked-report.md": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage7/model-check.json": {
+      "properties": {
+        "ownerContradictions": {
+          "const": 0
+        },
+        "passed": {
+          "const": true
+        },
+        "unaccountedCalls": {
+          "const": 0
+        }
+      },
+      "required": [
+        "passed",
+        "unaccountedCalls",
+        "ownerContradictions"
+      ],
+      "type": "object"
+    }
+  },
+  "required_outputs": [
+    "stage7/regressions.json",
+    "stage7/hard-rules.json",
+    "stage7/principles.json",
+    "stage7/duplicates.json",
+    "stage7/contract.json",
+    "stage7/independent-source.json",
+    "stage7/acceptance.json",
+    "stage7/semantic-gate.json",
+    "stage7/browser.json",
+    "stage7/model-check.json"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "base": "positive.json",
+  "operations": [
+    {"path": "/renderer_input/execution/edges/2/to", "value": "node-a"}
+  ],
+  "expected": "R1"
+}

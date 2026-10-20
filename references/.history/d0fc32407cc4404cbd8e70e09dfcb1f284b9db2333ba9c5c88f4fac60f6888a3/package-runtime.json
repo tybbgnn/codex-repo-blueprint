@@ -1,0 +1,17 @@
+{
+  "include": [
+    "references/stage-io.json",
+    "SKILL.md",
+    "scripts",
+    "assets/renderer",
+    "resources/rules.json",
+    "references/ledger-schema.json",
+    "references/package-runtime.json",
+    "assets/frozen-renderers",
+    "references/canonical-schema.json",
+    "references/input-manifest.json",
+    "references/layer-contract.json",
+    "tests"
+  ],
+  "reason": "Isolated runtime dependencies only; no profiles, test baselines, historical receipts, producers archive, aside, or snapshots. Includes S7 support, explicitly allowlisted synthetic Python unit suites, and browser test runtime dependencies so isolated packages retain the gate environment."
+}

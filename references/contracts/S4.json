@@ -1,0 +1,97 @@
+{
+  "version": 21,
+  "stage": 4,
+  "builder": "stage_engine.stage4",
+  "inputs": {
+    "ledgers/stage4.json": {
+      "required": true
+    },
+    "ledgers/edges.json": {
+      "required": true
+    },
+    "ledgers/execution-label-review.json": {
+      "required": false
+    }
+  },
+  "prerequisites": [
+    "stage2/hierarchy.json",
+    "stage2/granularity.json",
+    "stage2/reading-summaries.json",
+    "facts/edges.json",
+    "facts/blocks.json"
+  ],
+  "outputs": {
+    "stage4/edges.json": {
+      "type": [
+        "array",
+        "object"
+      ],
+      "description": "Authored edge records and optional transitions retained without information loss; renderer projection reads edges only."
+    },
+    "stage4/presentation.json": {
+      "type": "object",
+      "required": [
+        "controls",
+        "executionNodes",
+        "executionEdges",
+        "ownerControls",
+        "controlEvidence",
+        "branchRoles",
+        "returnContracts"
+      ],
+      "properties": {
+        "controls": {
+          "type": "array",
+          "items": {}
+        },
+        "executionNodes": {
+          "type": "array",
+          "items": {}
+        },
+        "executionEdges": {
+          "type": "array",
+          "items": {}
+        },
+        "ownerControls": {
+          "type": "object"
+        },
+        "controlEvidence": {
+          "type": "object"
+        },
+        "branchRoles": {
+          "type": "array"
+        },
+        "returnContracts": {
+          "type": "array"
+        }
+      },
+      "additionalProperties": true
+    },
+    "stage4/execution-label-review.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "display-warnings/S4.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required_outputs": [
+    "stage4/edges.json",
+    "stage4/presentation.json"
+  ]
+}

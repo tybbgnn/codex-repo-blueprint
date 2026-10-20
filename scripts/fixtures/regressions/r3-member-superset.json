@@ -1,0 +1,7 @@
+{
+  "base": "positive.json",
+  "operations": [
+    {"path": "/renderer_input/readingScopes/0/members/2", "value": {"kind": "action", "ref": "action-after"}}
+  ],
+  "expected": "R3"
+}

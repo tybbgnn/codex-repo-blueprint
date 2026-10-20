@@ -1,0 +1,62 @@
+{
+  "version": 21,
+  "stage": 8,
+  "builder": "stage_engine.stage8",
+  "inputs": {
+    "renderer-lock.json": {
+      "required": true
+    },
+    "ledgers/stage2.json": {
+      "required": true
+    },
+    "ledgers/stage3.json": {
+      "required": true
+    },
+    "ledgers/summaries.json": {
+      "required": true
+    },
+    "ledgers/review-narrative.md": {
+      "required": true
+    }
+  },
+  "prerequisites": [
+    "renderer-input.json",
+    "reading-summaries.json",
+    "basic-block-details.json",
+    "stage2/hierarchy.json",
+    "raw-body.json",
+    "input-pins.json",
+    "facts/definitions-index.json",
+    "stage7/acceptance.json",
+    "stage3/lock.json",
+    "stage3/review.json",
+    "stage3/review.md"
+  ],
+  "outputs": {
+    "stage8/candidate.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "stage8/failure.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required_outputs": [
+    "stage8/candidate.json"
+  ]
+}

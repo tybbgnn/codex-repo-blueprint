@@ -1,0 +1,101 @@
+{
+  "version": 21,
+  "stage": 6,
+  "builder": "stage_engine.stage6",
+  "inputs": {
+    "ledgers/inventory-anchors.json": {
+      "required": false
+    }
+  },
+  "prerequisites": [
+    "stage2/hierarchy.json",
+    "stage2/reading-summaries.json",
+    "stage4/presentation.json",
+    "stage4/edges.json",
+    "stage5/external.json",
+    "facts/blocks.json",
+    "facts/edges.json",
+    "facts/call-bindings.json",
+    "facts/terminal-events.json",
+    "raw-body.json",
+    "input-pins.json",
+    "facts/definitions-index.json",
+    "source/*"
+  ],
+  "outputs": {
+    "stage6/semantic-sidecar.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "renderer-input.json": {
+      "additionalProperties": true,
+      "properties": {},
+      "required": [
+        "profile",
+        "semanticRoot",
+        "phases",
+        "messages",
+        "execution",
+        "functionSource"
+      ],
+      "type": "object"
+    },
+    "reading-summaries.json": {
+      "additionalProperties": true,
+      "properties": {},
+      "required": [
+        "units"
+      ],
+      "type": "object"
+    },
+    "basic-block-details.json": {
+      "additionalProperties": true,
+      "properties": {},
+      "required": [
+        "nodes",
+        "blocks",
+        "node_sources"
+      ],
+      "type": "object"
+    },
+    "stage6/principle-lineage.json": {
+      "additionalProperties": true,
+      "properties": {
+        "relations": {
+          "items": {},
+          "type": "array"
+        }
+      },
+      "required": [
+        "relations"
+      ],
+      "type": "object"
+    },
+    "stage6/determinism.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required_outputs": [
+    "stage6/semantic-sidecar.json",
+    "renderer-input.json",
+    "reading-summaries.json",
+    "basic-block-details.json",
+    "stage6/principle-lineage.json",
+    "stage6/determinism.json"
+  ]
+}

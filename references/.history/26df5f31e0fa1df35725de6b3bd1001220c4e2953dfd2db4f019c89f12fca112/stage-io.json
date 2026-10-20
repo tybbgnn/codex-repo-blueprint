@@ -1,0 +1,5123 @@
+{
+  "canonical_schema_header": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "authority": "Frozen accepted downstream contract",
+    "encoding": {
+      "ensure_ascii": false,
+      "final_newline": true,
+      "indent": 2,
+      "sort_keys": true
+    },
+    "scope": "Stage output contracts; nested renderer structures are governed by frozen renderer/renderer-input.schema.json",
+    "version": 18
+  },
+  "code_accesses": [
+    {
+      "expression": "'stage6/determinism.json'",
+      "function": "main",
+      "literal": "stage6/determinism.json",
+      "operation": "save",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "f'stage{n}/available.json'",
+      "function": "main",
+      "literal": null,
+      "operation": "save",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "f'stage{n}/checkpoint.json'",
+      "function": "main",
+      "literal": null,
+      "operation": "save",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "f'stage{n}/failure.json'",
+      "function": "main",
+      "literal": null,
+      "operation": "save",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "f'stage{n}/validation.json'",
+      "function": "main",
+      "literal": null,
+      "operation": "save",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "2",
+      "function": "validate",
+      "literal": 2,
+      "operation": "ledger",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "n",
+      "function": "validate",
+      "literal": null,
+      "operation": "ledger",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "'facts/blocks.json'",
+      "function": "validate",
+      "literal": "facts/blocks.json",
+      "operation": "load",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "'facts/call-bindings.json'",
+      "function": "validate",
+      "literal": "facts/call-bindings.json",
+      "operation": "load",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "'facts/edges.json'",
+      "function": "validate",
+      "literal": "facts/edges.json",
+      "operation": "load",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "'facts/elements.json'",
+      "function": "validate",
+      "literal": "facts/elements.json",
+      "operation": "load",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "'facts/instrumentation-candidates.json'",
+      "function": "validate",
+      "literal": "facts/instrumentation-candidates.json",
+      "operation": "load",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "validate",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "'stage2/granularity.json'",
+      "function": "validate",
+      "literal": "stage2/granularity.json",
+      "operation": "load",
+      "script": "blueprint.py"
+    },
+    {
+      "expression": "'facts/blocks.json'",
+      "function": "build",
+      "literal": "facts/blocks.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'facts/call-bindings.json'",
+      "function": "build",
+      "literal": "facts/call-bindings.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'facts/edges.json'",
+      "function": "build",
+      "literal": "facts/edges.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "build",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "build",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'stage2/hierarchy.json'",
+      "function": "build",
+      "literal": "stage2/hierarchy.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'stage2/reading-summaries.json'",
+      "function": "build",
+      "literal": "stage2/reading-summaries.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'stage4/edges.json'",
+      "function": "build",
+      "literal": "stage4/edges.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'stage4/presentation.json'",
+      "function": "build",
+      "literal": "stage4/presentation.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'stage5/external.json'",
+      "function": "build",
+      "literal": "stage5/external.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'stage6/principle-lineage.json'",
+      "function": "build",
+      "literal": "stage6/principle-lineage.json",
+      "operation": "save",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'stage6/semantic-sidecar.json'",
+      "function": "build",
+      "literal": "stage6/semantic-sidecar.json",
+      "operation": "save",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "name",
+      "function": "build",
+      "literal": null,
+      "operation": "save",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'facts/edges.json'",
+      "function": "build_semantic_sidecar",
+      "literal": "facts/edges.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "build_semantic_sidecar",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'stage2/hierarchy.json'",
+      "function": "build_semantic_sidecar",
+      "literal": "stage2/hierarchy.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'stage4/edges.json'",
+      "function": "build_semantic_sidecar",
+      "literal": "stage4/edges.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'stage2/hierarchy.json'",
+      "function": "execution",
+      "literal": "stage2/hierarchy.json",
+      "operation": "load",
+      "script": "canonical_render.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "stage1",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "stage1",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'facts/' + name + '.json'",
+      "function": "stage1",
+      "literal": null,
+      "operation": "save",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'facts/definitions-index.json'",
+      "function": "stage1",
+      "literal": "facts/definitions-index.json",
+      "operation": "save",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "stage1",
+      "literal": "input-pins.json",
+      "operation": "save",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "2",
+      "function": "stage2",
+      "literal": 2,
+      "operation": "ledger",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "4",
+      "function": "stage2",
+      "literal": 4,
+      "operation": "ledger",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'facts/blocks.json'",
+      "function": "stage2",
+      "literal": "facts/blocks.json",
+      "operation": "load",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'facts/edges.json'",
+      "function": "stage2",
+      "literal": "facts/edges.json",
+      "operation": "load",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'facts/elements.json'",
+      "function": "stage2",
+      "literal": "facts/elements.json",
+      "operation": "load",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'facts/elements.json'",
+      "function": "stage2",
+      "literal": "facts/elements.json",
+      "operation": "load",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'facts/instrumentation-candidates.json'",
+      "function": "stage2",
+      "literal": "facts/instrumentation-candidates.json",
+      "operation": "load",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'facts/terminal-events.json'",
+      "function": "stage2",
+      "literal": "facts/terminal-events.json",
+      "operation": "load",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "stage2",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'stage2/' + name + '.json'",
+      "function": "stage2",
+      "literal": null,
+      "operation": "save",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'stage2/blocks-ledger.tsv'",
+      "function": "stage2",
+      "literal": "stage2/blocks-ledger.tsv",
+      "operation": "save",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'stage2/hierarchy.json'",
+      "function": "stage2",
+      "literal": "stage2/hierarchy.json",
+      "operation": "save",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "'stage2/reading-summaries.json'",
+      "function": "stage2",
+      "literal": "stage2/reading-summaries.json",
+      "operation": "save",
+      "script": "canonical_stages.py"
+    },
+    {
+      "expression": "2",
+      "function": "check_context",
+      "literal": 2,
+      "operation": "ledger",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "5",
+      "function": "check_context",
+      "literal": 5,
+      "operation": "ledger",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'facts/blocks.json'",
+      "function": "check_context",
+      "literal": "facts/blocks.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'facts/definitions-index.json'",
+      "function": "check_context",
+      "literal": "facts/definitions-index.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'facts/edges.json'",
+      "function": "check_context",
+      "literal": "facts/edges.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'facts/elements.json'",
+      "function": "check_context",
+      "literal": "facts/elements.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'facts/instrumentation-candidates.json'",
+      "function": "check_context",
+      "literal": "facts/instrumentation-candidates.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'facts/instrumentation-candidates.json'",
+      "function": "check_context",
+      "literal": "facts/instrumentation-candidates.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "check_context",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "check_context",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'stage2/granularity.json'",
+      "function": "check_context",
+      "literal": "stage2/granularity.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'stage2/granularity.json'",
+      "function": "check_context",
+      "literal": "stage2/granularity.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'stage2/hierarchy.json'",
+      "function": "check_context",
+      "literal": "stage2/hierarchy.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'stage2/selection.json'",
+      "function": "check_context",
+      "literal": "stage2/selection.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "'stage5/external.json'",
+      "function": "check_context",
+      "literal": "stage5/external.json",
+      "operation": "load",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "f'stage{stage}/model-check.json'",
+      "function": "check_context",
+      "literal": null,
+      "operation": "save",
+      "script": "check_model.py"
+    },
+    {
+      "expression": "5",
+      "function": "targets_from",
+      "literal": 5,
+      "operation": "ledger",
+      "script": "endpoint_identity.py"
+    },
+    {
+      "expression": "'facts/call-bindings.json'",
+      "function": "targets_from",
+      "literal": "facts/call-bindings.json",
+      "operation": "load",
+      "script": "endpoint_identity.py"
+    },
+    {
+      "expression": "'facts/elements.json'",
+      "function": "targets_from",
+      "literal": "facts/elements.json",
+      "operation": "load",
+      "script": "endpoint_identity.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "targets_from",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "endpoint_identity.py"
+    },
+    {
+      "expression": "'stage7/blocked-report.json'",
+      "function": "blocked_report",
+      "literal": "stage7/blocked-report.json",
+      "operation": "save",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "counts",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'renderer-input.json'",
+      "function": "counts",
+      "literal": "renderer-input.json",
+      "operation": "load",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'stage2/hierarchy.json'",
+      "function": "counts",
+      "literal": "stage2/hierarchy.json",
+      "operation": "load",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'renderer-input.json'",
+      "function": "deliver",
+      "literal": "renderer-input.json",
+      "operation": "load",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'stage7/acceptance.json'",
+      "function": "deliver",
+      "literal": "stage7/acceptance.json",
+      "operation": "load",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'stage8/candidate.json'",
+      "function": "deliver",
+      "literal": "stage8/candidate.json",
+      "operation": "save",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'stage8/candidate.json'",
+      "function": "deliver",
+      "literal": "stage8/candidate.json",
+      "operation": "save",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'stage7/' + name + '-execution.json'",
+      "function": "execute",
+      "literal": null,
+      "operation": "save",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "finish_gates",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'stage7/acceptance.json'",
+      "function": "finish_gates",
+      "literal": "stage7/acceptance.json",
+      "operation": "save",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'stage7/browser.json'",
+      "function": "finish_gates",
+      "literal": "stage7/browser.json",
+      "operation": "save",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'stage7/semantic-gate.json'",
+      "function": "finish_gates",
+      "literal": "stage7/semantic-gate.json",
+      "operation": "save",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'stage3/review.json'",
+      "function": "validate_stage3_lock",
+      "literal": "stage3/review.json",
+      "operation": "load",
+      "script": "gate_lifecycle.py"
+    },
+    {
+      "expression": "'stage-timings.json'",
+      "function": "observe",
+      "literal": "stage-timings.json",
+      "operation": "save",
+      "script": "pipeline_reports.py"
+    },
+    {
+      "expression": "f'stage{n}-check.json'",
+      "function": "observe",
+      "literal": null,
+      "operation": "save",
+      "script": "pipeline_reports.py"
+    },
+    {
+      "expression": "'facts/blocks.json'",
+      "function": "review",
+      "literal": "facts/blocks.json",
+      "operation": "load",
+      "script": "reading_groups.py"
+    },
+    {
+      "expression": "'stage2/hierarchy.json'",
+      "function": "review",
+      "literal": "stage2/hierarchy.json",
+      "operation": "load",
+      "script": "reading_groups.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "_closure_extract_inputs",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "_generate_event_macro_pins",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "relative",
+      "function": "_generate_event_macro_pins",
+      "literal": null,
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "_resolve_stage5",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage5/resolved-endpoints.json'",
+      "function": "_resolve_stage5",
+      "literal": "stage5/resolved-endpoints.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "_run_stage0_request",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "_run_stage0_request",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "_run_stage0_request",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'facts/definitions-index.json'",
+      "function": "_run_stage0_request",
+      "literal": "facts/definitions-index.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "_run_stage0_request",
+      "literal": "input-pins.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'rules.json'",
+      "function": "_run_stage0_request",
+      "literal": "rules.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage0/resolved-row.json'",
+      "function": "_run_stage0_request",
+      "literal": "stage0/resolved-row.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "_validate_stage0_product",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "_validate_stage0_product",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'facts/definitions-index.json'",
+      "function": "prepare_candidate",
+      "literal": "facts/definitions-index.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "prepare_candidate",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'renderer-input.json'",
+      "function": "prepare_candidate",
+      "literal": "renderer-input.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "stage0",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "stage0",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "stage0",
+      "literal": "input-pins.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'raw-body.slice-sha256.txt'",
+      "function": "stage0",
+      "literal": "raw-body.slice-sha256.txt",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage0/input-sha256.json'",
+      "function": "stage0",
+      "literal": "stage0/input-sha256.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "name",
+      "function": "stage0",
+      "literal": null,
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "pin['path']",
+      "function": "stage0",
+      "literal": null,
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "str(p.relative_to(c.inputs))",
+      "function": "stage0",
+      "literal": null,
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'input-pins.json'",
+      "function": "stage1",
+      "literal": "input-pins.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'raw-body.json'",
+      "function": "stage1",
+      "literal": "raw-body.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'facts/instrumentation-candidates.json'",
+      "function": "stage1",
+      "literal": "facts/instrumentation-candidates.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "3",
+      "function": "stage3",
+      "literal": 3,
+      "operation": "ledger",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage3/lock.json'",
+      "function": "stage3",
+      "literal": "stage3/lock.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage3/review.json'",
+      "function": "stage3",
+      "literal": "stage3/review.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage3/review.md'",
+      "function": "stage3",
+      "literal": "stage3/review.md",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "4",
+      "function": "stage4",
+      "literal": 4,
+      "operation": "ledger",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'facts/blocks.json'",
+      "function": "stage4",
+      "literal": "facts/blocks.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'facts/edges.json'",
+      "function": "stage4",
+      "literal": "facts/edges.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage2/granularity.json'",
+      "function": "stage4",
+      "literal": "stage2/granularity.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage2/hierarchy.json'",
+      "function": "stage4",
+      "literal": "stage2/hierarchy.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage2/hierarchy.json'",
+      "function": "stage4",
+      "literal": "stage2/hierarchy.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage2/reading-summaries.json'",
+      "function": "stage4",
+      "literal": "stage2/reading-summaries.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage4/edges.json'",
+      "function": "stage4",
+      "literal": "stage4/edges.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage4/execution-label-review.json'",
+      "function": "stage4",
+      "literal": "stage4/execution-label-review.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage4/presentation.json'",
+      "function": "stage4",
+      "literal": "stage4/presentation.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "5",
+      "function": "stage5",
+      "literal": 5,
+      "operation": "ledger",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'facts/call-bindings.json'",
+      "function": "stage5",
+      "literal": "facts/call-bindings.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage2/selection.json'",
+      "function": "stage5",
+      "literal": "stage2/selection.json",
+      "operation": "load",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage5/external.json'",
+      "function": "stage5",
+      "literal": "stage5/external.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage7/' + name + '-execution.json'",
+      "function": "stage7",
+      "literal": null,
+      "operation": "save",
+      "script": "stage_engine.py"
+    },
+    {
+      "expression": "'stage7/contract.json'",
+      "function": "stage7",
+      "literal": "stage7/contract.json",
+      "operation": "save",
+      "script": "stage_engine.py"
+    }
+  ],
+  "layer_contract": {
+    "authority": "references/stage-io.json",
+    "contract_version": 3,
+    "layers": [
+      {
+        "authorship": "Agent ledger projected by script",
+        "consumer": "renderer; tests/quality.py",
+        "depth": 0,
+        "id_scheme": "ROOT",
+        "kind": "root",
+        "name": "ROOT",
+        "producer": "S2 ownership; S6 semanticRoot",
+        "renderer_path": "hierarchy.root / semanticRoot"
+      },
+      {
+        "authorship": "Agent ledger projected by script",
+        "consumer": "renderer; tests/quality.py",
+        "depth": 1,
+        "id_scheme": "P{two-digit sequence}",
+        "kind": "phase",
+        "name": "phase",
+        "producer": "S2 ledger → S6",
+        "renderer_path": "phases[]"
+      },
+      {
+        "authorship": "Agent ledger projected by script",
+        "consumer": "renderer; tests/quality.py",
+        "depth": 1.5,
+        "id_scheme": "sem:P{nn}:{short English name}",
+        "kind": "goal",
+        "name": "goal",
+        "producer": "S2 ledger → S6",
+        "renderer_path": "phases[].goals[]"
+      },
+      {
+        "authorship": "Agent ledger projected by script",
+        "consumer": "renderer; tests/quality.py",
+        "depth": 2,
+        "id_scheme": "P{nn}/A{two-digit sequence}.{first BB number}",
+        "kind": "action",
+        "name": "action",
+        "producer": "S2 ledger → S6",
+        "renderer_path": "phases[].goals[].actions[]"
+      },
+      {
+        "authorship": "Agent ledger projected by script",
+        "consumer": "renderer; tests/quality.py",
+        "depth": 3,
+        "fields": {
+          "basicBlockRefs": "array<bbN>",
+          "id": "string",
+          "label": "string",
+          "lineRanges": "array<range>",
+          "sourceRangeReason": "optional string"
+        },
+        "id_scheme": "{action id}/C{first BB number}",
+        "kind": "bb_group",
+        "name": "BB组",
+        "producer": "S2 bb_group → S6 attach_source",
+        "projection": "All hierarchy bb_group nodes, including ROOT technical groups; no technical field added to frozen SourceGroup. technical=true and technical_reasons stay on hierarchy nodes. Technical groups never enter phases/goals/actions.",
+        "renderer_path": "sourceGroups[]"
+      },
+      {
+        "authorship": "script-derived",
+        "consumer": "renderer; tests/quality.py",
+        "coverage": "Count all hierarchy BB separately from group BB; ROOT direct technical BB remain covered in hierarchy, not invented as sourceGroups.",
+        "depth": 4,
+        "id_scheme": "bb{N}",
+        "kind": "bb",
+        "name": "BB",
+        "producer": "S1 facts → S2 derived leaves → S6",
+        "renderer_path": "sourceGroups[].basicBlockRefs / actions[].basicBlockRefs"
+      }
+    ],
+    "raw_edge_id": "m{source bb}.{successor ordinal}",
+    "render_projection": "controls and messages attach to actions through action.controlRefs; they are renderer projections, not hierarchy layers.",
+    "renderer_schema": "assets/renderer/renderer-input.schema.json"
+  },
+  "scope": "Single source for S0–S8 I/O, output schemas, generated contracts and closure reports; receipts are labeled, not semantic gates.",
+  "shared_outputs": [
+    "stage{n}/validation.json",
+    "stage{n}/checkpoint.json",
+    "stage{n}-check.json",
+    "stage-timings.json"
+  ],
+  "shared_receipts": {
+    "stage{n}/available.json": "extract receipt",
+    "stage{n}/failure.json": "failed operation diagnostics; never a passing gate"
+  },
+  "stages": {
+    "S0": {
+      "builder": "stage_engine.stage0",
+      "input_modes": {
+        "prepared": "raw-body.json, input-pins.json, rules.json, renderer-lock.json and source/ are supplied directly",
+        "request": "request.json supplies identity, definitions, mir_bodies, source_workspace and renderer_version; resolve_bodies.py then extract_body.py produce a superset of the prepared artifacts"
+      },
+      "inputs": [
+        {
+          "file": "request.json",
+          "key_fields": [
+            "identity",
+            "definitions",
+            "mir_bodies",
+            "source_workspace",
+            "renderer_version"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "raw-body.json",
+          "key_fields": [
+            "owner_def_path_hash",
+            "basic_blocks",
+            "locals",
+            "is_coroutine"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "input-pins.json",
+          "key_fields": [
+            "definition_row",
+            "event_macro_closures",
+            "async_shell_prelude",
+            "information_mir_slices"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "rules.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "classification.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "facts/definitions-index.json",
+          "key_fields": [
+            "<definition hash>.identity",
+            "<definition hash>.source"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "source/*",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "<input-pins referenced paths>",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": true,
+          "root": "inputs"
+        }
+      ],
+      "outputs": [
+        {
+          "file": "definitions.json",
+          "key_fields": [
+            "schema_version",
+            "definitions_path"
+          ],
+          "optional": true,
+          "root": "inputs",
+          "when": "request mode only"
+        },
+        {
+          "file": "renderer-lock.json",
+          "key_fields": [
+            "assets.*.path",
+            "assets.*.sha256"
+          ],
+          "optional": true,
+          "root": "inputs",
+          "when": "request mode only"
+        },
+        {
+          "file": "stage0/resolved-row.json",
+          "key_fields": [
+            "status",
+            "definition_row",
+            "body_key",
+            "ownership_chain"
+          ],
+          "optional": true,
+          "role": "receipt",
+          "root": "work"
+        },
+        {
+          "file": "raw-body.json",
+          "key_fields": [
+            "owner_def_path_hash",
+            "basic_blocks",
+            "locals",
+            "is_coroutine"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "input-pins.json",
+          "key_fields": [
+            "definition_row",
+            "event_macro_closures",
+            "async_shell_prelude",
+            "information_mir_slices"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "raw-body.slice-sha256.txt",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": false,
+          "role": "receipt",
+          "root": "work"
+        },
+        {
+          "file": "rules.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "classification.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": true,
+          "root": "work"
+        },
+        {
+          "file": "facts/definitions-index.json",
+          "key_fields": [
+            "<definition hash>.identity",
+            "<definition hash>.source"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "source/*",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage0/input-sha256.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": false,
+          "role": "receipt",
+          "root": "work"
+        },
+        {
+          "file": "<input-pins referenced paths>",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": false,
+          "root": "work"
+        }
+      ],
+      "runtime_contract": {},
+      "sources": {
+        "stage_engine.py": [
+          "stage0"
+        ]
+      },
+      "static_accesses": [
+        {
+          "expression": "'input-pins.json'",
+          "function": "stage0",
+          "literal": "input-pins.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'raw-body.json'",
+          "function": "stage0",
+          "literal": "raw-body.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'input-pins.json'",
+          "function": "stage0",
+          "literal": "input-pins.json",
+          "operation": "save",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'raw-body.slice-sha256.txt'",
+          "function": "stage0",
+          "literal": "raw-body.slice-sha256.txt",
+          "operation": "save",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage0/input-sha256.json'",
+          "function": "stage0",
+          "literal": "stage0/input-sha256.json",
+          "operation": "save",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "name",
+          "function": "stage0",
+          "literal": null,
+          "operation": "save",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "pin['path']",
+          "function": "stage0",
+          "literal": null,
+          "operation": "save",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "str(p.relative_to(c.inputs))",
+          "function": "stage0",
+          "literal": null,
+          "operation": "save",
+          "script": "stage_engine.py"
+        }
+      ]
+    },
+    "S1": {
+      "builder": "stage_engine.stage1",
+      "external_inputs": [
+        {
+          "access": "read exact offset/size slices; verify SHA, owner and capture stage",
+          "consumer": "returned erased-future identity and caller poll proof",
+          "selector": "input-pins.inputs.mir_bodies.path / callee_mir_slices"
+        }
+      ],
+      "inputs": [
+        {
+          "file": "raw-body.json",
+          "key_fields": [
+            "owner_def_path_hash",
+            "basic_blocks",
+            "locals",
+            "is_coroutine"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "input-pins.json",
+          "key_fields": [
+            "Canonical artifact fields",
+            "inputs.mir_bodies.path",
+            "callee_mir_slices",
+            "information_mir_slices"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/definitions-index.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "pins/event-macro/*",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        }
+      ],
+      "outputs": [
+        {
+          "file": "facts/blocks.json",
+          "key_fields": [
+            "bbN.basic_block",
+            "bbN.statements",
+            "bbN.terminator"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "additionalProperties": {
+              "additionalProperties": true,
+              "properties": {
+                "basic_block": {
+                  "type": "integer"
+                },
+                "is_cleanup": {
+                  "type": "boolean"
+                },
+                "statements": {
+                  "items": {},
+                  "type": "array"
+                },
+                "terminator": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "kind": {
+                      "type": "string"
+                    },
+                    "successors": {
+                      "items": {
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "successors"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "basic_block",
+                "is_cleanup",
+                "statements",
+                "terminator"
+              ],
+              "type": "object"
+            },
+            "type": "object"
+          }
+        },
+        {
+          "file": "facts/edges.json",
+          "key_fields": [
+            "id",
+            "source",
+            "target",
+            "condition",
+            "terminator_kind",
+            "successor_index"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "bindingRef": {
+                  "type": "string"
+                },
+                "condition": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "source_info": {},
+                "successor_index": {
+                  "type": "integer"
+                },
+                "target": {
+                  "type": "string"
+                },
+                "terminator_kind": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "source",
+                "target",
+                "condition",
+                "terminator_kind",
+                "successor_index",
+                "source_info"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        {
+          "file": "facts/call-bindings.json",
+          "key_fields": [
+            "id",
+            "bb",
+            "callee",
+            "func",
+            "normal_successor"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "bb": {
+                  "type": "string"
+                },
+                "callee": {
+                  "type": "object"
+                },
+                "destination": {},
+                "func": {
+                  "type": "object"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "normal_successor": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "source_info": {},
+                "unwind": {}
+              },
+              "required": [
+                "id",
+                "bb",
+                "callee",
+                "func",
+                "destination",
+                "normal_successor",
+                "unwind",
+                "source_info"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        {
+          "file": "facts/async-states.json",
+          "key_fields": [
+            "is_coroutine",
+            "dispatch",
+            "states"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "dispatch": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "is_coroutine": {
+                "type": "boolean"
+              },
+              "states": {
+                "items": {
+                  "additionalProperties": true,
+                  "properties": {},
+                  "required": [
+                    "value",
+                    "entry",
+                    "role"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "is_coroutine",
+              "dispatch",
+              "states"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "facts/terminal-events.json",
+          "key_fields": [
+            "id (tN.ordinal)",
+            "kind",
+            "source",
+            "source_info"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "source_info": {}
+              },
+              "required": [
+                "id",
+                "kind",
+                "source",
+                "source_info"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        {
+          "file": "facts/summary.json",
+          "key_fields": [
+            "bb_count",
+            "edge_count",
+            "call_count",
+            "terminal_event_count"
+          ],
+          "optional": false,
+          "role": "receipt",
+          "root": "work",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "bb_count": {
+                "type": "integer"
+              },
+              "call_count": {
+                "type": "integer"
+              },
+              "edge_count": {
+                "type": "integer"
+              },
+              "locals_count": {
+                "type": "integer"
+              },
+              "terminal_event_count": {
+                "type": "integer"
+              },
+              "terminators": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "bb_count",
+              "edge_count",
+              "call_count",
+              "terminal_event_count",
+              "locals_count",
+              "terminators"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "facts/instrumentation-candidates.json",
+          "key_fields": [
+            "kind",
+            "regions",
+            "technical_blocks",
+            "block_roles",
+            "block_proofs",
+            "conflicts"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/elements.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "properties": {
+              "items": {
+                "items": {
+                  "properties": {
+                    "id": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "enum": [
+                        "bb",
+                        "call",
+                        "body",
+                        "switch"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "schemaVersion": {
+                "const": 1
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "ownerDefPathHash",
+              "items"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "facts/definitions-index.json",
+          "key_fields": [
+            "Original indexed definitions plus MIR-proven erased return-body definitions"
+          ],
+          "optional": false,
+          "role": "projection",
+          "root": "work"
+        },
+        {
+          "file": "input-pins.json",
+          "key_fields": [
+            "information_mir_slices",
+            "missing_mir"
+          ],
+          "root": "work"
+        }
+      ],
+      "runtime_contract": {},
+      "sources": {
+        "canonical_stages.py": [
+          "stage1"
+        ],
+        "stage_engine.py": [
+          "stage1"
+        ]
+      },
+      "static_accesses": [
+        {
+          "expression": "'input-pins.json'",
+          "function": "stage1",
+          "literal": "input-pins.json",
+          "operation": "load",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'raw-body.json'",
+          "function": "stage1",
+          "literal": "raw-body.json",
+          "operation": "load",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'facts/' + name + '.json'",
+          "function": "stage1",
+          "literal": null,
+          "operation": "save",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'facts/definitions-index.json'",
+          "function": "stage1",
+          "literal": "facts/definitions-index.json",
+          "operation": "save",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'input-pins.json'",
+          "function": "stage1",
+          "literal": "input-pins.json",
+          "operation": "save",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'input-pins.json'",
+          "function": "stage1",
+          "literal": "input-pins.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'raw-body.json'",
+          "function": "stage1",
+          "literal": "raw-body.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'facts/instrumentation-candidates.json'",
+          "function": "stage1",
+          "literal": "facts/instrumentation-candidates.json",
+          "operation": "save",
+          "script": "stage_engine.py"
+        }
+      ]
+    },
+    "S2": {
+      "builder": "stage_engine.stage2",
+      "external_inputs": [
+        {
+          "access": "read exact offset/size slices; verify SHA, owner and capture stage",
+          "consumer": "returned erased-future identity and caller poll proof",
+          "selector": "input-pins.inputs.mir_bodies.path / callee_mir_slices"
+        }
+      ],
+      "inputs": [
+        {
+          "file": "ledgers/stage2.json",
+          "key_fields": [
+            "schema_version",
+            "root",
+            "phase_order",
+            "nodes[].id/kind/name/members/evidence",
+            "technical",
+            "selection",
+            "granularity",
+            "nodes[bb_group].evidence"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "ledgers/summaries.json",
+          "key_fields": [
+            "units.*.kind",
+            "units.*.text"
+          ],
+          "optional": true,
+          "root": "inputs",
+          "schema": {
+            "properties": {
+              "units": {
+                "additionalProperties": {
+                  "properties": {
+                    "kind": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "text"
+                  ],
+                  "type": "object"
+                },
+                "type": "object"
+              }
+            },
+            "required": [
+              "units"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "facts/blocks.json",
+          "key_fields": [
+            "bbN.basic_block",
+            "bbN.statements",
+            "bbN.terminator"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/edges.json",
+          "key_fields": [
+            "id",
+            "source",
+            "target",
+            "condition",
+            "terminator_kind",
+            "successor_index"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/terminal-events.json",
+          "key_fields": [
+            "id (tN.ordinal)",
+            "kind",
+            "source",
+            "source_info"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/instrumentation-candidates.json",
+          "key_fields": [
+            "kind",
+            "technical_blocks",
+            "block_roles",
+            "block_proofs",
+            "regions",
+            "conflicts"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/elements.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/hierarchy.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": true,
+          "root": "work",
+          "when": "Only check_context default path; S2 validation passes its in-memory hierarchy."
+        },
+        {
+          "file": "raw-body.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "input-pins.json",
+          "key_fields": [
+            "Canonical artifact fields",
+            "inputs.mir_bodies.path",
+            "callee_mir_slices",
+            "information_mir_slices"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/definitions-index.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "pins/event-macro/*",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/call-bindings.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "source/*",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "description": "Loop entry and exit decisions only; range membership is derived from MIR SCC and hierarchy reading order.",
+          "file": "ledgers/stage4.json",
+          "key_fields": [
+            "readingScopes.repeat.entryActionRef",
+            "readingScopes.commonAfter"
+          ],
+          "optional": true,
+          "root": "inputs"
+        }
+      ],
+      "ledger_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false,
+        "properties": {
+          "granularity": {
+            "properties": {
+              "goalContracts": {
+                "items": {
+                  "properties": {
+                    "cohesionReason": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "completion": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "contractRef": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "entryMode": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "evidenceRefs": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "goalRef": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "memberContracts": {
+                      "items": {
+                        "properties": {
+                          "actionRef": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "contractRef": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "entryMode": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "evidenceRefs": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "minItems": 1,
+                            "type": "array"
+                          }
+                        },
+                        "required": [
+                          "actionRef",
+                          "contractRef",
+                          "entryMode",
+                          "evidenceRefs"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "receiverRef": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "targetRef": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "goalRef",
+                    "contractRef",
+                    "entryMode",
+                    "completion",
+                    "cohesionReason",
+                    "evidenceRefs",
+                    "memberContracts"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "technicalBlocks": {
+                "items": {
+                  "properties": {
+                    "bbRef": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "blockRole": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "eventMacroProof": {
+                      "type": "object"
+                    },
+                    "evidenceRefs": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "factSha256": {
+                      "minLength": 64,
+                      "type": "string"
+                    },
+                    "operationReasons": {
+                      "additionalProperties": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "reason": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "terminatorReason": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "bbRef",
+                    "category",
+                    "reason",
+                    "evidenceRefs"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "technicalBlocks",
+              "goalContracts"
+            ],
+            "type": "object"
+          },
+          "migration": {
+            "type": "object"
+          },
+          "nodes": {
+            "items": {
+              "properties": {
+                "adds": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "basic_block_order": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array",
+                  "uniqueItems": true
+                },
+                "bb_annotations": {
+                  "additionalProperties": {
+                    "type": "object"
+                  },
+                  "type": "object"
+                },
+                "evidence": {
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "kind": {
+                  "enum": [
+                    "root",
+                    "phase",
+                    "goal",
+                    "action",
+                    "bb_group"
+                  ]
+                },
+                "members": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array",
+                  "uniqueItems": true
+                },
+                "name": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "name",
+                "members",
+                "evidence"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "phase_order": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "root": {
+            "type": "string"
+          },
+          "schema_version": {
+            "const": 1
+          },
+          "selection": {
+            "properties": {
+              "foldRules": {
+                "items": {
+                  "properties": {
+                    "reason": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "targetCategory": {
+                      "enum": [
+                        "std",
+                        "third_party"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "targetCategory",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "items": {
+                "items": {
+                  "properties": {
+                    "disposition": {
+                      "enum": [
+                        "shown",
+                        "technical",
+                        "folded"
+                      ]
+                    },
+                    "id": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "ownerActionRef": {
+                      "type": "string"
+                    },
+                    "reason": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "semanticRole": {
+                      "enum": [
+                        "business",
+                        "adapter"
+                      ]
+                    },
+                    "sourceRefs": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "disposition"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "semantic_action_ids": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "technical": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "root",
+          "phase_order",
+          "nodes",
+          "technical",
+          "selection",
+          "granularity"
+        ],
+        "title": "Stage2 semantic ownership ledger",
+        "type": "object"
+      },
+      "outputs": [
+        {
+          "file": "stage2/hierarchy.json",
+          "key_fields": [
+            "root",
+            "phase_order",
+            "nodes",
+            "semantic_action_ids"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "nodes": {
+                "additionalProperties": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "basic_block_refs": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "children": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "depth": {
+                      "type": "number"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "enum": [
+                        "root",
+                        "phase",
+                        "goal",
+                        "action",
+                        "bb_group",
+                        "technical_group",
+                        "bb"
+                      ]
+                    },
+                    "reading_parent": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "kind",
+                    "depth",
+                    "children",
+                    "reading_parent",
+                    "basic_block_refs"
+                  ],
+                  "type": "object"
+                },
+                "type": "object"
+              },
+              "phase_order": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "root": {
+                "type": "string"
+              },
+              "semantic_action_ids": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "root",
+              "phase_order",
+              "nodes"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "stage2/selection.json",
+          "key_fields": [
+            "items",
+            "scopeEvidence"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "properties": {
+              "foldRules": {
+                "items": {
+                  "properties": {
+                    "reason": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "targetCategory": {
+                      "enum": [
+                        "std",
+                        "third_party"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "targetCategory",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "items": {
+                "items": {
+                  "properties": {
+                    "disposition": {
+                      "enum": [
+                        "shown",
+                        "technical",
+                        "folded"
+                      ]
+                    },
+                    "id": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "ownerActionRef": {
+                      "type": "string"
+                    },
+                    "reason": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "semanticRole": {
+                      "enum": [
+                        "business",
+                        "adapter"
+                      ]
+                    },
+                    "sourceRefs": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "disposition"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "items"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "stage2/granularity.json",
+          "key_fields": [
+            "businessFacts",
+            "boundaries",
+            "decisions",
+            "memberGuards",
+            "ranges",
+            "purposeGroups",
+            "technicalBlocks",
+            "goalContracts"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "properties": {
+              "technicalBlocks": {
+                "items": {
+                  "required": [
+                    "bbRef",
+                    "category",
+                    "reason",
+                    "evidenceRefs",
+                    "factSha256"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "technicalIntervals": {
+                "items": {
+                  "properties": {
+                    "bbRef": {
+                      "type": "string"
+                    },
+                    "statementIndices": {
+                      "items": {
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "terminator": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "bbRef",
+                    "statementIndices",
+                    "terminator"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "technicalBlocks",
+              "technicalIntervals"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "stage2/blocks-ledger.tsv",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": false,
+          "role": "receipt",
+          "root": "work",
+          "schema": {
+            "columns": [
+              "bb",
+              "direct_parent",
+              "full_path",
+              "factual_operations",
+              "real_exits"
+            ],
+            "format": "tsv"
+          }
+        },
+        {
+          "file": "stage2/reading-summaries.json",
+          "key_fields": [
+            "units.*.kind",
+            "units.*.text"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/model-check.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "properties": {
+              "ownerContradictions": {
+                "const": 0
+              },
+              "passed": {
+                "const": true
+              },
+              "unaccountedCalls": {
+                "const": 0
+              }
+            },
+            "required": [
+              "passed",
+              "unaccountedCalls",
+              "ownerContradictions"
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "ownership": {
+        "children": {
+          "action": [
+            "bb_group"
+          ],
+          "bb": [],
+          "bb_group": [
+            "bb"
+          ],
+          "goal": [
+            "action"
+          ],
+          "phase": [
+            "goal"
+          ],
+          "root": [
+            "phase",
+            "bb_group",
+            "bb"
+          ]
+        },
+        "depth": {
+          "action": 2,
+          "bb": 4,
+          "bb_group": 3,
+          "goal": 1.5,
+          "phase": 1,
+          "root": 0
+        },
+        "layers": [
+          "root",
+          "phase",
+          "goal",
+          "action",
+          "bb_group",
+          "bb"
+        ],
+        "leaf_rule": "Business: ROOT→phase→goal→action→bb_group→bb, strictly adjacent. ROOT may also directly own technical bb or technical bb_group; every ROOT-owned BB requires a validated granularity.technicalBlocks record. Technical nodes never render as business nodes. Ledger members preserve ownership; models write neither bb leaves, technical reasons, nor basic_block_order.",
+        "node_fields": [
+          "id",
+          "kind",
+          "name",
+          "children",
+          "depth",
+          "basic_block_refs",
+          "reading_parent",
+          "evidence",
+          "technical",
+          "technical_reasons",
+          "basic_block_order"
+        ],
+        "reading_group_policy": {
+          "authoring_evidence_fields": {
+            "G2 action / BB组标题": "同一失败处理中连续的“保全状态 → 报告事件 → 返回结果”等 action，若中间没有业务判断，合并为一个 action；正常与恢复路径仍分开。action/BB组标题只能描述其 BB 实际覆盖的操作，标题提到的操作必须在其 BB 范围内。虚构 submit_order 正例：bb20 保全、bb21 报告、bb22 返回且无业务判断，归入一个失败处理 action；bb20 的组只称“保全待提交订单”。反例：把三步拆成三个 action，或 bb20 的组标题称“保全订单并报告事件”但报告实际在 bb21。",
+            "granularity.memberGuards / granularity.ranges": "成员在业务条件下才执行时，逐成员登记 guard、take/skip 值域、执行证据与绕过路径；跨成员条件或业务循环必须登记 range 的入口、成员、汇合/回边和证据，并绑定后续 readingScope。空清单不能冒充没有 guard/range；确实不存在时须给出覆盖源码与路径的审查依据。虚构 submit_order 正例：仅库存允许时执行扣款和落库，登记两个成员的 take/skip、拒绝路径及同一 opt range 的入口/汇合；逐订单行循环另登记入口、成员、回边/出口。反例：源码有库存分支和逐行循环，却因已有图框而把 memberGuards/ranges 都留空。",
+            "granularity.purposeGroups": "S2 必须为每一个业务 invocation（来源：facts/call-bindings 中被 selection 选为业务调用的项，以及 memberGuards/controls 的 invocationRef）写一条 purposeGroups，不论 projection 是否已存在；每条固定 projectionRef（即 S5 将使用的 projection id）、object、purpose、condition（或 phase）、result、可解析 evidenceRefs。projectionRef 唯一；同一端点服务不同目的时分开写；不得用空数组。用 invocationRefs 或 bindingRefs 显式关联业务调用；已有证据中的真实 Call/调用 BB 也可用于覆盖核对。虚构 submit_order 正例：S2 尚无 projection，仍为扣款写 purpose-charge（订单款项、确认可落库、库存允许、付款确认、call:1/bb1），为通知写 purpose-notify（已创建订单、告知订阅方、订单已写入、通知已接收、call:2/bb3）。反例：等待 S5 再填、purposeGroups=[]，或因同一端点而合并不同目的。",
+            "granularity.technicalBlocks": "仅写非instrumentation的BB分类、理由、evidenceRefs及必要逐操作理由；factSha256、operationKinds/Proofs、terminatorProof由elements.mirWitness推导。instrumentation整条由证明自动生成。",
+            "node.broadRangeReason": "先逐项核对 goal/action 高亮集合，排除无关行；按不连续区间的 inclusive 并集计算行数，超过函数跨度的 25% 时，必须在该 S2 节点写具体 broadRangeReason，说明哪几行为什么必须高亮；不得用理由掩盖错范围；phase 豁免。虚构 submit_order 正例：函数 10–49 共40行，失败处理高亮 30–32、34–38、40–43 共12行（30%），理由逐段说明保全订单、报告失败、返回拒绝结果的必要性。反例：把 30–43 包围区间内无关的33/39行也高亮，再写“失败处理很复杂”。",
+            "node.evidence": "非空 bbN 数组，均属于本组且存在 S1 facts；通过 facts 的 source_info/span 逐项核对固定源码，不能借用其他组的 BB。",
+            "node.id": "最后一段必须是 C{执行顺序第一个BB号}；执行顺序由脚本从组入口和原边顺序派生。",
+            "node.name": "规范化后不得包含父 action 名的完整文本，必须描述本组自己的操作。",
+            "selection.items": "每个Call/body稳定id恰好一个去向；理由与信息效果从MIR推导，归属来自层级，shown与消息互证。",
+            "未获证明的日志宏展开": "记录具体证明缺口；纯日志不得作为业务组交付，不以宏来源代替证明。",
+            "证据缺口": "源码 span 缺失时列出真实路径端点/边及事实，标记无法证明的判断；不得捏造行号或用历史产物替代。",
+            "读者可见文案 / P7": "所有读者可见文案（label、name、summary、condition、skip、result、purpose、object 等）只用业务语言，不得出现 bbN、mN.N、call:N 标识；这些标识只写在 evidenceRefs、bypassEvidenceRefs、entryEvidenceRefs、basis 等证据字段中。结构引用字段保持其身份引用，不作为展示文案。"
+          },
+          "authoring_steps": [
+            "从 facts/edges.json 找出 action 内的控制流，沿执行顺序划分 BB 片段；每个 BB 恰好一个 owner。",
+            "读取facts/elements.json及facts/instrumentation-candidates.json的完整证明，由脚本派生instrumentation technicalBlocks、ROOT归属和组间CFG桥接；禁止手抄记录，空action立即停止。",
+            "纯tracing日志BB不能留在业务组；未获完整证明属于证据缺口，先核验pin及证明器，不能靠宏来源伪造技术归属。",
+            "S3 review如实记录证明缺口；已证明BB须移到ROOT，混合BB仅日志操作进技术区间；tokio/core/?/async不算日志。",
+            "忽略 unwind 边和进入 cleanup BB 的边；cleanup BB 不得放入 action 下的业务组。",
+            "每组只保留一个入口，且每个成员的组内入度、出度都不超过 1；遇到分支或合并立即切组。",
+            "沿唯一入口生成执行顺序；只允许最后一个成员回到入口，basic_block_order 只由脚本生成。",
+            "组 ID 最后一段写 C{执行顺序第一个BB号}；name 描述本组自己的操作，规范化后不得包含父 action 名的完整文本。",
+            "evidence 必须是本组真实 BB；方案 A 不要求 adds 或 granularity.boundaryDecisions。",
+            "先逐项核对 goal/action 高亮集合，排除无关行；按不连续区间的 inclusive 并集计算行数，超过函数跨度的 25% 时，必须在该 S2 节点写具体 broadRangeReason，说明哪几行为什么必须高亮；不得用理由掩盖错范围；phase 豁免。虚构 submit_order 正例：函数 10–49 共40行，失败处理高亮 30–32、34–38、40–43 共12行（30%），理由逐段说明保全订单、报告失败、返回拒绝结果的必要性。反例：把 30–43 包围区间内无关的33/39行也高亮，再写“失败处理很复杂”。",
+            "S2 必须为每一个业务 invocation（来源：facts/call-bindings 中被 selection 选为业务调用的项，以及 memberGuards/controls 的 invocationRef）写一条 purposeGroups，不论 projection 是否已存在；每条固定 projectionRef（即 S5 将使用的 projection id）、object、purpose、condition（或 phase）、result、可解析 evidenceRefs。projectionRef 唯一；同一端点服务不同目的时分开写；不得用空数组。用 invocationRefs 或 bindingRefs 显式关联业务调用；已有证据中的真实 Call/调用 BB 也可用于覆盖核对。虚构 submit_order 正例：S2 尚无 projection，仍为扣款写 purpose-charge（订单款项、确认可落库、库存允许、付款确认、call:1/bb1），为通知写 purpose-notify（已创建订单、告知订阅方、订单已写入、通知已接收、call:2/bb3）。反例：等待 S5 再填、purposeGroups=[]，或因同一端点而合并不同目的。",
+            "成员在业务条件下才执行时，逐成员登记 guard、take/skip 值域、执行证据与绕过路径；跨成员条件或业务循环必须登记 range 的入口、成员、汇合/回边和证据，并绑定后续 readingScope。空清单不能冒充没有 guard/range；确实不存在时须给出覆盖源码与路径的审查依据。虚构 submit_order 正例：仅库存允许时执行扣款和落库，登记两个成员的 take/skip、拒绝路径及同一 opt range 的入口/汇合；逐订单行循环另登记入口、成员、回边/出口。反例：源码有库存分支和逐行循环，却因已有图框而把 memberGuards/ranges 都留空。",
+            "同一失败处理中连续的“保全状态 → 报告事件 → 返回结果”等 action，若中间没有业务判断，合并为一个 action；正常与恢复路径仍分开。action/BB组标题只能描述其 BB 实际覆盖的操作，标题提到的操作必须在其 BB 范围内。虚构 submit_order 正例：bb20 保全、bb21 报告、bb22 返回且无业务判断，归入一个失败处理 action；bb20 的组只称“保全待提交订单”。反例：把三步拆成三个 action，或 bb20 的组标题称“保全订单并报告事件”但报告实际在 bb21。",
+            "所有读者可见文案（label、name、summary、condition、skip、result、purpose、object 等）只用业务语言，不得出现 bbN、mN.N、call:N 标识；这些标识只写在 evidenceRefs、bypassEvidenceRefs、entryEvidenceRefs、basis 等证据字段中。结构引用字段保持其身份引用，不作为展示文案。",
+            "ownerActionRef、technicalBlocks中的instrumentation、basic_block_order、group_order_basis与S4 sourceInventory均由事实/层级/证明推导，不手写重复。非instrumentation只写分类、原因和源码依据，原始MIR见elements，完整证据形状由脚本生成后交冻结检查。",
+            "混合业务+tracing BB保持业务组，日志操作仅记technicalIntervals；core/tokio/?/async宏不按日志归技术。S2/S5/S7统一模型检查通过后才继续。",
+            "loop ranges.memberActionRefs 不手写：从 S4 的入口/出口决定及 S1 MIR 推导真实循环动作的最小连续阅读区间；环内额外动作必须有不能回入口且只能到 commonAfter/已认证终点的完整证明。",
+            "调用与闭包的去向只按下文信息保持规则从MIR推导；technical须独立证明。"
+          ],
+          "evidence": "Nonempty array of real member bbN references into S1 facts; author verifies source/path meaning",
+          "information_preservation": "## 信息保持规则（唯一选择定义）\n\nS1 在 `facts/elements.json` 的 `proofs.informationEffect` 记录 MIR 判定；S2 `canonical_selection` 投影为唯一去向，S2/S5/S7 `check_model` 从原始 MIR 和 SHA 固定的 `input-pins.json.information_mir_slices` 重算校验。作者逐项确认 selection，不得用整类 foldRules 掩盖信息改变。理由与 sourceRefs 由判定生成；ownerActionRef 从层级推导。\n\n仅当信息保持才 folded：输出只重塑、移动、借用、转换、格式化输入信息（含 `?` 与全量一对一变体映射），或属于不影响业务数据的日志/指标、async plumbing、锁、drop 基础设施。其余仅按四种效果 shown：**DECIDES**（结果决定非机制分支）、**WRITES**（写项目状态，含锁 guard）、**DROPS**（返回 None/常量/子集或筛除数据）、**COMPUTES**（计算新值）。项目 callee 对这四种效果递归分析，深度上限六；未解开的递归、未知库操作显式留在 proof 的 partial/unclassified 中。没有 pinned MIR 的项目 callee 按批准规则 folded，不伪造实现。\n\n机械顺序与固定库表以 `scripts/check_model.py` 的 `InformationRule`、`InformationBody` 和 `lib_kind` 为准：先查调用现场 &mut 状态写入，再查项目调用结果是否经透明操作/库操作流入非 await、?、drop flag、第三方宏分支；否则分析 callee 的状态写、项目来源分支、返回 None/常量、算术及递归调用/内部闭包。库操作按 infrastructure、格式/透明、predicate、DROPS、COMPUTES、其余透明表匹配。predicate 或 DROPS/COMPUTES 结果只喂分支时记作分支条件，不另建框；提供被判断值的项目调用 shown。第三方宏定义的闭包属于基础设施。不得按函数名例外或按 body 分支。\n\n库表包含 tracing/metrics、poll/into_future/Pin/join/or_cancel、锁/drop；透明映射包含 clone/deref/from/into/as_*/fmt/iter/map/collect/extend/push/insert/sort/new/default/unwrap；筛减表包含 filter/find/retain/dedup/take/get/first/last/min/max/ok/and_then/trim；计算表包含 len/count/sum/checked_*/parse/from_str/now。完整正则表只维护在上述函数，不在文档复制第二份。\n\ntechnical 是独立的 BB/语句区间证明去向：已证日志仍 technical 并归 ROOT，混合 BB 日志仅标技术区间；信息保持不等于有权把 BB 移到技术层。shown 外部调用每次恰好一对 request/return；主参与方内的库操作使用渲染器原生的一条 kind=self、pair=null 消息。shown 闭包由真实消费调用绑定 endpoint；若其库适配调用 folded，业务成员以 `bodyElementRef` 关联消息并明确表示闭包执行，不将适配调用重分类、也不重复计数。没有 definitions 条目的库操作作为主参与方内部自调用消息展示，业务成员的 `internalOperation` 明确核验原始调用和主 body；不伪造外部 declaration。每一项 shown 都有可见交互依据。\n",
+          "label_normalization": [
+            "NFKC",
+            "casefold",
+            "remove only terminal duplicate suffixes separated by whitespace or punctuation: Arabic digits, (N), （N）, [N], #N, N号",
+            "preserve meaningful Chinese or English ordinals anywhere in the name",
+            "remove whitespace and Unicode punctuation"
+          ],
+          "reject_parent_label_echo": true,
+          "required": [
+            "evidence"
+          ],
+          "scope": "bb_group with action parent; ROOT technical branches unchanged",
+          "semantic_rule": "只看非 unwind 且目标非 cleanup 的原边；每组恰好一个入口，成员形成无分叉、无合并的简单顺序路径，仅允许最后一个成员回到入口。cleanup BB 不得并入业务组。"
+        },
+        "schema": "references/ledger-schema.json",
+        "technical_policy": {
+          "marker": "technical",
+          "reason_source": "validated granularity.technicalBlocks records",
+          "reason_types": [
+            "cleanup",
+            "unwind",
+            "drop",
+            "async-state",
+            "state_dispatch",
+            "async_mechanism",
+            "instrumentation"
+          ],
+          "reasons": "technical_reasons",
+          "render_as_business": false,
+          "root_children": [
+            "bb",
+            "bb_group"
+          ]
+        }
+      },
+      "runtime_contract": {
+        "builder": "stage_engine:stage2",
+        "preflight": "materialize",
+        "stage": 2,
+        "version": 20
+      },
+      "sources": {
+        "canonical_stages.py": [
+          "stage2"
+        ],
+        "check_model.py": [
+          "check_context",
+          "check"
+        ]
+      },
+      "static_accesses": [
+        {
+          "expression": "2",
+          "function": "stage2",
+          "literal": 2,
+          "operation": "ledger",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "4",
+          "function": "stage2",
+          "literal": 4,
+          "operation": "ledger",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'facts/blocks.json'",
+          "function": "stage2",
+          "literal": "facts/blocks.json",
+          "operation": "load",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'facts/edges.json'",
+          "function": "stage2",
+          "literal": "facts/edges.json",
+          "operation": "load",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'facts/elements.json'",
+          "function": "stage2",
+          "literal": "facts/elements.json",
+          "operation": "load",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'facts/elements.json'",
+          "function": "stage2",
+          "literal": "facts/elements.json",
+          "operation": "load",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'facts/instrumentation-candidates.json'",
+          "function": "stage2",
+          "literal": "facts/instrumentation-candidates.json",
+          "operation": "load",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'facts/terminal-events.json'",
+          "function": "stage2",
+          "literal": "facts/terminal-events.json",
+          "operation": "load",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'raw-body.json'",
+          "function": "stage2",
+          "literal": "raw-body.json",
+          "operation": "load",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'stage2/' + name + '.json'",
+          "function": "stage2",
+          "literal": null,
+          "operation": "save",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'stage2/blocks-ledger.tsv'",
+          "function": "stage2",
+          "literal": "stage2/blocks-ledger.tsv",
+          "operation": "save",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "stage2",
+          "literal": "stage2/hierarchy.json",
+          "operation": "save",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "'stage2/reading-summaries.json'",
+          "function": "stage2",
+          "literal": "stage2/reading-summaries.json",
+          "operation": "save",
+          "script": "canonical_stages.py"
+        },
+        {
+          "expression": "2",
+          "function": "check_context",
+          "literal": 2,
+          "operation": "ledger",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "5",
+          "function": "check_context",
+          "literal": 5,
+          "operation": "ledger",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/blocks.json'",
+          "function": "check_context",
+          "literal": "facts/blocks.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/definitions-index.json'",
+          "function": "check_context",
+          "literal": "facts/definitions-index.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/edges.json'",
+          "function": "check_context",
+          "literal": "facts/edges.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/elements.json'",
+          "function": "check_context",
+          "literal": "facts/elements.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/instrumentation-candidates.json'",
+          "function": "check_context",
+          "literal": "facts/instrumentation-candidates.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/instrumentation-candidates.json'",
+          "function": "check_context",
+          "literal": "facts/instrumentation-candidates.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'input-pins.json'",
+          "function": "check_context",
+          "literal": "input-pins.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'raw-body.json'",
+          "function": "check_context",
+          "literal": "raw-body.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/granularity.json'",
+          "function": "check_context",
+          "literal": "stage2/granularity.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/granularity.json'",
+          "function": "check_context",
+          "literal": "stage2/granularity.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "check_context",
+          "literal": "stage2/hierarchy.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/selection.json'",
+          "function": "check_context",
+          "literal": "stage2/selection.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage5/external.json'",
+          "function": "check_context",
+          "literal": "stage5/external.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "f'stage{stage}/model-check.json'",
+          "function": "check_context",
+          "literal": null,
+          "operation": "save",
+          "script": "check_model.py"
+        }
+      ]
+    },
+    "S3": {
+      "authoring_steps": [
+        "review.md 直接复制作者手写的 ledgers/review-narrative.md；必须在 narrative 中列出 purposeGroups 一节，逐条展示 S2 的 projectionRef、object、purpose、condition（或 phase）、result 与 evidenceRefs，供 agent 在 S3 自动锁定前核对。"
+      ],
+      "builder": "stage_engine.stage3",
+      "inputs": [
+        {
+          "file": "ledgers/stage3.json",
+          "key_fields": [
+            "passed",
+            "nodes",
+            "scope",
+            "counterexamples"
+          ],
+          "optional": false,
+          "root": "inputs",
+          "schema": {
+            "type": [
+              "object",
+              "array"
+            ]
+          }
+        },
+        {
+          "file": "ledgers/review-narrative.md",
+          "format": "text",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "stage2/hierarchy.json",
+          "key_fields": [
+            "nodes.*.name/evidence/reading_parent/basic_block_refs"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/blocks.json",
+          "key_fields": [
+            "bbN"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "ledgers/stage4.json",
+          "key_fields": [
+            "loop entry/commonAfter decisions"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "stage2/granularity.json",
+          "key_fields": [
+            "derived loop ranges"
+          ],
+          "root": "work"
+        }
+      ],
+      "outputs": [
+        {
+          "file": "stage3/review.json",
+          "key_fields": [
+            "passed",
+            "nodes",
+            "scope",
+            "counterexamples"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "type": [
+              "object",
+              "array"
+            ]
+          }
+        },
+        {
+          "file": "stage3/review.md",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "format": "authored-text"
+          }
+        },
+        {
+          "file": "stage3/lock.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "properties": {
+              "passed": {
+                "const": true
+              },
+              "sha256": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "passed",
+              "sha256"
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "runtime_contract": {
+        "builder": "stage_engine:stage3",
+        "preflight": "materialize",
+        "stage": 3,
+        "version": 20
+      },
+      "sources": {
+        "gate_lifecycle.py": [
+          "stage3_fingerprints"
+        ],
+        "reading_groups.py": [
+          "review"
+        ],
+        "stage_engine.py": [
+          "stage3"
+        ]
+      },
+      "static_accesses": [
+        {
+          "expression": "'facts/blocks.json'",
+          "function": "review",
+          "literal": "facts/blocks.json",
+          "operation": "load",
+          "script": "reading_groups.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "review",
+          "literal": "stage2/hierarchy.json",
+          "operation": "load",
+          "script": "reading_groups.py"
+        },
+        {
+          "expression": "3",
+          "function": "stage3",
+          "literal": 3,
+          "operation": "ledger",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage3/lock.json'",
+          "function": "stage3",
+          "literal": "stage3/lock.json",
+          "operation": "save",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage3/review.json'",
+          "function": "stage3",
+          "literal": "stage3/review.json",
+          "operation": "save",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage3/review.md'",
+          "function": "stage3",
+          "literal": "stage3/review.md",
+          "operation": "save",
+          "script": "stage_engine.py"
+        }
+      ]
+    },
+    "S4": {
+      "authoring_steps": [
+        "所有读者可见文案（label、name、summary、condition、skip、result、purpose、object 等）只用业务语言，不得出现 bbN、mN.N、call:N 标识；这些标识只写在 evidenceRefs、bypassEvidenceRefs、entryEvidenceRefs、basis 等证据字段中。结构引用字段保持其身份引用，不作为展示文案。",
+        "controls 与 readingScopes（含 branches、commonAfter、arrivals）的 condition、skip、label 等遵守同一规则；control.skip 与 S2 memberGuards.skip 一致，展示文案有问题须回 S2 修正，绕过路径标识保留在证据字段。"
+      ],
+      "builder": "stage_engine.stage4",
+      "inputs": [
+        {
+          "file": "ledgers/stage4.json",
+          "key_fields": [
+            "controls",
+            "executionNodes",
+            "executionEdges.source/target",
+            "ownerControls",
+            "returnContracts",
+            "branchRoles",
+            "artifacts",
+            "evidence"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "ledgers/edges.json",
+          "key_fields": [
+            "edges[].id/kind/source/target/members",
+            "transitions"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "ledgers/execution-label-review.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "stage2/hierarchy.json",
+          "key_fields": [
+            "root",
+            "phase_order",
+            "nodes",
+            "semantic_action_ids"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/granularity.json",
+          "key_fields": [
+            "memberGuards"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/reading-summaries.json",
+          "key_fields": [
+            "units.*.kind",
+            "units.*.text"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/edges.json",
+          "key_fields": [
+            "id",
+            "source",
+            "target",
+            "condition",
+            "terminator_kind",
+            "successor_index"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/blocks.json",
+          "key_fields": [
+            "terminator.kind",
+            "is_cleanup"
+          ],
+          "root": "work"
+        }
+      ],
+      "outputs": [
+        {
+          "file": "stage4/edges.json",
+          "key_fields": [
+            "edges[].id/kind/source/target/members",
+            "transitions"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "description": "Authored edge records and optional transitions retained without information loss; renderer projection reads edges only.",
+            "type": [
+              "array",
+              "object"
+            ]
+          }
+        },
+        {
+          "file": "stage4/presentation.json",
+          "key_fields": [
+            "controls",
+            "executionNodes",
+            "executionEdges.source/target",
+            "ownerControls",
+            "returnContracts",
+            "branchRoles",
+            "artifacts",
+            "evidence"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "additionalProperties": true,
+            "properties": {
+              "branchRoles": {
+                "type": "array"
+              },
+              "controlEvidence": {
+                "type": "object"
+              },
+              "controls": {
+                "items": {},
+                "type": "array"
+              },
+              "executionEdges": {
+                "items": {},
+                "type": "array"
+              },
+              "executionNodes": {
+                "items": {},
+                "type": "array"
+              },
+              "ownerControls": {
+                "type": "object"
+              },
+              "returnContracts": {
+                "type": "array"
+              }
+            },
+            "required": [
+              "controls",
+              "executionNodes",
+              "executionEdges",
+              "ownerControls",
+              "controlEvidence",
+              "branchRoles",
+              "returnContracts"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "stage4/execution-label-review.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": true,
+          "role": "receipt",
+          "root": "work"
+        }
+      ],
+      "runtime_contract": {},
+      "sources": {
+        "stage_engine.py": [
+          "stage4"
+        ]
+      },
+      "static_accesses": [
+        {
+          "expression": "4",
+          "function": "stage4",
+          "literal": 4,
+          "operation": "ledger",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'facts/blocks.json'",
+          "function": "stage4",
+          "literal": "facts/blocks.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'facts/edges.json'",
+          "function": "stage4",
+          "literal": "facts/edges.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage2/granularity.json'",
+          "function": "stage4",
+          "literal": "stage2/granularity.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "stage4",
+          "literal": "stage2/hierarchy.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "stage4",
+          "literal": "stage2/hierarchy.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage2/reading-summaries.json'",
+          "function": "stage4",
+          "literal": "stage2/reading-summaries.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage4/edges.json'",
+          "function": "stage4",
+          "literal": "stage4/edges.json",
+          "operation": "save",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage4/execution-label-review.json'",
+          "function": "stage4",
+          "literal": "stage4/execution-label-review.json",
+          "operation": "save",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage4/presentation.json'",
+          "function": "stage4",
+          "literal": "stage4/presentation.json",
+          "operation": "save",
+          "script": "stage_engine.py"
+        }
+      ]
+    },
+    "S5": {
+      "authoring_steps": [
+        "每个 purposeProjection 的 id 必须等于某条 S2 granularity.purposeGroups.projectionRef；两者一一对应，双方均不得遗漏或重复。S5 validate 同时报告缺 group 的 projection id 和缺 projection 的 projectionRef。沿用 S3 自动锁定的 S2 目的边界；需要改变边界时回到 S2/S3 重新审阅。",
+        "逐条核对elements的Call/body与S2去向；shown绑定真实endpoint及成对消息；不写innerBodies副本。"
+      ],
+      "builder": "stage_engine.stage5",
+      "external_inputs": [
+        {
+          "access": "read exact offset/size slices; verify SHA, owner and capture stage",
+          "consumer": "returned erased-future identity and caller poll proof",
+          "selector": "input-pins.inputs.mir_bodies.path / callee_mir_slices"
+        }
+      ],
+      "inputs": [
+        {
+          "file": "ledgers/stage5.json",
+          "key_fields": [
+            "actors",
+            "messages",
+            "business_members",
+            "purposeProjections",
+            "segments",
+            "actors/messages/business_members; destinations belong to S2 selection"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "ledgers/endpoint-ledger.json",
+          "key_fields": [
+            "endpoints[].id",
+            "endpoints[].actorRef",
+            "endpoints[].canonical_path",
+            "endpoints[].kind (optional: body|declaration; default body)"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "definitions.json",
+          "key_fields": [
+            "definitions[].def_path_hash",
+            "definitions[].identity.canonical_path"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "mir-bodies.json",
+          "key_fields": [
+            "owner_def_path_hash",
+            "canonical_path",
+            "basic_blocks"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "facts/call-bindings.json",
+          "key_fields": [
+            "id",
+            "bb",
+            "callee",
+            "func",
+            "normal_successor"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/definitions-index.json",
+          "key_fields": [
+            "<definition hash>.identity.canonical_path",
+            "<definition hash>.representations.mir.body_available"
+          ],
+          "optional": true,
+          "root": "work"
+        },
+        {
+          "file": "input-pins.json",
+          "key_fields": [
+            "inputs.mir_bodies.path",
+            "inputs.mir_cache.manifest",
+            "callee_mir_slices",
+            "information_mir_slices"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/granularity.json",
+          "key_fields": [
+            "purposeGroups[].projectionRef"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "ledgers/stage2.json",
+          "key_fields": [
+            "selection.items[].disposition",
+            "selection.items[].actorRef",
+            "nodes[].{id,kind,members}; execution order is derived"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "facts/elements.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/hierarchy.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/blocks.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/edges.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/instrumentation-candidates.json",
+          "key_fields": [
+            "technical_blocks",
+            "block_roles",
+            "block_proofs",
+            "conflicts"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "raw-body.json",
+          "key_fields": [
+            "basic_blocks",
+            "is_coroutine"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/selection.json",
+          "key_fields": [
+            "items[].ownerActionRef",
+            "items[].disposition"
+          ],
+          "optional": false,
+          "root": "work"
+        }
+      ],
+      "outputs": [
+        {
+          "file": "stage5/resolved-endpoints.json",
+          "key_fields": [
+            "endpoints[].id",
+            "endpoints[].kind",
+            "endpoints[].def_path_hash",
+            "endpoints[].canonical_path",
+            "endpoints[].declarationRef/sourceNodeRef/implementationStatus (declaration only)",
+            "endpoints[].ownership (declaration only)"
+          ],
+          "optional": false,
+          "role": "receipt",
+          "root": "work"
+        },
+        {
+          "file": "stage5/external.json",
+          "key_fields": [
+            "actors",
+            "messages",
+            "business_members",
+            "purposeProjections",
+            "segments"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "additionalProperties": true,
+            "properties": {
+              "actors": {
+                "items": {},
+                "type": "array"
+              },
+              "business_members": {
+                "items": {},
+                "type": "array"
+              },
+              "messages": {
+                "items": {},
+                "type": "array"
+              },
+              "purposeProjections": {
+                "items": {},
+                "type": "array"
+              }
+            },
+            "required": [
+              "actors",
+              "messages",
+              "business_members",
+              "purposeProjections"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "stage5/model-check.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "properties": {
+              "ownerContradictions": {
+                "const": 0
+              },
+              "passed": {
+                "const": true
+              },
+              "unaccountedCalls": {
+                "const": 0
+              }
+            },
+            "required": [
+              "passed",
+              "unaccountedCalls",
+              "ownerContradictions"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "stage5/endpoint-targets.json",
+          "optional": true,
+          "root": "work"
+        }
+      ],
+      "runtime_contract": {},
+      "sources": {
+        "check_model.py": [
+          "check_context",
+          "check"
+        ],
+        "stage_engine.py": [
+          "stage5"
+        ]
+      },
+      "static_accesses": [
+        {
+          "expression": "2",
+          "function": "check_context",
+          "literal": 2,
+          "operation": "ledger",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "5",
+          "function": "check_context",
+          "literal": 5,
+          "operation": "ledger",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/blocks.json'",
+          "function": "check_context",
+          "literal": "facts/blocks.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/definitions-index.json'",
+          "function": "check_context",
+          "literal": "facts/definitions-index.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/edges.json'",
+          "function": "check_context",
+          "literal": "facts/edges.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/elements.json'",
+          "function": "check_context",
+          "literal": "facts/elements.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/instrumentation-candidates.json'",
+          "function": "check_context",
+          "literal": "facts/instrumentation-candidates.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/instrumentation-candidates.json'",
+          "function": "check_context",
+          "literal": "facts/instrumentation-candidates.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'input-pins.json'",
+          "function": "check_context",
+          "literal": "input-pins.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'raw-body.json'",
+          "function": "check_context",
+          "literal": "raw-body.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/granularity.json'",
+          "function": "check_context",
+          "literal": "stage2/granularity.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/granularity.json'",
+          "function": "check_context",
+          "literal": "stage2/granularity.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "check_context",
+          "literal": "stage2/hierarchy.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/selection.json'",
+          "function": "check_context",
+          "literal": "stage2/selection.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage5/external.json'",
+          "function": "check_context",
+          "literal": "stage5/external.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "f'stage{stage}/model-check.json'",
+          "function": "check_context",
+          "literal": null,
+          "operation": "save",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "5",
+          "function": "stage5",
+          "literal": 5,
+          "operation": "ledger",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'facts/call-bindings.json'",
+          "function": "stage5",
+          "literal": "facts/call-bindings.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage2/selection.json'",
+          "function": "stage5",
+          "literal": "stage2/selection.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage5/external.json'",
+          "function": "stage5",
+          "literal": "stage5/external.json",
+          "operation": "save",
+          "script": "stage_engine.py"
+        }
+      ]
+    },
+    "S6": {
+      "builder": "stage_engine.stage6",
+      "inputs": [
+        {
+          "file": "ledgers/inventory-anchors.json",
+          "key_fields": [
+            "sourceEvidenceRefs/evidenceRefs"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "stage2/hierarchy.json",
+          "key_fields": [
+            "root",
+            "phase_order",
+            "nodes",
+            "semantic_action_ids"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/reading-summaries.json",
+          "key_fields": [
+            "units.*.kind",
+            "units.*.text"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage4/presentation.json",
+          "key_fields": [
+            "controls",
+            "executionNodes",
+            "executionEdges.source/target",
+            "ownerControls",
+            "returnContracts",
+            "branchRoles",
+            "artifacts",
+            "evidence"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage4/edges.json",
+          "key_fields": [
+            "edges[].id/kind/source/target/members",
+            "transitions"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage5/external.json",
+          "key_fields": [
+            "actors",
+            "messages",
+            "business_members",
+            "purposeProjections",
+            "segments"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/blocks.json",
+          "key_fields": [
+            "bbN.basic_block",
+            "bbN.statements",
+            "bbN.terminator"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/edges.json",
+          "key_fields": [
+            "id",
+            "source",
+            "target",
+            "condition",
+            "terminator_kind",
+            "successor_index"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/call-bindings.json",
+          "key_fields": [
+            "id",
+            "bb",
+            "callee",
+            "func",
+            "normal_successor"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/terminal-events.json",
+          "key_fields": [
+            "id (tN.ordinal)",
+            "kind",
+            "source",
+            "source_info"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "raw-body.json",
+          "key_fields": [
+            "owner_def_path_hash",
+            "basic_blocks",
+            "locals",
+            "is_coroutine"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "input-pins.json",
+          "key_fields": [
+            "definition_row",
+            "event_macro_closures",
+            "async_shell_prelude",
+            "information_mir_slices"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/definitions-index.json",
+          "key_fields": [
+            "<definition hash>.identity",
+            "<definition hash>.source"
+          ],
+          "optional": true,
+          "root": "work"
+        },
+        {
+          "file": "source/*",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": false,
+          "root": "work"
+        }
+      ],
+      "outputs": [
+        {
+          "file": "stage6/semantic-sidecar.json",
+          "key_fields": [
+            "schema_version",
+            "body",
+            "records[].anchor",
+            "records[].anchor_resolved",
+            "records[].status"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "renderer-input.json",
+          "key_fields": [
+            "semanticRoot",
+            "phases",
+            "actors",
+            "messages",
+            "controls",
+            "execution.nodes",
+            "execution.edges.from/to",
+            "execution.artifacts",
+            "execution.evidence",
+            "functionSource"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "additionalProperties": true,
+            "properties": {},
+            "required": [
+              "profile",
+              "semanticRoot",
+              "phases",
+              "messages",
+              "execution",
+              "functionSource"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "reading-summaries.json",
+          "key_fields": [
+            "units.*.kind",
+            "units.*.text"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "additionalProperties": true,
+            "properties": {},
+            "required": [
+              "units"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "basic-block-details.json",
+          "key_fields": [
+            "blocks"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "additionalProperties": true,
+            "properties": {},
+            "required": [
+              "nodes",
+              "blocks",
+              "node_sources"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "stage6/principle-lineage.json",
+          "key_fields": [
+            "relations[].sourceRef/evidenceRefs/representations"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "additionalProperties": true,
+            "properties": {
+              "relations": {
+                "items": {},
+                "type": "array"
+              }
+            },
+            "required": [
+              "relations"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "stage6/determinism.json",
+          "key_fields": [
+            "passed",
+            "runs",
+            "first",
+            "second",
+            "sha256",
+            "method"
+          ],
+          "optional": false,
+          "role": "receipt",
+          "root": "work"
+        }
+      ],
+      "runtime_contract": {},
+      "sources": {
+        "canonical_evidence.py": [
+          "Evidence"
+        ],
+        "canonical_render.py": [
+          "build",
+          "execution"
+        ],
+        "source_ranges.py": [
+          "function_source",
+          "attach_source",
+          "async_shell_prelude_raw"
+        ]
+      },
+      "static_accesses": [
+        {
+          "expression": "'facts/blocks.json'",
+          "function": "build",
+          "literal": "facts/blocks.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'facts/call-bindings.json'",
+          "function": "build",
+          "literal": "facts/call-bindings.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'facts/edges.json'",
+          "function": "build",
+          "literal": "facts/edges.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'input-pins.json'",
+          "function": "build",
+          "literal": "input-pins.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'raw-body.json'",
+          "function": "build",
+          "literal": "raw-body.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "build",
+          "literal": "stage2/hierarchy.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'stage2/reading-summaries.json'",
+          "function": "build",
+          "literal": "stage2/reading-summaries.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'stage4/edges.json'",
+          "function": "build",
+          "literal": "stage4/edges.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'stage4/presentation.json'",
+          "function": "build",
+          "literal": "stage4/presentation.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'stage5/external.json'",
+          "function": "build",
+          "literal": "stage5/external.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'stage6/principle-lineage.json'",
+          "function": "build",
+          "literal": "stage6/principle-lineage.json",
+          "operation": "save",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'stage6/semantic-sidecar.json'",
+          "function": "build",
+          "literal": "stage6/semantic-sidecar.json",
+          "operation": "save",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "name",
+          "function": "build",
+          "literal": null,
+          "operation": "save",
+          "script": "canonical_render.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "execution",
+          "literal": "stage2/hierarchy.json",
+          "operation": "load",
+          "script": "canonical_render.py"
+        }
+      ]
+    },
+    "S7": {
+      "builder": "stage_engine.stage7",
+      "external_inputs": [
+        {
+          "access": "read exact offset/size slices; verify SHA, owner and capture stage",
+          "consumer": "returned erased-future identity and caller poll proof",
+          "selector": "input-pins.inputs.mir_bodies.path / callee_mir_slices"
+        }
+      ],
+      "inputs": [
+        {
+          "file": "renderer-lock.json",
+          "key_fields": [
+            "assets.*.path",
+            "assets.*.sha256"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "ledgers/semantic-approvals.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": true,
+          "root": "inputs"
+        },
+        {
+          "file": "source/*",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "renderer-input.json",
+          "key_fields": [
+            "semanticRoot",
+            "phases",
+            "actors",
+            "messages",
+            "controls",
+            "execution.nodes",
+            "execution.edges.from/to",
+            "execution.artifacts",
+            "execution.evidence",
+            "functionSource"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "reading-summaries.json",
+          "key_fields": [
+            "units.*.kind",
+            "units.*.text"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "basic-block-details.json",
+          "key_fields": [
+            "blocks"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage6/semantic-sidecar.json",
+          "key_fields": [
+            "records[].anchor",
+            "records[].anchor_resolved",
+            "records[].needs_user_adjudication"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage4/edges.json",
+          "key_fields": [
+            "edges",
+            "transitions"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/edges.json",
+          "key_fields": [
+            "id",
+            "source",
+            "target"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/async-states.json",
+          "key_fields": [
+            "opaque generated facts"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/hierarchy.json",
+          "key_fields": [
+            "root",
+            "phase_order",
+            "nodes",
+            "semantic_action_ids"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "raw-body.json",
+          "key_fields": [
+            "owner_def_path_hash",
+            "basic_blocks",
+            "locals",
+            "is_coroutine"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "input-pins.json",
+          "key_fields": [
+            "definition_row",
+            "event_macro_closures",
+            "async_shell_prelude",
+            "inputs.mir_bodies.path",
+            "callee_mir_slices",
+            "information_mir_slices"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/definitions-index.json",
+          "key_fields": [
+            "<definition hash>.identity",
+            "<definition hash>.source"
+          ],
+          "optional": true,
+          "root": "work"
+        },
+        {
+          "file": "facts/elements.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/blocks.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "ledgers/stage2.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "stage2/selection.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/granularity.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/call-bindings.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage5/external.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage6/principle-lineage.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage4/presentation.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "classification.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "source/*",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "pins/*",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "ledgers/stage5.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "ledgers/endpoint-ledger.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "facts/instrumentation-candidates.json",
+          "key_fields": [
+            "technical_blocks",
+            "block_roles",
+            "block_proofs",
+            "conflicts"
+          ],
+          "optional": false,
+          "root": "work"
+        }
+      ],
+      "outputs": [
+        {
+          "file": "stage7/regressions.json",
+          "key_fields": [
+            "passed",
+            "checks"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage7/hard-rules.json",
+          "key_fields": [
+            "opaque checker report"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage7/principles.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage7/duplicates.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage7/contract.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage7/independent-source.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage7/acceptance.json",
+          "key_fields": [
+            "passed",
+            "checks",
+            "counts",
+            "semantic_scope"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "additionalProperties": true,
+            "properties": {},
+            "required": [
+              "passed",
+              "checks",
+              "counts",
+              "browser_checked",
+              "semantic_review_unresolved"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "stage7/semantic-gate.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage7/browser.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage7/*-execution.json",
+          "key_fields": [
+            "opaque authored/copy data"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "<out>/candidate-deliverable/**",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": false,
+          "root": "out"
+        },
+        {
+          "file": "stage7/blocked-report.json",
+          "key_fields": [
+            "schema",
+            "preview",
+            "entries",
+            "review_items",
+            "semantic_unapproved"
+          ],
+          "optional": true,
+          "root": "work"
+        },
+        {
+          "file": "stage7/blocked-report.md",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": true,
+          "root": "work"
+        },
+        {
+          "file": "stage7/model-check.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work",
+          "schema": {
+            "properties": {
+              "ownerContradictions": {
+                "const": 0
+              },
+              "passed": {
+                "const": true
+              },
+              "unaccountedCalls": {
+                "const": 0
+              }
+            },
+            "required": [
+              "passed",
+              "unaccountedCalls",
+              "ownerContradictions"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "file": "e2e-summary.md",
+          "root": "out"
+        },
+        {
+          "file": "run-fixes/*",
+          "optional": true,
+          "root": "out"
+        }
+      ],
+      "runtime_contract": {},
+      "sources": {
+        "check_model.py": [
+          "check_context",
+          "check"
+        ],
+        "gate_lifecycle.py": [
+          "finish_gates",
+          "semantic",
+          "counts"
+        ],
+        "stage_engine.py": [
+          "stage7",
+          "prepare_candidate"
+        ]
+      },
+      "static_accesses": [
+        {
+          "expression": "2",
+          "function": "check_context",
+          "literal": 2,
+          "operation": "ledger",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "5",
+          "function": "check_context",
+          "literal": 5,
+          "operation": "ledger",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/blocks.json'",
+          "function": "check_context",
+          "literal": "facts/blocks.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/definitions-index.json'",
+          "function": "check_context",
+          "literal": "facts/definitions-index.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/edges.json'",
+          "function": "check_context",
+          "literal": "facts/edges.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/elements.json'",
+          "function": "check_context",
+          "literal": "facts/elements.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/instrumentation-candidates.json'",
+          "function": "check_context",
+          "literal": "facts/instrumentation-candidates.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'facts/instrumentation-candidates.json'",
+          "function": "check_context",
+          "literal": "facts/instrumentation-candidates.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'input-pins.json'",
+          "function": "check_context",
+          "literal": "input-pins.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'raw-body.json'",
+          "function": "check_context",
+          "literal": "raw-body.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/granularity.json'",
+          "function": "check_context",
+          "literal": "stage2/granularity.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/granularity.json'",
+          "function": "check_context",
+          "literal": "stage2/granularity.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "check_context",
+          "literal": "stage2/hierarchy.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage2/selection.json'",
+          "function": "check_context",
+          "literal": "stage2/selection.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'stage5/external.json'",
+          "function": "check_context",
+          "literal": "stage5/external.json",
+          "operation": "load",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "f'stage{stage}/model-check.json'",
+          "function": "check_context",
+          "literal": null,
+          "operation": "save",
+          "script": "check_model.py"
+        },
+        {
+          "expression": "'raw-body.json'",
+          "function": "counts",
+          "literal": "raw-body.json",
+          "operation": "load",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'renderer-input.json'",
+          "function": "counts",
+          "literal": "renderer-input.json",
+          "operation": "load",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "counts",
+          "literal": "stage2/hierarchy.json",
+          "operation": "load",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'input-pins.json'",
+          "function": "finish_gates",
+          "literal": "input-pins.json",
+          "operation": "load",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'stage7/acceptance.json'",
+          "function": "finish_gates",
+          "literal": "stage7/acceptance.json",
+          "operation": "save",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'stage7/browser.json'",
+          "function": "finish_gates",
+          "literal": "stage7/browser.json",
+          "operation": "save",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'stage7/semantic-gate.json'",
+          "function": "finish_gates",
+          "literal": "stage7/semantic-gate.json",
+          "operation": "save",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'facts/definitions-index.json'",
+          "function": "prepare_candidate",
+          "literal": "facts/definitions-index.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'input-pins.json'",
+          "function": "prepare_candidate",
+          "literal": "input-pins.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'renderer-input.json'",
+          "function": "prepare_candidate",
+          "literal": "renderer-input.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage7/' + name + '-execution.json'",
+          "function": "stage7",
+          "literal": null,
+          "operation": "save",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'stage7/contract.json'",
+          "function": "stage7",
+          "literal": "stage7/contract.json",
+          "operation": "save",
+          "script": "stage_engine.py"
+        }
+      ]
+    },
+    "S8": {
+      "builder": "stage_engine.stage8",
+      "inputs": [
+        {
+          "file": "renderer-lock.json",
+          "key_fields": [
+            "assets.*.path",
+            "assets.*.sha256"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "renderer-input.json",
+          "key_fields": [
+            "semanticRoot",
+            "phases",
+            "actors",
+            "messages",
+            "controls",
+            "execution.nodes",
+            "execution.edges.from/to",
+            "execution.artifacts",
+            "execution.evidence",
+            "functionSource"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "reading-summaries.json",
+          "key_fields": [
+            "units.*.kind",
+            "units.*.text"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "basic-block-details.json",
+          "key_fields": [
+            "blocks"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage2/hierarchy.json",
+          "key_fields": [
+            "root",
+            "phase_order",
+            "nodes",
+            "semantic_action_ids"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "raw-body.json",
+          "key_fields": [
+            "owner_def_path_hash",
+            "basic_blocks",
+            "locals",
+            "is_coroutine"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "input-pins.json",
+          "key_fields": [
+            "definition_row",
+            "event_macro_closures",
+            "async_shell_prelude",
+            "information_mir_slices"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "facts/definitions-index.json",
+          "key_fields": [
+            "<definition hash>.identity",
+            "<definition hash>.source"
+          ],
+          "optional": true,
+          "root": "work"
+        },
+        {
+          "file": "stage7/acceptance.json",
+          "key_fields": [
+            "passed",
+            "checks",
+            "counts",
+            "semantic_scope"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage3/lock.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage3/review.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "stage3/review.md",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "ledgers/stage2.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "ledgers/stage3.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "ledgers/summaries.json",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "inputs"
+        },
+        {
+          "file": "ledgers/review-narrative.md",
+          "key_fields": [
+            "Canonical artifact fields"
+          ],
+          "optional": false,
+          "root": "inputs"
+        }
+      ],
+      "outputs": [
+        {
+          "file": "stage8/candidate.json",
+          "key_fields": [
+            "path",
+            "published",
+            "reason",
+            "deliverable",
+            "validated_hashes",
+            "preview",
+            "blocked_report"
+          ],
+          "optional": false,
+          "root": "work"
+        },
+        {
+          "file": "<out>/candidate-deliverable/**",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": false,
+          "root": "out"
+        },
+        {
+          "file": "<out>/deliverable/**",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": true,
+          "root": "out"
+        },
+        {
+          "file": "<out>/REPORT.md",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": true,
+          "root": "out"
+        },
+        {
+          "file": "stage8/failure.json",
+          "key_fields": [
+            "class",
+            "preview",
+            "blocked_report",
+            "blocking_classes",
+            "failure_key",
+            "attempt",
+            "max_attempts",
+            "stop"
+          ],
+          "optional": true,
+          "root": "work"
+        },
+        {
+          "file": "<out>/candidate-deliverable*/未验收预览.md",
+          "key_fields": [
+            "bytes/text"
+          ],
+          "optional": true,
+          "root": "out"
+        }
+      ],
+      "runtime_contract": {},
+      "sources": {
+        "gate_lifecycle.py": [
+          "deliver",
+          "counts",
+          "stage3_fingerprints",
+          "validate_stage3_lock"
+        ],
+        "stage_engine.py": [
+          "prepare_candidate"
+        ]
+      },
+      "static_accesses": [
+        {
+          "expression": "'raw-body.json'",
+          "function": "counts",
+          "literal": "raw-body.json",
+          "operation": "load",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'renderer-input.json'",
+          "function": "counts",
+          "literal": "renderer-input.json",
+          "operation": "load",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'stage2/hierarchy.json'",
+          "function": "counts",
+          "literal": "stage2/hierarchy.json",
+          "operation": "load",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'renderer-input.json'",
+          "function": "deliver",
+          "literal": "renderer-input.json",
+          "operation": "load",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'stage7/acceptance.json'",
+          "function": "deliver",
+          "literal": "stage7/acceptance.json",
+          "operation": "load",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'stage8/candidate.json'",
+          "function": "deliver",
+          "literal": "stage8/candidate.json",
+          "operation": "save",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'stage8/candidate.json'",
+          "function": "deliver",
+          "literal": "stage8/candidate.json",
+          "operation": "save",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'stage3/review.json'",
+          "function": "validate_stage3_lock",
+          "literal": "stage3/review.json",
+          "operation": "load",
+          "script": "gate_lifecycle.py"
+        },
+        {
+          "expression": "'facts/definitions-index.json'",
+          "function": "prepare_candidate",
+          "literal": "facts/definitions-index.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'input-pins.json'",
+          "function": "prepare_candidate",
+          "literal": "input-pins.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        },
+        {
+          "expression": "'renderer-input.json'",
+          "function": "prepare_candidate",
+          "literal": "renderer-input.json",
+          "operation": "load",
+          "script": "stage_engine.py"
+        }
+      ]
+    }
+  },
+  "version": 21
+}

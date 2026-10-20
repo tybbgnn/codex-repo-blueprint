@@ -1,0 +1,167 @@
+*{box-sizing:border-box}body{margin:0;padding:24px 32px;background:#fbfcfe;color:#192334;font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}header{display:flex;align-items:center;justify-content:space-between;gap:32px}header b{font-size:12px;letter-spacing:.08em;color:#94622b;background:#fff2d9;border-radius:4px;padding:4px 8px}h1{font-size:23px;letter-spacing:-.5px;margin:10px 0 16px}header p{max-width:520px;color:#64748b;font-size:13px}nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}button,select{font:inherit;background:white;border:1px solid #dce3ed;border-radius:6px;padding:6px 11px;color:inherit;cursor:pointer;box-shadow:0 1px 2px #17233b08}button:hover{background:#f3f6fb;border-color:#a8bad3}button:focus-visible{outline:2px solid #2563eb;outline-offset:2px}nav span{font-size:12px;color:#64748b}nav i{height:20px;border-left:1px solid #dce3ed;margin:0 5px}.hint,#status{font-size:12px;color:#677588;margin:12px 0 6px}#status{margin:0 0 12px}main{overflow:auto;max-height:72vh;min-height:340px;background:#fff;border:1px solid #e1e6ef;border-radius:10px;box-shadow:0 2px 5px #15234105}#scale{position:relative}#diagram{position:relative;transform-origin:top left}.actor{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:4;white-space:nowrap}.actor small{font-size:9px;color:#8290a1;line-height:1.1}.actor strong{font-size:13px;line-height:1.65;font-weight:600}.actor .chev{color:#748296;padding-right:7px}.frame{position:absolute;border:1px solid var(--frame-color);border-radius:4px;pointer-events:none;background:#ffffff17;z-index:1}.frame-tag{position:absolute;left:0;top:0;bottom:0;width:23px;background:var(--frame-color);color:white;font-size:10px;writing-mode:vertical-rl;text-orientation:upright;text-align:left;padding:7px 4px;letter-spacing:1px}.phase,.action{position:absolute;left:51px;display:flex;align-items:center;gap:12px;text-align:left;border:0;border-radius:0;box-shadow:none;z-index:5;background:#ffffffea;padding:0 10px;font-size:12px}.phase{font-weight:600;height:34px}.action{left:67px;height:29px;background:#ffffffc9;font-size:11px;color:#5f6e81;border-bottom:1px solid #e8edf2}.phase small,.action small{font-weight:400;color:#8490a0;font-size:10px;margin-left:auto}.branch-divider{position:absolute;left:52px;border-top:1px dashed #2eab63;z-index:3}.message{position:absolute;border:0;background:transparent;box-shadow:none;z-index:6;font-size:12px;padding:0;border-radius:3px;height:25px;white-space:nowrap}.message:hover{background:#ecf2ff80}.message span{background:#fffffff2;padding:2px 6px;border-radius:2px}.message em{font:10px ui-monospace,monospace;color:#76859a;margin-right:6px}.message.selected span{background:#e3edff;outline:1px solid #6c9ce8}.empty-summary{position:absolute;z-index:4;color:#87909a;font-size:11px;left:85px;background:#fffffff0;padding:2px 8px}.svg{position:absolute;inset:0;pointer-events:none;z-index:2}.region{position:absolute;pointer-events:none;z-index:0}#selection{font-size:12px;padding:12px 0;color:#52647c;min-height:43px}details{font-size:12px;color:#6c7a8c}pre{white-space:pre-wrap;max-height:230px;overflow:auto;background:#f2f5f8;padding:12px}footer{font-size:11px;color:#94a0b0;margin-top:13px}a{color:#677fa8}nav button.active{border-color:#8caee3;color:#275dad;background:#f0f5ff}
+body{max-width:1540px;margin:0 auto}#scale{margin:0 auto}main{scrollbar-gutter:stable}
+
+.actor-head{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #eef1f5}
+
+/* 一级纵轴是阶段；控制语义仅在展开阶段内部。 */
+.frame-tag{bottom:auto;z-index:6;pointer-events:auto;border:0;border-radius:3px 0 0 3px;box-shadow:none;font-weight:600;cursor:pointer}.frame-tag:hover{background:var(--frame-color);filter:brightness(.92)}
+.control-semantic{position:absolute;left:77px;z-index:4;font-size:11px;color:#798697;line-height:24px;background:#fffffff0;padding:0 7px}.control-semantic span{font:10px ui-monospace,monospace;background:#edf1f5;border:1px solid #dbe2ea;border-radius:3px;padding:2px 5px;margin-right:6px}
+
+/* v3: demo-style message bubbles; minimal in-place condition annotations. */
+.message{height:43px;border:1px solid #e2e8f0;background:#fff;border-radius:6px;box-shadow:0 1px 3px #17233b0c;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3px 7px;gap:1px}.message span{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;padding:0;font-size:11px}.message em{font:8px ui-monospace,monospace;text-transform:uppercase;max-width:100%;overflow:hidden;text-overflow:ellipsis;color:#64748b;background:#f1f5f9;border-radius:3px;padding:1px 5px;margin:0}.message.selected{outline:2px solid #6c9ce8}.message.selected span{outline:none;background:transparent}.segment-condition{position:absolute;left:79px;z-index:4;background:#f8fafbeF;border-top:1px dashed #becbc4;font-size:11px;font-weight:500;color:#4d6659;line-height:26px;padding-left:8px}.flow-note{position:absolute;left:83px;z-index:4;color:#5e6c80;font-size:11px;line-height:25px;background:#fffffff2;padding:0 6px}.repeat-scope{position:absolute;left:63px;width:10px;border:1px solid #8292ac;border-right:0;z-index:4;pointer-events:none}.repeat-scope span{position:absolute;top:50%;left:-13px;writing-mode:vertical-rl;font-size:9px;color:#72819b;background:#fff;transform:translateY(-50%)}.repeat-return{color:#596e92}.control-semantic{color:#586b60}main{max-height:76vh}
+
+/* Plain coverage index; no new diagram notation. */
+table{border-collapse:collapse;margin:8px 0 12px;width:100%;text-align:left}th,td{padding:5px 9px;border-bottom:1px solid #e2e8f0}th{font-weight:600}
+
+/* v6: one added reading row, same visual language; controls remain action contents. */
+.goal{position:absolute;left:67px;display:flex;align-items:center;gap:12px;text-align:left;border:0;border-radius:0;box-shadow:none;z-index:5;background:#ffffffea;padding:0 10px;height:30px;font-size:12px;color:#425974;border-bottom:1px solid #e8edf2}.goal small{margin-left:auto;font-size:10px;font-weight:400;color:#8490a0}.action{left:83px}.flow-note{white-space:normal;overflow-wrap:anywhere;line-height:24px}.control-semantic{max-width:calc(100% - 130px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.actor strong{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+
+/* Same condition divider and range-bracket vocabulary, anchored to real reading rows. */
+.control-range{position:absolute;width:9px;border:1px solid #b5c2c0;border-right:0;z-index:6;pointer-events:none}.cross-label{white-space:normal;line-height:26px;overflow:visible}.repeat-scope[data-scope-range]{z-index:6}.phase,.goal,.action{scroll-margin-top:155px}.message{scroll-margin-top:180px}
+
+/* Keep root body reading text and edge labels fixed during horizontal scrolling. */
+.run-turn-actor,.run-turn-rail,.frame-tag,.repeat-scope,.control-range,
+.phase>span,.goal>span,.action>span,.run-turn-text,.message{
+ translate:var(--run-turn-shift,0px) 0;
+}
+.run-turn-actor{z-index:12}
+.run-turn-text{display:inline-block;background:#fffffff2}
+.control-semantic>.run-turn-text{font:inherit;color:inherit;border:0;border-radius:0;padding:0;margin:0}
+.phase>span,.goal>span,.action>span{background:#fff}
+.message{align-items:flex-start;text-align:left}
+
+.control-semantic{overflow:visible}
+
+/* Distinguish goal and action headings without changing row geometry or behavior. */
+.goal{background:#eaf1fc;color:#234e83;font-size:13px;font-weight:700;border-bottom:1px solid #c9d9ee}
+.goal>span{display:flex;align-items:center;height:26px;padding:0 10px;border-left:4px solid #557ead;border-radius:3px;background:#eaf1fc}
+.goal:hover,.goal:hover>span{background:#dde9fa}
+.action{background:#f4f6f9;color:#35465d;font-size:12px;font-weight:600;border-bottom:1px solid #dce3ed}
+.action>span{display:flex;align-items:center;height:24px;padding:0 9px;border-left:2px solid #9caec3;border-radius:2px;background:#f4f6f9}
+.action:hover,.action:hover>span{background:#e9eef5}
+
+/* Opaque underlay for the horizontally frozen root body column. */
+.run-turn-background{position:absolute;left:0;background:#fff;opacity:1;z-index:3;pointer-events:none;translate:var(--run-turn-shift,0px) 0}
+.run-turn-foreground{z-index:3}
+.actor-head>.run-turn-background{z-index:5}
+
+/* Draw only the phase outline above the frozen white underlay. */
+.frame{z-index:7;background:transparent}
+
+/* v6.3: presentation only — one 24px nesting grid, measured rows, distinct controls. */
+.control-semantic,.segment-condition,.flow-note{white-space:normal;overflow-wrap:anywhere;line-height:22px;font-size:12px}
+.control-semantic{padding:5px 9px;border-radius:5px;font-weight:600}
+.control-semantic>.run-turn-text{background:inherit;line-height:inherit}
+.control-semantic.kind-alt{color:#315d97;background:#edf3fc;border-left:3px solid #6c94ca}
+.control-semantic.kind-opt{color:#38685f;background:#eef6f2;border-left:3px solid #87aea3}
+.control-semantic.kind-loop{color:#805b29;background:#fbf3e6;border-left:3px solid #b78a49}
+.control-semantic .run-turn-text>span{font:11px ui-monospace,monospace;background:#ffffffb8;border-color:currentColor;color:inherit}
+.segment-condition.kind-branch{border:0;background:#f3f6fc;color:#315d97;font-weight:600;padding:4px 9px;border-radius:4px}
+.segment-condition.kind-branch>.run-turn-text{background:inherit}
+.flow-note{padding:0 6px}
+.control-range,.repeat-scope{width:10px;border-right:0;z-index:4}
+.control-range.kind-opt{border-color:#87aea3}
+.control-range.kind-alt{border-color:#9eb6d6;border-top:0}
+.control-range.kind-branch{border-color:#b9c9e0;border-top:0;border-bottom:0}
+.repeat-scope.kind-loop{border-color:#b78a49;border-left-width:2px}
+.repeat-scope[data-scope-range]{z-index:4}
+.repeat-scope.kind-loop::after{content:'循环范围';position:absolute;left:12px;bottom:-10px;font:10px/18px ui-monospace,monospace;white-space:nowrap;color:#805b29;background:#fff;padding:0 5px}
+/* Freeze each control heading together with its new tint and border. */
+.control-semantic,.segment-condition{translate:var(--run-turn-shift,0px) 0}
+.control-semantic>.run-turn-text,.segment-condition>.run-turn-text{translate:none}
+
+/* Graph-backed loop navigation: reuse the existing loop palette and heading shape. */
+.loop-marker-row{position:absolute;z-index:8;font-size:12px;line-height:22px;translate:var(--run-turn-shift,0px) 0}
+.loop-marker-row>.run-turn-text{background:transparent;translate:none}
+.loop-marker{display:inline-block;max-width:100%;white-space:normal;text-align:left;overflow-wrap:anywhere;font-size:12px;line-height:22px;padding:3px 9px;border:1px solid #b78a49;border-left:3px solid #b78a49;border-radius:5px;color:#805b29;background:#fbf3e6;box-shadow:none}
+.loop-marker small{display:block;font:inherit;font-size:11px}
+.loop-marker:hover,.loop-marker.active{background:#fbf3e6;border-color:#805b29;box-shadow:0 0 0 1px #b78a49}
+.loop-marker:focus-visible{outline:2px solid #b78a49}
+.loop-return-svg{z-index:7}
+.loop-return-path{translate:var(--run-turn-shift,0px) 0;stroke:#b78a49;stroke-width:1.5;fill:none;opacity:.55}
+.loop-return-path.active{stroke-width:3;opacity:1}
+.loop-return-tip{fill:#b78a49;stroke:none}
+
+/* Hide only the three user-marked explanatory/debug regions. */
+body > header > #description,
+body > nav + p.hint,
+body > #status,
+body > #definition-info,
+body > details,
+body > footer { display: none; }
+
+/* Two-pane reading layout; diagram internals and detail content are unchanged. */
+.diagram-details-layout{display:grid;grid-template-columns:minmax(280px,1fr) minmax(0,2fr);gap:24px;margin-top:24px;height:76vh;min-height:340px}
+.diagram-details-layout > #viewport{min-width:0;min-height:0;height:100%;max-height:none}
+.diagram-details-layout > #selection{min-width:0;min-height:0;height:100%;overflow:auto;padding:0;scrollbar-gutter:stable}
+.diagram-details-layout > #selection .bb-details{margin:0}
+
+.diagram-details-layout > #selection{grid-column:1;grid-row:1}
+.diagram-details-layout > #viewport{grid-column:2;grid-row:1}
+
+/* Use the window width; align controls with the diagram and fill the remaining height. */
+body{--details-width:clamp(320px,28vw,520px);max-width:none;width:100%;height:100dvh;display:grid;grid-template-columns:var(--details-width) minmax(0,1fr);grid-template-rows:auto auto minmax(340px,1fr);column-gap:24px}
+body > header{grid-column:2;grid-row:1;min-width:0}
+body > nav{grid-column:2;grid-row:2;min-width:0}
+.diagram-details-layout{grid-column:1 / -1;grid-row:3;grid-template-columns:var(--details-width) minmax(0,1fr);height:auto;min-height:0}
+.diagram-details-layout > #selection .bb-details{min-height:100%}
+
+/* Expanded parent headers cover their visible descendant columns. */
+.actor.actor-group{padding:0;overflow:hidden}
+.actor-group-label{position:absolute;top:0;height:100%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+
+/* The divider uses the same column track as both the controls and diagram. */
+#pane-divider{grid-column:1;grid-row:1 / -1;justify-self:end;align-self:stretch;width:16px;margin-right:-20px;z-index:20;cursor:col-resize;touch-action:none;position:relative;outline:none}
+#pane-divider::after{content:"";position:absolute;top:0;bottom:0;left:7px;width:2px;background:#dce4ef;border-radius:2px}
+#pane-divider:hover::after,#pane-divider:focus-visible::after,body.resizing-panes #pane-divider::after{background:#7c9ed0;width:3px}
+body.resizing-panes,body.resizing-panes *{cursor:col-resize!important;user-select:none!important}
+
+/* Source identity above the detail pane, sharing its resizable column. */
+#root-source{grid-column:1;grid-row:1 / 3;align-self:end;min-width:0;min-height:0;max-height:100%;overflow:auto;padding:0 12px;font-size:12px;color:#52637b}
+#root-source > strong{display:block;font-size:13px;color:#192334;margin-bottom:6px}
+#root-source dl{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 8px;margin:0;line-height:1.5}
+#root-source dt,#root-source dd{margin:0}
+#root-source code{font-size:12px;overflow-wrap:anywhere;color:#192334}
+
+/* Source viewer: bounded metadata and one stable code scrollport. */
+body{grid-template-rows:auto auto minmax(0,1fr)}
+.diagram-details-layout > #selection .bb-details{height:100%;min-height:360px;display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid #d9e2ef;border-radius:8px;background:#fff;color:#263449}
+#selection .bb-selection-title{flex:none;margin:0;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+#selection .bb-blocks{flex:none;border:1px solid #e6ebf3;border-radius:5px;padding:6px 9px;color:#52637b}
+#selection .bb-blocks[hidden]{display:none}
+#selection .bb-blocks summary{cursor:pointer;font-weight:600}
+#selection .bb-list{max-height:100px;overflow:auto;overflow-wrap:anywhere;font:11px/1.8 ui-monospace,monospace;margin:8px 0 0;overscroll-behavior:contain}
+#selection .bb-node-picker{flex:none;display:flex;flex-direction:column;gap:4px;font-size:11px;color:#64748b}
+#selection .bb-node-picker select{width:100%;min-width:0;font-size:12px;padding:5px 7px;text-overflow:ellipsis}
+#selection .bb-source{flex:1;min-height:140px;min-width:0;display:flex;flex-direction:column;gap:8px}
+#selection .bb-source-heading{flex:none;font-size:11px;color:#64748b;overflow-wrap:anywhere}
+#selection .bb-source-heading strong{display:block;font-size:12px;color:#35465d}
+#selection .bb-source-heading span{display:block;margin-top:3px}
+#selection .bb-source-scroll{flex:1;min-height:0;max-height:none;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;margin:0;padding:10px 0;background:#f6f8fb;border:1px solid #e1e7ef;border-radius:5px;white-space:pre;font:12px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;tab-size:4}
+#selection .bb-source-scroll:focus-visible{outline:2px solid #5276aa;outline-offset:2px}
+#selection .bb-source-scroll code{display:block;min-width:max-content}
+#selection .bb-code-line{display:block;min-height:1.7em;padding-right:16px}
+#selection .bb-code-line.source-attribute{color:#74551f;background:#fff9e9}
+#selection .bb-code-line.source-attribute .bb-line-number{color:#9a7130;background:#fff9e9;border-left-color:#d8b56b}
+#selection .bb-line-number{position:sticky;left:0;display:inline-block;width:6ch;margin-right:12px;padding:0 8px 0 4px;text-align:right;color:#8190a3;background:#f6f8fb;user-select:none;border-left:3px solid transparent}
+#selection .source-highlight{background:#e5efff}
+#selection mark.source-column-highlight{padding:0;color:inherit;background:#bcd5ff;border-bottom:1px solid #477cb6}
+#selection .source-highlight .bb-line-number{background:#dce9ff;color:#285995;border-left-color:#477cb6}
+#selection .bb-range-label{position:sticky;left:0;display:block;width:36ch;max-width:100%;padding:5px 8px 4px;border-left:3px solid #477cb6;color:#234e83;background:#dce9ff;white-space:normal;overflow-wrap:anywhere;font:600 11px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+
+#message-selection{flex:none;max-height:64px;overflow:auto;font-size:11px;overflow-wrap:anywhere}
+#message-selection:empty{display:none}
+
+/* Semantic headings wrap at the available reading width; measured by app.js. */
+header,header>div{min-width:0}h1,#root-source>strong{overflow-wrap:anywhere}
+.phase>span,.goal>span,.action>span{height:auto;min-height:24px;white-space:normal;overflow-wrap:anywhere;flex-shrink:0;line-height:20px}
+.action>span>[data-semantic-label]{min-width:0}
+#selection .bb-range-label{width:max-content;max-width:100%;padding:1px 8px;font-weight:500}
+
+/* Async-shell entry prelude: one fixed block before the inner main flow. */
+.prelude-heading,.prelude-node{position:absolute;z-index:5;line-height:24px}
+.prelude-heading{font-weight:700;color:#74551f;background:#fff4d8;border-left:4px solid #d8b56b;padding:4px 10px;border-radius:4px}
+.prelude-node button{font:inherit;font-size:12px;font-weight:600;line-height:22px;color:#74551f;background:#fff9e9;border-color:#d8b56b;padding:3px 9px}
+.prelude-node button:hover{background:#fff1c9}

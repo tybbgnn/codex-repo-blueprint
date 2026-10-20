@@ -1,0 +1,18 @@
+{
+  "attribute-source.mjs": "91092bcbb68a18c02f2d818d0e35f6494b6a28749c52937b85ed654d32f70c9a",
+  "classification-registry.mjs": "01c281250e3dbe965547c9ffbe2c746ccfe2dcc0e9481a768ca7489942884bf9",
+  "contract.mjs": "767dd556e7a55733af387e2386d5f11388acfb1b6cec3d6c2862a08445194eee",
+  "control-tree.mjs": "e01d5307e5c0c6c97427840bb053eaf6a897a880570ae0e56ec1fd0ae299a32f",
+  "display-labels.mjs": "da781d58bace50f452a273bf212588e5f5b8a7d09e08961c73cb4c82545a328d",
+  "execution.mjs": "0a9c33fd887a81cf625784491d3de63cbcf2577de00964843d7ffcfd34437165",
+  "liveness.mjs": "8aea30d98c5e06af229e076791c86c8625b9c51b23f459ac82d9dd184026594c",
+  "loader.mjs": "15c96206fbd02055391bba183824d7814b5dbbfa1f96c5620755a7e83f609a76",
+  "projection.mjs": "c752d2bc97cf9bd4d422cd7a87cdcd93eab34449b9b65c1e072e09dfd7c87ce0",
+  "roundtrip/app.js": "ae02e2f0375ad5e70f40c53e8ba24bc5c2a5401cf08c603b49a28ba045f3eb2c",
+  "roundtrip/bb-details.js": "e52d04064fe8a390a6368e147f43aa9cb7fe535bb19d467e6527f73c779bd908",
+  "roundtrip/fixture.js": "eb21fa3488d19e527be5d1f15ff705e3b5466926cf155fb674fdcd2d9d5910f1",
+  "roundtrip/loop-markers.mjs": "a8f1013d342d8f8cec0b9476fb1fd55b18462c752f020f4aa20808db5d2f76f6",
+  "roundtrip/render-config.js": "6617d70fc889efbd33f950d03001ab166975d67f32d3ffcd551f18c1105c4474",
+  "roundtrip/seqdia-layout.js": "7a52d5db8b6b7416852f372d515440cf4ea417ba962ecba0f620568f2b9b0580",
+  "schema-validator.mjs": "fc8f31f3443b626e502164006e1baea69bcfba9175355cbb483c64f5c7eacaeb"
+}

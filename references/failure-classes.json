@@ -1,0 +1,58 @@
+{
+  "schema": "failure-classes/1",
+  "classes": {
+    "ledger": {
+      "resolver": "agent",
+      "action": "改对应账本，最多 3 次"
+    },
+    "frozen-check": {
+      "resolver": "agent",
+      "action": "先核对机制错误证据，按 run-recovery.md 修正并重验全部检查；无法保持规则解决时以 failed 结束，记录原因与证据"
+    },
+    "environment": {
+      "resolver": "agent",
+      "action": "记录未运行、原因、补跑命令；继续其他检查并产出验收报告，补跑前不发布"
+    },
+    "skill-bug": {
+      "resolver": "agent",
+      "action": "证据支持的机制修正仅写 OUTPUT/run-fixes，登记偏离并执行全部检查"
+    }
+  },
+  "rules": [
+    {
+      "check": "independent-source",
+      "signature": "unproven-event-macro",
+      "class": "frozen-check",
+      "rule_index": "unproven-event-macro"
+    },
+    {
+      "check": "principles",
+      "principle": "P14",
+      "principle_check": "independent_operation_source_bounds",
+      "class": "frozen-check",
+      "rule_index": "P14.independent_operation_source_bounds"
+    },
+    {
+      "check": "browser",
+      "signature": "listen EPERM|EACCES|operation not permitted",
+      "class": "environment",
+      "rule_index": "page.noBrowserErrors"
+    },
+    {
+      "check": "batch",
+      "signature": "listen EPERM|EACCES|operation not permitted|file-protocol.*exit_code=[1-9]",
+      "class": "environment",
+      "rule_index": "stage.gates"
+    },
+    {
+      "check": "principles",
+      "class": "frozen-check",
+      "rule_index": "stage.gates"
+    },
+    {
+      "check": "*",
+      "class": "frozen-check",
+      "rule_index": "stage.gates"
+    }
+  ]
+}

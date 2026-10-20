@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blueprint output index v2",
+  "type": "object",
+  "required": ["version", "bodies"],
+  "properties": {
+    "version": {"const": 2},
+    "bodies": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["slug", "def_path_hash", "canonical_path", "status", "stage", "deliverable_path", "entry_html", "work_path", "site_path"],
+        "properties": {
+          "slug": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"},
+          "def_path_hash": {"type": "string", "pattern": "^[0-9a-f]{8,}$"},
+          "canonical_path": {"type": "string"},
+          "status": {"enum": ["running", "passed", "failed", "dry-run"]},
+          "stage": {"type": "string"},
+          "deliverable_path": {"const": "deliverable"},
+          "entry_html": {"const": "roundtrip/index.html"},
+          "work_path": {"const": "work"},
+          "site_path": {"const": "deliverable/roundtrip/index.html"}
+        }
+      }
+    }
+  }
+}

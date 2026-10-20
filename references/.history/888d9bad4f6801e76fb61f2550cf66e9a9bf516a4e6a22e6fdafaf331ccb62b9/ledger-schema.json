@@ -1,0 +1,325 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "granularity": {
+      "properties": {
+        "goalContracts": {
+          "items": {
+            "properties": {
+              "cohesionReason": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "completion": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "contractRef": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "entryMode": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "evidenceRefs": {
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "goalRef": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "memberContracts": {
+                "items": {
+                  "properties": {
+                    "actionRef": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "contractRef": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "entryMode": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "evidenceRefs": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "actionRef",
+                    "contractRef",
+                    "entryMode",
+                    "evidenceRefs"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "receiverRef": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "targetRef": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "goalRef",
+              "contractRef",
+              "entryMode",
+              "completion",
+              "cohesionReason",
+              "evidenceRefs",
+              "memberContracts"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "technicalBlocks": {
+          "items": {
+            "properties": {
+              "bbRef": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "blockRole": {
+                "type": "string"
+              },
+              "category": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "eventMacroProof": {
+                "type": "object"
+              },
+              "evidenceRefs": {
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "factSha256": {
+                "minLength": 64,
+                "type": "string"
+              },
+              "operationReasons": {
+                "additionalProperties": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              "reason": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "terminatorReason": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "bbRef",
+              "category",
+              "reason",
+              "evidenceRefs"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "technicalBlocks",
+        "goalContracts"
+      ],
+      "type": "object"
+    },
+    "migration": {
+      "type": "object"
+    },
+    "nodes": {
+      "items": {
+        "properties": {
+          "adds": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "basic_block_order": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "bb_annotations": {
+            "additionalProperties": {
+              "type": "object"
+            },
+            "type": "object"
+          },
+          "evidence": {
+            "minItems": 1,
+            "type": "array"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "root",
+              "phase",
+              "goal",
+              "action",
+              "bb_group"
+            ]
+          },
+          "members": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "name",
+          "members",
+          "evidence"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "phase_order": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "root": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "selection": {
+      "properties": {
+        "foldRules": {
+          "items": {
+            "properties": {
+              "reason": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "targetCategory": {
+                "enum": [
+                  "std",
+                  "third_party"
+                ]
+              }
+            },
+            "required": [
+              "targetCategory",
+              "reason"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "items": {
+          "items": {
+            "properties": {
+              "disposition": {
+                "enum": [
+                  "shown",
+                  "technical",
+                  "folded"
+                ]
+              },
+              "id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "ownerActionRef": {
+                "type": "string"
+              },
+              "reason": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "semanticRole": {
+                "enum": [
+                  "business",
+                  "adapter"
+                ]
+              },
+              "sourceRefs": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "id",
+              "disposition"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "semantic_action_ids": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "technical": {
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "root",
+    "phase_order",
+    "nodes",
+    "technical",
+    "selection",
+    "granularity"
+  ],
+  "title": "Stage2 semantic ownership ledger",
+  "type": "object"
+}

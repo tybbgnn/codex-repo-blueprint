@@ -1,0 +1,60 @@
+{
+  "builder": "stage_engine.stage3",
+  "preflight": "materialize",
+  "stage": 3,
+  "version": 21,
+  "inputs": {
+    "ledgers/stage3.json": {
+      "required": true,
+      "schema": {
+        "type": [
+          "object",
+          "array"
+        ]
+      }
+    },
+    "ledgers/review-narrative.md": {
+      "required": true,
+      "format": "text"
+    },
+    "ledgers/stage4.json": {
+      "required": false
+    }
+  },
+  "prerequisites": [
+    "stage2/hierarchy.json",
+    "facts/blocks.json",
+    "stage2/granularity.json"
+  ],
+  "outputs": {
+    "stage3/review.json": {
+      "type": [
+        "object",
+        "array"
+      ]
+    },
+    "stage3/review.md": {
+      "format": "authored-text"
+    },
+    "stage3/lock.json": {
+      "properties": {
+        "passed": {
+          "const": true
+        },
+        "sha256": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "passed",
+        "sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "required_outputs": [
+    "stage3/review.json",
+    "stage3/review.md",
+    "stage3/lock.json"
+  ]
+}

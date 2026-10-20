@@ -1,0 +1,763 @@
+{
+  "version": "2.2",
+  "status": "versioned_method_rules",
+  "purpose": "唯一规则入口；方法、可配置展示策略与当前body事实明确分层；旧规则和认可案例保持可追溯。",
+  "precedence": [
+    "用户最新明确决定",
+    "display_principles P1–P14 是当前通用展示硬规则，覆盖旧规则的展示策略；事实保留要求不变",
+    "本文件去重规则及最终案例语义",
+    "Rust/MIR/BB事实：发现与认可主张矛盾时报告具体冲突，不静默改事实或案例",
+    "历史方案说明仅追溯，不恢复旧默认规则"
+  ],
+  "rules": [
+    {
+      "id": "R01",
+      "title": "范围与事实基线",
+      "requirement": "先冻结自动锁定的 body 事实基线与展示层级配置；新增投影不改变原字段原值。",
+      "acceptance": "根据本次body配置校验身份、层级、端点与基线深等；不能把当前body计数移植到新body。",
+      "check_mode": "mechanical",
+      "classification": "configurable_scope_and_current_body_profile"
+    },
+    {
+      "id": "R02",
+      "title": "先写本层主张，再对应下层事实",
+      "requirement": "逐关系明确本层触发条件、动作结果、方向及目标执行角色；对应Rust操作与真实MIR/BB路径，条件—路径—binding保持成组。节点所有结果不能当某条边的条件。 CFG按多重有向图处理：同一(source,target)可有多条原边。原边ID、条件与操作binding全程成组；歧义路径未明确选择原边必须拒绝。 聚合摘要必须覆盖所有被替代成员的条件；不得把仅部分成员执行的动作提升为全组共有前提。逐语义子句明确条件、处理动作及返回结果，并对应成员及必要的原见证分支。",
+      "acceptance": "agent对照每条主张和对应操作；程序检查路径/守卫/配对及已知条件冲突。CFG连通、关键词出现或路径数量不能代替语义成立。 搜索状态、守卫核对、见证序列、投影、折叠展开与验证必须携带同一原边身份。合并摘要允许条件并列，但各条件依据和原边ID仍可分别追溯；不以同端点去重。 检查子句—成员/分支映射覆盖、动作适用范围及共同动作声明；agent逐句核对概括，结构一致不自动证明中文语义。",
+      "check_mode": "mechanical_and_agent",
+      "classification": "general_method"
+    },
+    {
+      "id": "R03",
+      "title": "同层流程与入口角色",
+      "requirement": "本层节点表达真实先后、分支、汇合、循环和退出；逐入口限制可执行后缀。每个纳入节点需有同层业务关系或真实入口/终止解释。",
+      "acceptance": "默认业务关系可读；仅外部协作/等待星形连接不算业务上下游。尾部入口不得声称执行主体，多入口出口不得自由组合。",
+      "check_mode": "mechanical_and_agent",
+      "classification": "general_method"
+    },
+    {
+      "id": "R04",
+      "title": "逐层折叠与唯一默认表达",
+      "requirement": "将内部步骤、边和辅助调用随节点折叠；保留影响本层判断的分支、结果和角色。每个默认摘要明确替代哪些明细，展开可回溯；同一交接不因来源不同重复默认展示。 聚合摘要的默认文案与成员对应由同一子句契约生成，避免agent标签与成员集合独立维护而脱节；共同动作与仅部分分支动作显式区分。",
+      "acceptance": "ROOT按阶段职责表达；下层等待清单不可逐项提升代替本层概括。验证摘要成员/替代映射，agent核验合并意义；不按固定减边率或纯端点相同强行合并。 默认本层语句自身须准确可懂；展开用于追溯，不可修补默认文案的错误前提。摘要子句与成员映射明确，不靠平铺技术路径代替概括。",
+      "check_mode": "mechanical_and_agent",
+      "classification": "general_method"
+    },
+    {
+      "id": "R05",
+      "title": "外部协作按对象、目的、结果表达",
+      "requirement": "在当前层可见地表达外部协作对象、方向、用途及返回意义；辅助调用可折叠但有确定归属。协议摘要包含不同成员操作，不能把成员视为语义等价。",
+      "acceptance": "每项本层重要协作有默认表示及逐binding展开对应；仅保留隐藏索引不通过。不能仅按调用方或callee文本打包，也不能直接平铺全部调用。",
+      "check_mode": "mechanical_and_agent",
+      "classification": "general_method"
+    },
+    {
+      "id": "R06",
+      "title": "调用生命周期和真实归属",
+      "requirement": "事实层区分构造 future、poll Pending、Ready 完成及 unwind；逐 binding 保留真实归属和生命周期。业务层按 P6/P7/P9 折为同一业务成员的请求与完成，技术事件不单独展示。未知 callee 和无返回保持原事实。",
+      "acceptance": "生命周期事实与业务完成可追溯；正常调用返回可携带 Err，不等于根 body 终止。不得以默认语句掩盖未知事实。",
+      "check_mode": "mechanical_and_agent",
+      "classification": "general_method_with_body_specific_examples"
+    },
+    {
+      "id": "R07",
+      "title": "Pending与恢复协议",
+      "requirement": "Pending结束当前poll；恢复由执行器下一次poll按保存状态继续原等待。非法完成后/异常后poll和otherwise不是正常resume。 循环体同一目的再次进入是新的普通执行；自身恢复后缀必须在目的完成/下一次构造前结束，不能沿循环把后续重建误算成本次恢复。",
+      "acceptance": "只在事实证据层验证 saved-state 与 resume 后缀，不重建 future，不误认非法 poll；业务显示遵循 P7，保留业务循环与 pending-input。",
+      "check_mode": "mechanical_and_agent",
+      "classification": "general_method"
+    },
+    {
+      "id": "R08",
+      "title": "EX/RET层级与结果标注",
+      "requirement": "按 P5 排除 depth 1/1.5/2 的 EX/RET 与共享 cleanup/return 技术容器及技术线；业务停止、失败、取消、返回须有可见结果注释。",
+      "acceptance": "三个阅读层均无技术容器或替身；真实业务出口条件和结果默认可见。业务 Err、正常返回与运行时 unwind 在事实中分别保存。",
+      "check_mode": "mechanical_and_agent",
+      "classification": "general_display_principle"
+    },
+    {
+      "id": "R09",
+      "title": "覆盖、未覆盖与统计口径",
+      "requirement": "分别列出已表达语义、随节点折叠且有映射的事实、技术协议和未覆盖义务。比较同view同节点集合的默认/展开/附属边与标注；节点子数、BB原边另计。",
+      "acceptance": "调用/原边有索引不等于语义覆盖；样本少边不能都称折叠，未覆盖项不能被零unresolved覆盖。agent阅读验收和事实验证分别报告。",
+      "check_mode": "mechanical_and_agent",
+      "classification": "general_method"
+    },
+    {
+      "id": "R10",
+      "title": "最终案例作回归标准",
+      "requirement": "用本次 body 的已审查极端案例和反例校验同一生成流程；案例由本次源码与 MIR 建立，不依赖随包历史答案。",
+      "acceptance": "比较含义、条件、角色、可见结果与配对，不要求新输出逐字/逐ID复制旧记录；新ID用明确对应表。不能通过深拷贝旧案例再追加另一套方法冒充回归通过。",
+      "check_mode": "mechanical_and_agent",
+      "classification": "general_regression_method_current_body_examples"
+    },
+    {
+      "id": "R11",
+      "title": "分阶段推进与停止条件",
+      "requirement": "按阶段验证方法后扩展；发现方法性缺口先分析根因，再按用户授权修复或停止。旧成果只读保留。阶段是否可继续以当前会话授权为准。",
+      "acceptance": "规则—实现—验证—案例链完整；方法新发现按根因归入规则并版本化，不只修输出或留临时报告。",
+      "check_mode": "process",
+      "classification": "general_process_with_session_authorization"
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "action": "阅读本文件与 display_principles，建立本次 body 的案例和反例",
+      "done": "明确本次范围、适用规则及案例未覆盖项"
+    },
+    {
+      "step": 2,
+      "action": "逐节点/协议填写本层语义主张、默认表达、下层证据和折叠映射",
+      "done": "没有以技术索引替代本层表达的项目；具体不足列出"
+    },
+    {
+      "step": 3,
+      "action": "同一生成流程核验本次选定的极端案例，再检查一个案例外完整局部视图",
+      "done": "机器可验事实及反例通过，主会话逐项核对语义和默认阅读；不得深拷贝案例蒙混"
+    },
+    {
+      "step": 4,
+      "action": "前一步通过后推广到本次全部阅读视图，生成独立完整 JSON",
+      "done": "报告机器事实验证与语义审查结果；可比结构对齐、原则通过、计数同量级，不要求与历史样本精确相等。"
+    }
+  ],
+  "verification_split": {
+    "machine": "结构/引用/路径守卫/事件阶段/角色/配对/摘要展开映射/范围/基线不变及明确反例",
+    "agent": "当前层概括是否恰当、条件和动作含义是否忠实、协作是否清楚、默认流程是否可读",
+    "not_implemented": "check_principles.py 仅核对可观察结构与明确反例；业务划分、语义完整性与页面阅读效果须审查，不声称通用自动语义发现。"
+  },
+  "porting_requirements": [
+    "重新确认body/编译产物/源码版本与哈希、BB和原边身份；原边ID仅在所属基线中解释。",
+    "重新提取层级树与本次范围、端点/终止展示策略；任何已分析 body 的 BB 数、phase/action 数、目的数都不是通用断言。",
+    "重新读源码操作，编写协作对象/目的/请求/返回含义和入口角色；不可复用其他 body 的目的表假称通用。",
+    "从原MIR类型/enum定义与源码模式核对判别值；不可沿用其他 body 的判别值、特定BB或guard表。",
+    "重新提取每个Call的正常/unwind及父层归属、future类型、构造/IntoFuture/Pin/poll/Ready/Pending与saved-state恢复事实。",
+    "重新编写正常到达、成员条件、目的边界、自身恢复后缀、上游Ready普通后继；未知事实列未解决，不用默认补齐。",
+    "为该body建立认可案例、方法反例、语义agent核对与保护清单；其他 body 的案例只作它自己的回归。",
+    "聚合摘要重新编写条件—动作—返回子句及成员/见证分支映射；重新核对哪些动作真正适用于全组。不可复用其他 body 的结论。",
+    "单一 guard/BB 范围只投影一次：readingScope.originControlRef 是无正文的绑定，由 scope 在成员范围绘制；同局部判断直接绑定 opt 的 takeValues/skipValues，不另造空 alt。相邻同 owner、同 decision 分区的 opt 合并有序 children，保留 invocation 和证据。分支 outcome 只写新增结果；标题和 skip 从源语义读取，不拼模板。 折叠摘要只写条件与结果，不复述相邻的阅读节点标题。"
+  ],
+  "skill_packaging": {
+    "derived_from": "rules v2.1（首个 body 分析项目的规则入口）",
+    "derived_from_sha256": "c8ca0ce6c3cec9baaa670b532c5263d1ae7de0fd79af85d15593ffd4072ce2fe",
+    "dropped_fields": [
+      "current_body_profile",
+      "legacy_v1",
+      "parent_version",
+      "implementation_limit",
+      "standards_file",
+      "issue_index_file",
+      "execution_state"
+    ],
+    "reason": "skill 只携带可跨 body 的方法规则；指向历史目录的字段已删除，正文中某个 body 的具体编号与计数已改为通用表述。",
+    "edits": [
+      {
+        "where": "porting_requirements[1]",
+        "replaced_with": "重新提取层级树与本次范围、端点/终止展示策略；任何已分析 body 的 BB 数、phase/action 数、目的数都不是通用断言。",
+        "removed_sha256": "ef6226fb8e299b9b1e657a63294f4ccc5abbdfa26d3e99bae3763e458805030f",
+        "removed_chars": 58
+      },
+      {
+        "where": "porting_requirements[2]",
+        "replaced_with": "重新读源码操作，编写协作对象/目的/请求/返回含义和入口角色；不可复用其他 body 的目的表假称通用。",
+        "removed_sha256": "3c42bd13f7101fe468f9bd8c555bad92ffb9740925a685e3f75a1d00120d464b",
+        "removed_chars": 51
+      },
+      {
+        "where": "porting_requirements[3]",
+        "replaced_with": "从原MIR类型/enum定义与源码模式核对判别值；不可沿用其他 body 的判别值、特定BB或guard表。",
+        "removed_sha256": "27c3f603204f4a699154dc72a0c5761553aa7ebd28d01be289e8d53777acce5d",
+        "removed_chars": 48
+      },
+      {
+        "where": "porting_requirements[6]",
+        "replaced_with": "为该body建立认可案例、方法反例、语义agent核对与保护清单；其他 body 的案例只作它自己的回归。",
+        "removed_sha256": "73dfc460a988391d0b7f55f6da52c6113413a99e4d5a6c8b6b5d9101033fd577",
+        "removed_chars": 53
+      },
+      {
+        "where": "porting_requirements[7]",
+        "replaced_with": "聚合摘要重新编写条件—动作—返回子句及成员/见证分支映射；重新核对哪些动作真正适用于全组。不可复用其他 body 的结论。",
+        "removed_sha256": "e7d9a6b8078bd40e4c7797bc02c61db1973e9dd44d80762b473352c513145e63",
+        "removed_chars": 70
+      },
+      {
+        "where": "R01.requirement",
+        "replaced_with": "",
+        "removed_sha256": "07c7c78874a11856eda4d9521397b5ee547d277480f43130194235b9d39e02ce",
+        "removed_chars": 44
+      },
+      {
+        "where": "R06.acceptance",
+        "replaced_with": "",
+        "removed_sha256": "698937e7edb0761a15a2b42e31c91c7d9be866773b81e2d19cadc248810405c7",
+        "removed_chars": 69
+      }
+    ]
+  },
+  "display_principles": [
+    {
+      "id": "P1",
+      "statement": "按独立业务含义选择节点，禁止按调用次数、中心度或配额选取；完整 BB 事实树与 phase→goal（1.5）→action 阅读树分离，由 agent 结合源码和路径做语义划分。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §1–3、§19–20",
+      "checks": [
+        {
+          "id": "P1.machine",
+          "mode": "mechanical",
+          "function": "check_p1",
+          "method": "核对阅读节点类型、BB 引用及可用 facts 全覆盖",
+          "pass_condition": "无事实节点混入阅读树；可用事实全集无缺块"
+        },
+        {
+          "id": "P1.review",
+          "mode": "review",
+          "method": "逐节点审查 selection_basis 与源码/路径：每个独立职责、边界和归属成立，未以次数、中心度、固定数量或既有答案裁定。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "statement": "顶层按真实执行顺序阅读；分支、汇合和循环在顺序中表达，不按功能类别重排。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §2、§9、§19–20",
+      "checks": [
+        {
+          "id": "P2.machine",
+          "mode": "mechanical",
+          "function": "check_p2",
+          "method": "比较 phase_order/源阅读树与输出顺序",
+          "pass_condition": "源顺序完整保留"
+        },
+        {
+          "id": "P2.review",
+          "mode": "review",
+          "method": "沿入口、条件后继、汇合和循环核对顶层阅读；顺序具有执行证据，不能仅凭数组同序通过。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P3",
+      "statement": "下层事实决定边的存在、方向和条件，本层语义决定措辞；BB 边与逐调用 binding 只作证据，不能直接升级为上层边。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §4、§9、§11、§20",
+      "checks": [
+        {
+          "id": "P3.machine",
+          "mode": "mechanical",
+          "function": "check_p3",
+          "method": "检查 stage4 关系的技术事件投影及 execution evidence 引用",
+          "pass_condition": "无 runtime/wait/resume 技术关系升级；证据引用可解析"
+        },
+        {
+          "id": "P3.review",
+          "mode": "review",
+          "method": "逐条主张核对下层路径方向/条件和上层概括；单原边支持合法语义边，单成员本身不是失败条件。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P4",
+      "statement": "每条边只说自己的条件与结果；同端点的不同原边 ID、条件、路径和 binding 成组保留；结果相同不代表过程相同。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §4、§6",
+      "checks": [
+        {
+          "id": "P4.machine",
+          "mode": "mechanical",
+          "function": "check_p4",
+          "method": "检查原边 ID 唯一性、members 与 clauses 原边对应",
+          "pass_condition": "无丢失/歧义/悬空原边身份"
+        },
+        {
+          "id": "P4.review",
+          "mode": "review",
+          "method": "逐子句核对条件、过程、结果和成员适用范围；同端点异条件仍可区分，不把共同结果写成共同过程。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P5",
+      "statement": "EX/RET 与共享 cleanup/return 容器退出 depth 1/1.5/2 展示节点和技术线；真实 stop/fail/cancel/return 业务出口以结果注释表达。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §5、§10",
+      "checks": [
+        {
+          "id": "P5.machine",
+          "mode": "mechanical",
+          "function": "check_p5",
+          "method": "扫描展示层节点及 stage4 端点的技术容器",
+          "pass_condition": "无 EX/RET/共享 cleanup/return 展示容器或技术线"
+        },
+        {
+          "id": "P5.review",
+          "mode": "review",
+          "method": "逐业务出口核对结果注释；真实返回 action 与业务共享尾部不是技术容器，不按 return/cleanup 子串删节点。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P6",
+      "statement": "先按业务目的分组，再绑定真实参与者端点；同一 body 一个参与者，每次调用有独立身份和 request/return 对。只展示全部业务消息的端点及 crate→module→body 祖先；完整来源身份留在数据中，不按名字合并同名 body。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §7、§11、§15",
+      "checks": [
+        {
+          "id": "P6.machine",
+          "mode": "mechanical",
+          "function": "check_p6",
+          "method": "递归计算消息端点祖先闭包、body 身份、配对和有索引时的 ownership",
+          "pass_condition": "无无箭头参与者/空祖先；同 body 唯一，调用配对完整，祖先与身份可证"
+        },
+        {
+          "id": "P6.review",
+          "mode": "review",
+          "method": "逐目的组核对真实端点与完整身份注册表；async 解析实际被等待对象，同步也可有业务意义；没有索引不能当身份已通过。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P7",
+      "statement": "业务展示去掉八类噪声：async 机制（poll/Pending/future 构造/resume-wait）、锁与迭代器、代码形式条件、底层编号、调试过程、分析器备注、重复长标签、被当内容的证据/替换字段；保留业务循环与 pending-input。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §12",
+      "checks": [
+        {
+          "id": "P7.machine",
+          "mode": "mechanical",
+          "function": "check_p7",
+          "method": "仅扫描展示字段的明确技术噪声和 runtime branchRole",
+          "pass_condition": "明确噪声命中为零；疑似锁/迭代器/调试/长标签进入审查"
+        },
+        {
+          "id": "P7.review",
+          "mode": "review",
+          "method": "审查八类噪声全部清除且没有误删业务循环/pending-input；事实、源码、ID、证据字段的合法技术词不算展示污染。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        },
+        {
+          "id": "P7.duplicates",
+          "mode": "mechanical",
+          "function": "check_p7",
+          "method": "audit_duplicates.py 全量枚举 C1–C6：同 guard 重叠范围、空控件文字回声、同父消息、三层标题、模板填充、execution 节点/边；保留不同调用身份和不同 guard 的真实路径。",
+          "pass_condition": "C1–C6 error 均为零；info 必须携带不同 binding 或 guard/effect 依据。"
+        }
+      ]
+    },
+    {
+      "id": "P8",
+      "statement": "没有独立业务地位的机制对象折叠进 action 或条件，不单独成列；先判断业务含义，不能按无 body、函数名或 crate 黑名单机械排除。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §13",
+      "checks": [
+        {
+          "id": "P8.machine",
+          "mode": "mechanical",
+          "function": "check_p8",
+          "method": "核对可用 selection 中折入本地的对象与 actor 集合",
+          "pass_condition": "已判定 local_mechanism 无独立 actor"
+        },
+        {
+          "id": "P8.review",
+          "mode": "review",
+          "method": "逐对象审查独立业务地位、折入 action/条件和来源保留；缺语义判定时待审查，不能凭名字作裁定。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P9",
+      "statement": "三个 depth 引用同一个业务成员集合，不各生成一份调用副本；成员按目的、真实端点、语义阶段和调用依据识别。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §7、§13、§20",
+      "checks": [
+        {
+          "id": "P9.machine",
+          "mode": "mechanical",
+          "function": "check_p9",
+          "method": "核对 invocation、request/return、binding/端点及 purpose 引用",
+          "pass_condition": "每个 invocation 恰有一对；相同调用依据与端点没有跨层副本"
+        },
+        {
+          "id": "P9.review",
+          "mode": "review",
+          "method": "核对成员规范键和跨层引用；同 body 多个真实调用不能合并，同 action 可有零个或多个成员。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P10",
+      "statement": "每项必要业务关系须落到 message、alt/opt/loop 范围、结果或目的地标记；逐项对账“源语义→转换结构→可见表达”，每个 execution decision 绑定分支展示。折叠显示一条摘要，展开由子级替换，不列头尾协议清单。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §14、§16、§20",
+      "checks": [
+        {
+          "id": "P10.machine",
+          "mode": "mechanical",
+          "function": "check_p10",
+          "method": "核对 decision 值覆盖、可达 control/scope、摘要和语义对账表",
+          "pass_condition": "每个 decision 有可见分支绑定且值全覆盖；必要关系有实际可见目标；摘要覆盖阅读节点"
+        },
+        {
+          "id": "P10.review",
+          "mode": "review",
+          "method": "逐项检查对账表中的表达是否准确，不能只留 source-record；实际折叠/展开后摘要被替换且无头尾清单。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P11",
+      "statement": "共享尾部保留目的地标记与循环范围，不画独立长返回线；loop 通常必须声明 commonAfter。仅当 terminalOnly 证书绑定本 scope 与 raw hash、穷举所有非 continue 正常出口，并独立证明其尾部无环且仅含受限清理传输直达 return/error terminal 时可省略 commonAfter；Pending/Yield、suspend、unwind、业务 Call 与未证明安全的 Drop 均不算正常终止。break/continue/return 分开，渲染器只投影已有关系，不发明关系。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §17",
+      "checks": [
+        {
+          "id": "P11.machine",
+          "mode": "mechanical",
+          "function": "check_p11",
+          "method": "核对 loop 入口/出口、commonAfter 或 terminalOnly 证书，以及带 evidence 的 loop 边；terminalOnly 从 raw MIR 独立重算",
+          "pass_condition": "循环入口/退出与成员范围一致；回边绑定真实 scope；窄例外覆盖全部正常出口并只到声明 terminal"
+        },
+        {
+          "id": "P11.review",
+          "mode": "review",
+          "method": "逐共享尾部核对目的地标记、break/continue/return 与源码；实际页面无独立长返回线，renderer 未补造关系。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P12",
+      "statement": "goal 继承成员 action 及真实入口/出口；goal 内部关系随成员折叠，不机械变成 goal 自环。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §8–9",
+      "checks": [
+        {
+          "id": "P12.machine",
+          "mode": "mechanical",
+          "function": "check_p12",
+          "method": "比较 goal BB 集合与子 action 并集，核对 goal 内部原边投影",
+          "pass_condition": "集合相等；内部原边不因提升而生成 goal 自环"
+        },
+        {
+          "id": "P12.review",
+          "mode": "review",
+          "method": "核对真实入口/出口与有业务含义的循环边界；不能把所有自环一概删除。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P13",
+      "statement": "body 使用原函数名；goal/action/edge 使用中文并保留源码术语，如 hook、session、sampling、compact、history、step、turn。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §8、§18",
+      "checks": [
+        {
+          "id": "P13.machine",
+          "mode": "mechanical",
+          "function": "check_p13",
+          "method": "核对 goal/action 中文标签、有 definitions 时的 body 原名",
+          "pass_condition": "标签具有中文；有身份元数据的 body 名与原名一致"
+        },
+        {
+          "id": "P13.review",
+          "mode": "review",
+          "method": "逐文案对照源码术语与语义边中文；中文字符检查不能证明措辞准确或术语完整。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。"
+        }
+      ]
+    },
+    {
+      "id": "P14",
+      "statement": "详情常驻完整函数源码；prelude/goal/action/execution 节点及 BB组选择高亮全部 BB 源码范围；shell 引用只用 shell:bbN，inner 引用只用 bbN；BB 列表默认折叠；phase 清除选择。",
+      "source_section": "00-节点筛选与edge生成过程还原.md §18",
+      "checks": [
+        {
+          "id": "P14.machine",
+          "mode": "mechanical",
+          "function": "check_p14",
+          "method": "核对详情/完整源码/操作证据生成一致性；独立 verify_source_evidence 核验 decision 边界、async-shell 绑定/序言完整性及属性行归属；空片段由共享注册表证明。",
+          "pass_condition": "全部范围规范且符合操作证据；独立核验无错误；source-less 与空片段符合共享分类契约。"
+        },
+        {
+          "id": "P14.review",
+          "mode": "review",
+          "method": "浏览器默认显示完整函数并可滚到底；goal/action/execution/BB组选择高亮全部不连续范围、编号行区间标记并跳到首段；BB 列表默认折叠且展开不挤垮源码区域；phase 清除高亮并保留源码。 无关图控件重绘须保留选择与用户源码滚动；wheel/选择重叠和逐帧 redraw 回归通过。",
+          "pass_condition": "逐项记录证据与审查结论；无未解决项。",
+          "environment_gate": "browser"
+        }
+      ]
+    }
+  ],
+  "granularity_standards": [
+    {
+      "id": "G1",
+      "title": "业务消息归属",
+      "criterion": "每次业务请求及其条件完成组成同一 invocation，消息对唯一归属一个 action；跨层只引用该成员。",
+      "positive": "一次外部业务请求及其成功或失败结果处理 → 同一个 action 的消息对。",
+      "negative": "为 goal 和 action 各复制一份相同请求。",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G1.machine",
+          "mode": "mechanical",
+          "method": "消息对沿 control 树递归求 action 归属。",
+          "pass_condition": "一对 request/return 唯一归属同一 action。"
+        },
+        {
+          "id": "G1.review",
+          "mode": "review",
+          "method": "每次业务请求及其条件完成组成同一 invocation，消息对唯一归属一个 action；跨层只引用该成员。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        }
+      ]
+    },
+    {
+      "id": "G2",
+      "title": "action 的独立事实与边界",
+      "criterion": "action 至少解释一项有证据的业务调用、业务判断、业务状态变化或业务结果；同一操作的参数准备和直接取结果可合并。同一失败处理中连续的“保全状态 → 报告事件 → 返回结果”合为一个 action，除非中间被业务判断分开；正常路径与恢复路径仍分别建 action。 结构性例外统一查询共享分类注册表。",
+      "positive": "失败后连续保存输入、发布错误事件并返回错误 → 一个失败处理 action；中间若判断是否恢复，则按该判断拆开；正常请求与恢复后重试分开。",
+      "negative": "把锁、future 构造单独成 action；将连续失败处理机械拆为每个效果一个 action；把正常路径与恢复路径塞进同一 action。",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G2.machine",
+          "mode": "mechanical",
+          "method": "核对业务事实 kind、可解析证据和 action 归属；消息提供调用事实。",
+          "pass_condition": "每个 action 有业务事实；语义独立性另审。"
+        },
+        {
+          "id": "G2.review",
+          "mode": "review",
+          "method": "action 至少解释一项有证据的业务调用、业务判断、业务状态变化或业务结果；同一操作的参数准备和直接取结果可合并。同一失败处理中连续的“保全状态 → 报告事件 → 返回结果”合为一个 action，除非中间被业务判断分开；正常路径与恢复路径仍分别建 action。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        }
+      ]
+    },
+    {
+      "id": "G3",
+      "title": "goal 与 phase 边界",
+      "criterion": "goal 聚合履行同一业务完成合同及进入模式的相邻 action；合同明确责任/对象、状态承诺与后继用途。独立状态提交、正常尝试与改变承诺后的恢复、独立保全/通知/终止协议须分界；局部 Result 分支、多个 actor/decision 不自动拆分。phase 按生命周期交接划分。 完成合同边界按 G10 分离纯析构/存储/drop 标志路由与真实结果组装；逐块纯度证据必需。 兄弟 action 同完成合同及进入模式必须合组；同一 builder 连续安装/注册不同部件共同履行配置合同，callee 差异及局部可选 guard 不构成 goal 边界。 纯循环交接沿用循环工作的 goal 合同，不能独立建 goal/phase。",
+      "positive": "首次保留输入验证与修复状态后放宽输入重试分别成 goal；修复和重试同属恢复合同。",
+      "negative": "用上位目的或结果串接掩盖独立合同；按 actor/decision 数量、BB 大小或历史节点数切分。",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G3.machine",
+          "mode": "mechanical",
+          "method": "检查 goalContracts 覆盖所有 goal/action、证据可解析、成员合同/进入模式一致，以及目的、完成条件、入口/出口。",
+          "pass_condition": "完整覆盖且无混合合同；缺账本记 review；语义共同合同仍须agent审查。"
+        },
+        {
+          "id": "G3.review",
+          "mode": "review",
+          "method": "逐 action 对照源码验证合同，核对正常/恢复、状态提交、独立结果协议及每个 decision 的作用；多 actor/decision 仅触发反证审查，不机械切分。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        },
+        {
+          "id": "G3.fragmentation",
+          "mode": "mechanical",
+          "method": "检查同 phase 连续≥3个单 action goals 的 contractRef/targetRef/receiverRef 和 entryMode；BB≤200、action≥4时诊断goal/action≥0.8。",
+          "pass_condition": "同合同连续段 fail；同目标/接收者及高比例为 review/warning，必须据源码关闭，不以数量自动合组。"
+        }
+      ]
+    },
+    {
+      "id": "G4",
+      "title": "业务 decision",
+      "criterion": "影响是否调用、选择输入、状态承诺、后续成员或业务出口的判断进入业务判断清单并绑定可见 alt/opt/loop；需要表达守卫和分叉时建 execution decision，不把每个底层 SwitchInt 升级。",
+      "positive": "是否需要恢复决定后续恢复成员与绕过路径 → decision 和条件展示；恢复成功/失败结果另行表达。",
+      "negative": "只检查已选 decision 就宣称没有遗漏；把 poll 的挂起分支当业务选择。",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G4.machine",
+          "mode": "mechanical",
+          "method": "核对 decision 值覆盖及业务判断账本引用。",
+          "pass_condition": "已声明业务判断均指向有展示的 execution decision；源码清单完整性另审。"
+        },
+        {
+          "id": "G4.review",
+          "mode": "review",
+          "method": "影响是否调用、选择输入、状态承诺、后续成员或业务出口的判断进入业务判断清单并绑定可见 alt/opt/loop；需要表达守卫和分叉时建 execution decision，不把每个底层 SwitchInt 升级。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        }
+      ]
+    },
+    {
+      "id": "G5",
+      "title": "可跳过成员",
+      "criterion": "一个业务成员仅在某业务条件下执行、否则被跳过时，必须用 opt：真实 guard 和绕过路径须有证据，可见 opt control 覆盖该成员并说明 skip。跨成员范围另建 opt readingScope；alt 或单独的 readingScope 不能替代成员的 opt control。调用返回 Result/Option 本身不是可跳过调用的证据。",
+      "positive": "仅在开关或配置开启时做可选准备；仅在预算超限时做上下文压缩；仅在配置了 hook 时执行 hook → 均必须用 opt，明确否则绕过。",
+      "negative": "为每个调用的 Result/Option 处理单独包 opt；skip 重复执行条件；把调用后的结果 alt 当作调用前 guard；有业务 guard 和绕过路径却遗漏 opt。",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G5.machine",
+          "mode": "mechanical",
+          "method": "逐成员核对业务 guard、取值划分、绕过证据和覆盖成员的可见 opt control；证据不足记 review。",
+          "pass_condition": "每个有业务 guard 和绕过证据的成员均有 opt；存在已证实的被 guard 成员但可见 opt 为零时 fail；alt 或单独的 readingScope 不替代 opt。"
+        },
+        {
+          "id": "G5.review",
+          "mode": "review",
+          "method": "一个业务成员仅在某业务条件下执行、否则被跳过时，必须用 opt：真实 guard 和绕过路径须有证据，可见 opt control 覆盖该成员并说明 skip。跨成员范围另建 opt readingScope；alt 或单独的 readingScope 不能替代成员的 opt control。调用返回 Result/Option 本身不是可跳过调用的证据。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        }
+      ]
+    },
+    {
+      "id": "G6",
+      "title": "跨成员 readingScope",
+      "criterion": "业务循环（包括逐项注入与 step 循环，即使只重复一个 action）和跨多个成员的连续条件范围必须形成 readingScope，记录入口、成员、绕过/汇合或回边/出口；controls.loop 不能替代业务循环的 readingScope。仅局部消息条件可用 control。",
+      "positive": "逐项注入与 step 迭代各建 loop readingScope；成功后执行多个后续成员建条件 readingScope。",
+      "negative": "仅用 controls.loop 表示逐项业务循环；将条件控制的后续 action 平铺为必经步骤；范围跨越无关成员或把外部后继纳入循环。",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G6.machine",
+          "mode": "mechanical",
+          "method": "核对源范围账本的 kind、连续成员、scope/decision 引用及证据；已展示业务循环必须有对应 readingScope；图推断的条件范围报 review。",
+          "pass_condition": "业务循环与声明的跨成员条件范围均有 readingScope；仅局部消息条件可用 control。"
+        },
+        {
+          "id": "G6.review",
+          "mode": "review",
+          "method": "业务循环（包括逐项注入与 step 循环，即使只重复一个 action）和跨多个成员的连续条件范围必须形成 readingScope，记录入口、成员、绕过/汇合或回边/出口；controls.loop 不能替代业务循环的 readingScope。仅局部消息条件可用 control。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        }
+      ]
+    },
+    {
+      "id": "G7",
+      "title": "目的投影覆盖",
+      "criterion": "每个有业务 invocation 的 goal 均须由包含其成员的 purposeProjection 覆盖；纯本地判断、状态变化或结果交付由阅读摘要表达。",
+      "positive": "有外部请求的 goal 具备目的投影；只交付本地累计结果的 goal 保留摘要。",
+      "negative": "为了让每个 goal 都有投影而虚构外部调用；仅标 goalRef 却遗漏成员。",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G7.machine",
+          "mode": "mechanical",
+          "method": "按实际消息 owner 求 goal，核对 purpose 中该 invocation 的 goal 覆盖。",
+          "pass_condition": "每个有业务消息的 goal 及其调用均被目的投影覆盖。"
+        },
+        {
+          "id": "G7.review",
+          "mode": "review",
+          "method": "每个有业务 invocation 的 goal 均须由包含其成员的 purposeProjection 覆盖；纯本地判断、状态变化或结果交付由阅读摘要表达。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        }
+      ]
+    },
+    {
+      "id": "G8",
+      "title": "sequence / alt / opt 的选择",
+      "criterion": "sequence 保持同一路径上操作先后，alt 表达互斥业务结果；业务成员有执行条件且否则被跳过时必须用 opt（G5），可与 sequence/alt 嵌套。调用请求先于对应完成，不按 action 数机械生成；Result/Option 的结果处理按真实业务分支表达，不逐调用包装 opt。",
+      "positive": "先请求再取结果用 sequence；成功或失败结果用 alt；配置启用才准备、预算超限才压缩、配置 hook 才执行均用 opt。",
+      "negative": "为每个调用的 Result/Option 处理单独包 opt；将互斥分支排成无条件 sequence；用结果 alt 或范围声明替代可跳过成员的 opt。",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G8.machine",
+          "mode": "mechanical",
+          "method": "核对 request/return 先后，并由 G5 检查可跳过成员的 opt 覆盖。",
+          "pass_condition": "完成不早于请求；被 guard 的业务成员必须通过 G5 opt 检查；结果 alt 不替代 opt。"
+        },
+        {
+          "id": "G8.review",
+          "mode": "review",
+          "method": "sequence 保持同一路径上操作先后，alt 表达互斥业务结果；业务成员有执行条件且否则被跳过时必须用 opt（G5），可与 sequence/alt 嵌套。调用请求先于对应完成，不按 action 数机械生成；Result/Option 的结果处理按真实业务分支表达，不逐调用包装 opt。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        }
+      ]
+    },
+    {
+      "id": "G9",
+      "title": "按目的组投影",
+      "criterion": "按对象、业务目的、适用阶段/条件和结果组织 purposeProjection，再绑定真实端点和 invocation；同一 goal 可有多个目的组，同一端点可服务不同目的。",
+      "positive": "同一服务用于预算检查和错误发布 → 不同目的组；共同完成一次业务准备的多个成员可合组。",
+      "negative": "直接按 goal 或 callee 一键聚合全部协作，导致不同职责只剩重复的 goal 名。",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G9.machine",
+          "mode": "mechanical",
+          "method": "核对每个目的投影的对象、目的、结果及可解析依据。",
+          "pass_condition": "全部目的投影有分组依据；目的是否同一另审。"
+        },
+        {
+          "id": "G9.review",
+          "mode": "review",
+          "method": "按对象、业务目的、适用阶段/条件和结果组织 purposeProjection，再绑定真实端点和 invocation；同一 goal 可有多个目的组，同一端点可服务不同目的。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        }
+      ]
+    },
+    {
+      "id": "G10",
+      "title": "阅读树覆盖",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G10.machine",
+          "mode": "mechanical",
+          "method": "分别核对 inner 与 pinned shell 的完整 BB 覆盖、relation 和分类证据。",
+          "pass_condition": "inner 未归入 action 且无技术豁免的 BB 为空；retained shell 的 prelude 恰为业务补集且均用 shell:bbN；strict shell 无 prelude；relation 缺失直接失败。"
+        },
+        {
+          "id": "G10.review",
+          "mode": "review",
+          "method": "除纯技术 BB（cleanup、unwind、drop、状态分派、async 机制，须在账本中逐块标明类别和依据）外，业务路径上每个 BB 必须归入 action。回到循环入口前的共同收尾（完成当前 step、进入下一轮）必须形成一个 action，不能留空。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        },
+        {
+          "id": "G10.pure_loop_handoff_boundary",
+          "mode": "mechanical",
+          "method": "classification_registry 的统一分类与边界证明。",
+          "pass_condition": "每个纯交接 action 均有证明且没有独立纯交接 goal。"
+        }
+      ],
+      "criterion": "业务路径每个 BB 归入 action；完整事实覆盖保留。技术类别、instrumentation 区域证明、纯循环交接边界统一查询共享分类注册表；span 与 event 可并存但必须聚合，冲突/混合块继续归入业务；event_macro 还须由独立 raw MIR + pinned closure MIR 检查器重证。",
+      "positive": "循环各分支汇合后共同完成本轮收尾，再进入下一轮 → 共同收尾 action；纯技术块保留在事实树并记录豁免类别。",
+      "negative": "详情已有全部 BB，却把业务收尾留在 ROOT 下无 action；仅凭 Drop/Return terminator 或笼统的技术说明豁免整个块。"
+    },
+    {
+      "id": "G11",
+      "title": "phase 生命周期边界",
+      "source_section": "SKILL.md#划分粒度标准",
+      "checks": [
+        {
+          "id": "G11.machine",
+          "mode": "mechanical",
+          "method": "计算 execution 图有环 SCC，跨 phase 的循环须由跨 phase loop readingScope 覆盖并绑定有证据的回边；去除显式回边后核对 phase 执行顺序。",
+          "pass_condition": "跨 phase 循环均有 loop readingScope 表达回边；phase 按执行顺序排列；生命周期交接与图完整性另审。"
+        },
+        {
+          "id": "G11.review",
+          "mode": "review",
+          "method": "phase 在生命周期责任、输入承诺或处理模式的交接点划分，按执行顺序排列。业务循环可以在这些交接点拆成多个 phase；跨 phase 的循环必须有跨 phase 的 loop readingScope 覆盖循环成员，并通过有证据的回边表达重复执行。SCC 只用于发现循环，不限制其中 action 同属一个 phase。",
+          "pass_condition": "按源码与真实路径审查判据，记录证据、结论及未解决项；不得以数量替代。"
+        }
+      ],
+      "criterion": "phase 在生命周期责任、输入承诺或处理模式的交接点划分，按执行顺序排列。业务循环可以在这些交接点拆成多个 phase；跨 phase 的循环必须有跨 phase 的 loop readingScope 覆盖循环成员，并通过有证据的回边表达重复执行。SCC 只用于发现循环，不限制其中 action 同属一个 phase。",
+      "positive": "接收输入 → 准备上下文 → 采样 → 跟进评估 → 结束可按实际生命周期交接划分 phase；跨阶段重复处理由 loop readingScope 及回边连接。",
+      "negative": "仅按成功、错误等结果类别拆 phase；为保持 SCC 单一而吞并生命周期交接；跨 phase 循环没有 loop readingScope 或回边；phase 顺序与执行顺序不符。"
+    }
+  ],
+  "classification_registry": "renderer/classification-registry.mjs",
+  "classification_proofs": "scripts/classification_registry.py",
+  "roles": {
+    "body": {
+      "kinds": [
+        "direct",
+        "async-shell"
+      ],
+      "executionForms": [
+        "sync",
+        "coroutine"
+      ],
+      "mappingModes": [
+        "strict-forward",
+        "retained-relation"
+      ],
+      "needsEvidenceIsFailure": true
+    }
+  }
+}

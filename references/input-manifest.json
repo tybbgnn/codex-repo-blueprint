@@ -1,0 +1,71 @@
+{
+  "version": 21,
+  "same_for_levels": [
+    1,
+    2
+  ],
+  "required": [],
+  "modes": {
+    "prepared": {
+      "required": [
+        "raw-body.json",
+        "input-pins.json",
+        "rules.json",
+        "renderer-lock.json"
+      ],
+      "forbidden": [
+        "request.json"
+      ]
+    },
+    "request": {
+      "required": [
+        "request.json"
+      ],
+      "forbidden": [
+        "raw-body.json",
+        "input-pins.json",
+        "rules.json"
+      ]
+    }
+  },
+  "optional": [
+    "request.json",
+    "raw-body.json",
+    "input-pins.json",
+    "rules.json",
+    "renderer-lock.json",
+    "classification.json",
+    "facts/definitions-index.json",
+    "async-shell-prelude.raw-body.json",
+    "definitions.json",
+    "mir-bodies.json"
+  ],
+  "trees": [
+    "source/",
+    "pins/"
+  ],
+  "ledgers": [
+    "stage2.json",
+    "stage3.json",
+    "stage4.json",
+    "stage5.json",
+    "endpoint-ledger.json",
+    "edges.json",
+    "review-narrative.md",
+    "execution-label-review.json",
+    "inventory-anchors.json",
+    "async-chain.json",
+    "summaries.json",
+    "action-spec.json",
+    "stage7-review.json"
+  ],
+  "forbidden": [
+    "facts-format.json",
+    "conversion-format.json",
+    "hierarchy-format.json",
+    "format.json",
+    "accepted-review-receipt.json",
+    "producer-claims.json"
+  ],
+  "policy": "Reject undeclared files and symlinks. S7 decisions have one input path: ledgers/stage7-review.json. No baseline, output, profile, recipe or test expectation is an input."
+}

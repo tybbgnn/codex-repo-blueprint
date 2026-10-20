@@ -1,0 +1,86 @@
+{
+  "version": 21,
+  "stage": 4,
+  "builder": "stage_engine.stage4",
+  "inputs": {
+    "ledgers/stage4.json": {
+      "required": true
+    },
+    "ledgers/edges.json": {
+      "required": true
+    },
+    "ledgers/execution-label-review.json": {
+      "required": false
+    }
+  },
+  "prerequisites": [
+    "stage2/hierarchy.json",
+    "stage2/granularity.json",
+    "stage2/reading-summaries.json",
+    "facts/edges.json",
+    "facts/blocks.json"
+  ],
+  "outputs": {
+    "stage4/edges.json": {
+      "description": "Authored edge records and optional transitions retained without information loss; renderer projection reads edges only.",
+      "type": [
+        "array",
+        "object"
+      ]
+    },
+    "stage4/presentation.json": {
+      "additionalProperties": true,
+      "properties": {
+        "branchRoles": {
+          "type": "array"
+        },
+        "controlEvidence": {
+          "type": "object"
+        },
+        "controls": {
+          "items": {},
+          "type": "array"
+        },
+        "executionEdges": {
+          "items": {},
+          "type": "array"
+        },
+        "executionNodes": {
+          "items": {},
+          "type": "array"
+        },
+        "ownerControls": {
+          "type": "object"
+        },
+        "returnContracts": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "controls",
+        "executionNodes",
+        "executionEdges",
+        "ownerControls",
+        "controlEvidence",
+        "branchRoles",
+        "returnContracts"
+      ],
+      "type": "object"
+    },
+    "stage4/execution-label-review.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required_outputs": [
+    "stage4/edges.json",
+    "stage4/presentation.json"
+  ]
+}

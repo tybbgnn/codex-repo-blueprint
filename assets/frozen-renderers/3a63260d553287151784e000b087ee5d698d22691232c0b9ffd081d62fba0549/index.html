@@ -1,0 +1,11 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><link rel="icon" href="data:,"><meta name="viewport" content="width=device-width,initial-scale=1"><title>三层阅读 · build_prompt 时序图</title><link rel="stylesheet" href="style.css?v=sidebar-1">
+<header><div><b>v6.4 · 三层阅读</b><h1 id="title">build_prompt</h1></div><p id="description"></p></header>
+<nav aria-label="演示控制"><span>参与者</span><button data-x="0">折到 crate</button><button data-x="1">展开到 module</button><button data-x="2">展开到 body</button><i></i><span>阶段</span><button data-y="0">收起阶段</button><button data-y="1">显示子目标</button><button data-y="2">显示 action</button><button data-y="3">展开消息</button><i></i><label>缩放 <select id="zoom"><option value=".7">70%</option><option value=".85">85%</option><option value="1" selected>100%</option><option value="1.2">120%</option></select></label><button id="reset">重置</button></nav>
+<p class="hint">点击列头 ▸ 展开参与者；点击左侧 阶段 或标题 ▸ 展开阶段/子目标/action；点击消息核对调用配对。所有 alt 分支同时展示，不按上下顺序执行。</p>
+<div id="status" role="status"></div><div class="diagram-details-layout"><main id="viewport"><div id="scale"><div id="diagram"></div></div></main>
+<div id="selection">所有分支同图展示。折叠隐藏的消息保留原始身份。</div></div>
+<p id="definition-info" class="hint"></p><details><summary><span id="case-summary">案例索引</span></summary><table><thead><tr><th>编号</th><th>案例</th><th>共用表达</th><th>位置</th></tr></thead><tbody id="case-index"></tbody></table></details><details><summary>查看当前折叠状态和隐藏消息</summary><pre id="state"></pre></details>
+<footer>基于 SeqDia 的层级布局与消息样式；条件分段、重复范围与纵向折叠为本地扩展。静态投影，不是执行轨迹。<a href="../README.md">来源与扩展边界</a></footer>
+<aside id="root-source" aria-label="源码位置"><strong data-source-field="symbol"></strong><dl><dt>文件</dt><dd><code data-source-field="file"></code></dd><dt>module</dt><dd><code data-source-field="module"></code></dd><dt>crate</dt><dd><code data-source-field="crate"></code></dd></dl></aside>
+<div id="pane-divider" role="separator" aria-label="调整源码与图的宽度" aria-orientation="vertical" aria-controls="selection viewport" tabindex="0"></div>
+<script src="../data.js"></script><script src="app.bundle.js"></script></html>

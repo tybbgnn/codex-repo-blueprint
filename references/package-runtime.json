@@ -1,0 +1,32 @@
+{
+  "include": [
+    "references/stage-io.json",
+    "SKILL.md",
+    "scripts",
+    "assets/renderer",
+    "resources/rules.json",
+    "references/ledger-schema.json",
+    "references/package-runtime.json",
+    "assets/frozen-renderers",
+    "references/canonical-schema.json",
+    "references/input-manifest.json",
+    "references/layer-contract.json",
+    "tests",
+    "references/failure-classes.json",
+    "references/rule-index.md",
+    "references/run-recovery.md",
+    "references/ENGLISH-TERMS.md",
+    "references/ledger-templates.md",
+    "references/display-principles.md",
+    "references/display-validation.md",
+    "references/granularity.md",
+    "references/source-ranges.md",
+    "references/stage-guide.md",
+    "references/s2-authoring.md",
+    "references/acceptance.md",
+    "references/layers-and-contracts.md",
+    "references/contracts",
+    "references/layer-contract.md"
+  ],
+  "reason": "Isolated runtime dependencies only; no profiles, test baselines, historical receipts, producers archive, aside, or snapshots. Includes S7 support, explicitly allowlisted synthetic Python unit suites, and browser test runtime dependencies so isolated packages retain the gate environment. Agent stage-mandatory authoring and recovery references travel with the isolated runtime."
+}

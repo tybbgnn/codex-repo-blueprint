@@ -1,0 +1,89 @@
+{
+  "version": 21,
+  "stage": 6,
+  "builder": "stage_engine.stage6",
+  "inputs": {
+    "ledgers/inventory-anchors.json": {
+      "required": false
+    }
+  },
+  "prerequisites": [
+    "stage2/hierarchy.json",
+    "stage2/reading-summaries.json",
+    "stage4/presentation.json",
+    "stage4/edges.json",
+    "stage5/external.json",
+    "facts/blocks.json",
+    "facts/edges.json",
+    "facts/call-bindings.json",
+    "facts/terminal-events.json",
+    "raw-body.json",
+    "input-pins.json",
+    "facts/definitions-index.json",
+    "source/*"
+  ],
+  "outputs": {
+    "renderer-input.json": {
+      "type": "object",
+      "required": [
+        "profile",
+        "semanticRoot",
+        "phases",
+        "messages",
+        "execution",
+        "functionSource"
+      ],
+      "properties": {},
+      "additionalProperties": true
+    },
+    "reading-summaries.json": {
+      "type": "object",
+      "required": [
+        "units"
+      ],
+      "properties": {},
+      "additionalProperties": true
+    },
+    "basic-block-details.json": {
+      "type": "object",
+      "required": [
+        "nodes",
+        "blocks",
+        "node_sources"
+      ],
+      "properties": {},
+      "additionalProperties": true
+    },
+    "stage6/principle-lineage.json": {
+      "type": "object",
+      "required": [
+        "relations"
+      ],
+      "properties": {
+        "relations": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "additionalProperties": true
+    },
+    "stage6/determinism.json": {
+      "description": "See stage-io key_fields",
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required_outputs": [
+    "renderer-input.json",
+    "reading-summaries.json",
+    "basic-block-details.json",
+    "stage6/principle-lineage.json",
+    "stage6/determinism.json"
+  ]
+}
